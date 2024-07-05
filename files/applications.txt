@@ -1,1 +1,15 @@
-
+vim
+nano
+bluez
+bluez-utils
+blueman
+firefox
+btop
+fastfetch
+pipewire
+pipewire-pulse
+pavucontrol
+xbindkeys
+xev
+also-utils
+pamixer
