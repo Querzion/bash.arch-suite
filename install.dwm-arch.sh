@@ -18,17 +18,41 @@ while IFS= read -r app; do
     fi
 done < "$APPLICATIONS_FILE"
 
-# Install dwm
-echo "Installing dwm..."
+# Install st (suckless terminal)
+echo "Installing st (suckless terminal)..."
+git clone https://git.suckless.org/st ~/st
+cd ~/st
+sudo make clean install
 
-# Clone the dwm repository
+echo "st installed successfully."
+
+# Install dwm (Dynamic Window Manager)
+echo "Installing dwm (Dynamic Window Manager)..."
 git clone https://git.suckless.org/dwm ~/dwm
-
-# Navigate to the dwm directory and compile dwm
 cd ~/dwm
 sudo make clean install
 
 echo "dwm installed successfully."
+
+# Install nnn (file manager)
+echo "Installing nnn (file manager)..."
+git clone https://github.com/jarun/nnn ~/nnn
+cd ~/nnn
+sudo make
+sudo make install
+
+echo "nnn installed successfully."
+
+# Install dmenu (dynamic menu)
+echo "Installing dmenu (dynamic menu)..."
+git clone https://git.suckless.org/dmenu ~/dmenu
+cd ~/dmenu
+sudo make clean install
+
+echo "dmenu installed successfully."
+
+# Go back to the home directory
+cd $HOME
 
 # Create .xinitrc file in the home directory with specific content
 echo "Creating .xinitrc file in the home directory..."
