@@ -87,6 +87,13 @@ flatpak install flathub org.brave.Browser -y
 
 echo "Brave browser installed successfully."
 
+# Start and enable Docker service
+echo "Starting Docker service..."
+sudo systemctl start docker.service
+sudo systemctl enable docker.service
+
+echo "Docker installed and configured successfully."
+
 # Create .xinitrc file in the home directory with specific content
 echo "Creating .xinitrc file in the home directory..."
 
