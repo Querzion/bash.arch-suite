@@ -1,3 +1,4 @@
+////////////////////////////    KEYBOARD KNOB VOLUME CONTROL
 /* key definitions */
 #define MODKEY Mod1Mask
 #define TAGKEYS(KEY,TAG) \
@@ -19,4 +20,19 @@ static Key keys[] = {
     { 0, XF86XK_AudioRaiseVolume,   spawn,      {.v = volumeupcmd } },
     { 0, XF86XK_AudioMute,          spawn,      {.v = volumemutecmd } },
     ...
+};
+
+////////////////////////////    DO NOT USE BOTH AT THE SAME TIME
+/* Light Mode */
+static const char *colors[][3] = {
+    // color           fg         bg
+    [SchemeNorm] = { "#bbbbbb", "#222222", "#005577" },
+    [SchemeSel]  = { "#eeeeee", "#005577", "#ffffff" },
+};
+
+/* Dark Mode */
+static const char *colors[][3] = {
+    // color           fg         bg
+    [SchemeNorm] = { "#bbbbbb", "#000000", "#222222" },
+    [SchemeSel]  = { "#eeeeee", "#005577", "#444444" },
 };
