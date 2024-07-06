@@ -5,20 +5,20 @@ This repository contains scripts and instructions for setting up an Arch Linux s
 ## Installation
 
 To automate the installation of applications and configure dwm, follow these steps:
-
-1. **Clone the Repository:**
-
+4. **Get Started:**
+   ```bash
+   sudo pacman -S git
+   ```
+2. **Clone the Repository:**
    ```bash
    git clone https://github.com/querzion/startup.dwm-arch.git
    cd startup.dwm-arch
    ```
-2. **Make Executable:**
-
+3. **Make Executable:**
    ```bash
    chmod +x install.dwm-arch.sh
    ```
-   
-3. **Start:**
+4. **Start:**
    ```bash
    ./install.dwm-arch.sh
    ```
