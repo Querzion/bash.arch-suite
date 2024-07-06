@@ -11,5 +11,12 @@ pipewire-pulse
 pavucontrol
 xbindkeys
 xev
-also-utils
+alsa-utils
 pamixer
+xorg
+xorg-xinit
+make
+gcc
+libx11
+libxft
+libxinerama
