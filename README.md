@@ -1,6 +1,3 @@
-# startup.dwm-arch
-Install Script for Arch Linux that installs a list of applications, DWM and fixes a some personal settings. 
-
 # Arch Linux Setup with dwm Installation Script
 
 This repository contains scripts and instructions for setting up an Arch Linux system with dwm (Dynamic Window Manager) and other essential applications.
