@@ -11,11 +11,11 @@ pipewire-pulse
 pavucontrol
 xbindkeys
 xev
-alsa-utils
-pamixer
+exa
 xorg
 xorg-server
 xorg-xinit
+xorg-xkb-layouts
 make
 gcc
 libx11
