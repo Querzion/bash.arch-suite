@@ -1,5 +1,4 @@
 #!/bin/bash
-
 # Path to the applications list
 APPLICATIONS_FILE="$HOME/files/applications.txt"
 XINITRC_FILE="$HOME/.xinitrc"
@@ -98,7 +97,6 @@ echo "Docker installed and configured successfully."
 echo "Creating .xinitrc file in the home directory..."
 
 cat <<EOL > $XINITRC_FILE
-setxkbmap -layout se -variant dvorak &
 /usr/bin/pipewire &
 /usr/bin/pipewire-pulse &
 /usr/bin/pipewire-media-session &
@@ -108,3 +106,25 @@ EOL
 echo ".xinitrc file created successfully."
 
 echo "All applications installed successfully."
+
+echo "Changing keyboard Layout to Swedish Dvorak."
+echo 'setxkbmap -layout se -variant dvorak' >> ~/.bashrc
+echo 'KEYMAP=se-dvorak' | sudo tee /etc/vconsole.conf > /dev/null
+# Define the file path for the Xorg configuration
+CONF_FILE="/etc/X11/xorg.conf.d/10-keyboard.conf"
+
+# Create the directory if it doesn't exist (optional)
+sudo mkdir -p "$(dirname "$CONF_FILE")"
+
+# Write the configuration to the file
+sudo tee "$CONF_FILE" > /dev/null <<EOF
+Section "InputClass"
+    Identifier "keyboard-all"
+    MatchIsKeyboard "on"
+    Option "XkbLayout" "se"
+    Option "XkbVariant" "dvorak"
+EndSection
+EOF
+
+# Inform the user that the file has been created
+echo "Created $CONF_FILE with Swedish Dvorak keyboard configuration."
