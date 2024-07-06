@@ -51,8 +51,41 @@ sudo make clean install
 
 echo "dmenu installed successfully."
 
+# Install ani-cli (Anilist command-line interface)
+echo "Installing ani-cli (Anilist command-line interface)..."
+git clone https://github.com/erengy/ani-cli ~/ani-cli
+cd ~/ani-cli
+sudo make
+sudo make install
+
+echo "ani-cli installed successfully."
+
 # Go back to the home directory
 cd $HOME
+
+# Set up Flatpak
+echo "Setting up Flatpak..."
+flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+
+echo "Flatpak installed and set up successfully."
+
+# Install Discord via Flatpak
+echo "Installing Discord via Flatpak..."
+flatpak install flathub com.discordapp.Discord -y
+
+echo "Discord installed successfully."
+
+# Install OBS Studio via Flatpak
+echo "Installing OBS Studio via Flatpak..."
+flatpak install flathub com.obsproject.Studio -y
+
+echo "OBS Studio installed successfully."
+
+# Install Brave browser via Flatpak
+echo "Installing Brave browser via Flatpak..."
+flatpak install flathub org.brave.Browser -y
+
+echo "Brave browser installed successfully."
 
 # Create .xinitrc file in the home directory with specific content
 echo "Creating .xinitrc file in the home directory..."
