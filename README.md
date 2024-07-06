@@ -23,6 +23,11 @@ To automate the installation of applications and configure dwm, follow these ste
    ```bash
    ./install.dwm-arch.sh
    ```
+5. **Reboot:**
+   ```bash
+   reboot
+   ```
+
 
 ## Applications "files/applications.txt"
  - vim
