@@ -107,9 +107,16 @@ echo ".xinitrc file created successfully."
 
 echo "All applications installed successfully."
 
+############ SWEDISH DVORAK SETUP
+
 echo "Changing keyboard Layout to Swedish Dvorak."
+
+# Adding Swedish Dvorak to startup
 echo 'setxkbmap -layout se -variant dvorak' >> ~/.bashrc
+
+# Changing KEYMAP to Swedish Dvorak
 echo 'KEYMAP=se-dvorak' | sudo tee /etc/vconsole.conf > /dev/null
+
 # Define the file path for the Xorg configuration
 CONF_FILE="/etc/X11/xorg.conf.d/10-keyboard.conf"
 
@@ -128,3 +135,10 @@ EOF
 
 # Inform the user that the file has been created
 echo "Created $CONF_FILE with Swedish Dvorak keyboard configuration."
+
+# ANSI color codes
+RED='\033[0;31m'
+NC='\033[0m' # No Color
+
+# Print in red
+echo -e "${RED}TIME TO REBOOT!${NC}"
