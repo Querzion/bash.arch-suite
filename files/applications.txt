@@ -3,7 +3,6 @@ nano
 bluez
 bluez-utils
 blueman
-firefox
 btop
 fastfetch
 pipewire
