@@ -35,7 +35,6 @@ To automate the installation of applications and configure dwm, follow these ste
  - bluez
  - bluez-utils
  - blueman
- - firefox
  - btop
  - fastfetch
  - pipewire
