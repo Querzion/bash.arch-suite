@@ -25,3 +25,10 @@ base-devel
 webkit2gtk
 nodejs
 npm
+mpv
+python
+code
+dotnet-sdk
+dotnet-runtime
+vlc
+flatpak
