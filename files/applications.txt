@@ -32,3 +32,4 @@ dotnet-sdk
 dotnet-runtime
 vlc
 flatpak
+docker
