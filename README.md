@@ -5,7 +5,8 @@ This repository contains scripts and instructions for setting up an Arch Linux s
 ## Installation
 
 To automate the installation of applications and configure dwm, follow these steps:
-4. **Get Started:**
+
+1. **Get Started:**
    ```bash
    sudo pacman -S git
    ```
