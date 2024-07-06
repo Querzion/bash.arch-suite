@@ -23,3 +23,5 @@ libxft
 libxinerama
 base-devel
 webkit2gtk
+nodejs
+npm
