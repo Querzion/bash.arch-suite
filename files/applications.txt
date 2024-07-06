@@ -20,3 +20,4 @@ gcc
 libx11
 libxft
 libxinerama
+base-devel
