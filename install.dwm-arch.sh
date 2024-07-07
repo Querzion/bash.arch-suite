@@ -82,7 +82,7 @@ echo "OBS Studio installed successfully."
 
 # Install Brave browser via Flatpak
 echo "Installing Brave browser via Flatpak..."
-flatpak install flathub org.brave.Browser -y
+flatpak install brave -y
 
 echo "Brave browser installed successfully."
 
@@ -97,6 +97,12 @@ echo "Docker installed and configured successfully."
 echo "Creating .xinitrc file in the home directory..."
 
 cat <<EOL > $XINITRC_FILE
+#!/bin/sh
+#
+# ~/.xinitrc
+#
+#
+
 /usr/bin/pipewire &
 /usr/bin/pipewire-pulse &
 /usr/bin/pipewire-media-session &
