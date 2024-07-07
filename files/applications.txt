@@ -33,3 +33,5 @@ vlc
 flatpak
 docker
 simplescreenrecorder
+variety
+v
