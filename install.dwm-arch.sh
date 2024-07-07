@@ -30,6 +30,7 @@ done < "$APPLICATIONS_FILE"
 ############ AUR ACCESS
 
 # Installs Paru and or Yay by user choice.
+chmod +x $AUR_FILE
 ./$AUR_FILE
 
 ############ ST
@@ -80,6 +81,7 @@ cd $HOME
 
 # Fix FastFetch Visuals
 fastfetch --gen-config
+mv ~/.config/fastfetch/config.jsonc ~/.config/fastfetch/config.jsonc.bak
 cp -R $FFCONFIG_FILES ~/.config/
 
 ############ FLATPAK CONFIG
