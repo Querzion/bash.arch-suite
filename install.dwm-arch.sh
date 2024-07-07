@@ -112,6 +112,8 @@ echo "All applications installed successfully."
 echo "Changing keyboard Layout to Swedish Dvorak."
 
 # Adding Swedish Dvorak to startup
+echo ' ' >> ~/.bashrc
+echo '# SET KEYBOARD LAYOUT TO SWEDISH DVORAK'
 echo 'setxkbmap -layout se -variant dvorak' >> ~/.bashrc
 
 # Changing KEYMAP to Swedish Dvorak
