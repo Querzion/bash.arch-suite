@@ -189,6 +189,7 @@ RED='\033[0;31m'
 NC='\033[0m' # No Color
 
 sudo rm -R bash.dwm-arch.setup
+cd ~/
 
 # Print in red
 echo -e "${RED}TIME TO REBOOT!${NC}"
