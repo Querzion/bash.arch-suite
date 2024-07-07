@@ -32,3 +32,4 @@ dotnet-runtime
 vlc
 flatpak
 docker
+simplescreenrecorder
