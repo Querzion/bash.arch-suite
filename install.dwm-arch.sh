@@ -2,6 +2,11 @@
 # Path to the applications list
 APPLICATIONS_FILE="$HOME/bash.dwm-arch.setup/files/applications.txt"
 XINITRC_FILE="$HOME/.xinitrc"
+BASHRC_FILE="$HOME/bash.dwm-arch.setup/files/configs/.bashrc"
+FFCONFIG_FILES="$HOME/bash.dwm-arch.setup/files/configs/.config/fastfetch/"
+DMCONFIG_FILES="$HOME/bash.dwm-arch.setup/files/configs/dmenu/config.def.h"
+DWMCONFIG_FILES="$HOME/bash.dwm-arch.setup/files/configs/dwn/config.def.h"
+STCONFIG_FILES="$HOME/bash.dwm-arch.setup/files/configs/st/config.def.h"
 
 # Check if the applications file exists
 if [[ ! -f $APPLICATIONS_FILE ]]; then
@@ -52,6 +57,10 @@ echo "dmenu installed successfully."
 
 # Go back to the home directory
 cd $HOME
+
+# Fix FastFetch Visuals
+fastfetch --gen-config
+cp 
 
 # Set up Flatpak
 echo "Setting up Flatpak..."
