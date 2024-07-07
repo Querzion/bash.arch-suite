@@ -1,6 +1,6 @@
 #!/bin/bash
 # Path to the applications list
-APPLICATIONS_FILE="$HOME/files/applications.txt"
+APPLICATIONS_FILE="$HOME/bash.dwm-arch.setup/files/applications.txt"
 XINITRC_FILE="$HOME/.xinitrc"
 
 # Check if the applications file exists
