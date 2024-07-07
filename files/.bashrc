@@ -75,6 +75,9 @@ alias df='df -h'
 #keyboard
 alias give-me-azerty-be="sudo localectl set-x11-keymap be"
 alias give-me-qwerty-us="sudo localectl set-x11-keymap us"
+alias give-me-dvorak-sv="sudo localetcl set-x11-keymab dvorak-sv-a1"
+alias set-sv-dvorak="setxkbmap -layout se -variant dvorak"
+alias set-sv-qwerty="setxkbmap -layout se"
 
 #setlocale
 alias setlocale="sudo localectl set-locale LANG=en_US.UTF-8"
