@@ -179,12 +179,16 @@ EOF
 echo "Created $CONF_FILE with Swedish Dvorak keyboard configuration."
 
 ############ AUR ACCESS
-# Installs Paru and or Yay by user choice.
+# Installs Paru and Yay.
+
+# Folder Location
 cd $AUR_FILE/
-chmod +x access.aur.sh
-./access.aur.sh
-
-
+# Make executable and install paru.
+chmod +x install.paru.sh
+./install.paru.sh
+# Make executable and install yay.
+chmod +x install.yay.sh
+./install.yay.sh
 
 # ANSI color codes
 RED='\033[0;31m'
