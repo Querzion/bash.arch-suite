@@ -74,7 +74,7 @@ cd $HOME
 ############ FASTFETCH CONFIG
 
 # Fix FastFetch Visuals
-fastfetch --gen-config
+fastfetch --gen-config-force
 mv ~/.config/fastfetch/config.jsonc ~/.config/fastfetch/config.jsonc.bak
 cp -R $FFCONFIG_FILES ~/.config/
 
@@ -190,7 +190,7 @@ chmod +x access.aur.sh
 RED='\033[0;31m'
 NC='\033[0m' # No Color
 
-cd ~/
+cd $HOME
 sudo rm -R bash.dwm-arch.setup
 
 # Print in red
