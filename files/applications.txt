@@ -36,3 +36,4 @@ simplescreenrecorder
 variety
 unzip
 github-desktop
+meld
