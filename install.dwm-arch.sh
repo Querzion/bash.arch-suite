@@ -9,7 +9,7 @@ FFCONFIG_FILES="$HOME/bash.dwm-arch.setup/files/configs/.config/fastfetch/"
 DMCONFIG_FILES="$HOME/bash.dwm-arch.setup/files/configs/dmenu/config.def.h"
 DWMCONFIG_FILES="$HOME/bash.dwm-arch.setup/files/configs/dwn/config.def.h"
 STCONFIG_FILES="$HOME/bash.dwm-arch.setup/files/configs/st/config.def.h"
-AUR_FILE="$HOME/bash.dwm-arch.setup/files/scripts/access.aur.sh"
+AUR_FILE="$HOME/bash.dwm-arch.setup/files/scripts/"
 
 ############ APPLICATIONS.TXT
 
@@ -30,8 +30,8 @@ done < "$APPLICATIONS_FILE"
 ############ AUR ACCESS
 
 # Installs Paru and or Yay by user choice.
-chmod +x $AUR_FILE
-./$AUR_FILE
+chmod +x $AUR_FILE/access.aur.sh
+./$AUR_FILE/access.aur.sh
 
 ############ ST
 
