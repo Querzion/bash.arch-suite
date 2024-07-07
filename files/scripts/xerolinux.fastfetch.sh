@@ -8,14 +8,16 @@ command_exists() {
 # Check if paru or yay is installed
 if ! command_exists paru && ! command_exists yay; then
     echo "Neither paru nor yay is installed."
-    read -p "Do you want to install paru? (yes/no): " install_paru_choice
-    if [[ "$install_paru_choice" == "yes" ]]; then
-        sudo ./install_paru.sh
+    read -p "Do you want to install paru? (Y/n): " install_paru_choice
+    if [[ "$install_paru_choice" == "Y" ]]; then
+        chmod +x install.paru.sh
+        ./install.paru.sh
     fi
 
-    read -p "Do you want to install yay? (yes/no): " install_yay_choice
-    if [[ "$install_yay_choice" == "yes" ]]; then
-        sudo ./install_yay.sh
+    read -p "Do you want to install yay? (Y/n): " install_yay_choice
+    if [[ "$install_yay_choice" == "Y" ]]; then
+        chmod +x install.yay.sh
+        ./install.yay.sh
     fi
 
     if ! command_exists paru && ! command_exists yay; then
