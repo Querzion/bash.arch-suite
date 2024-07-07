@@ -9,6 +9,7 @@ FFCONFIG_FILES="$HOME/bash.dwm-arch.setup/files/configs/.config/fastfetch/"
 DMCONFIG_FILES="$HOME/bash.dwm-arch.setup/files/configs/dmenu/config.def.h"
 DWMCONFIG_FILES="$HOME/bash.dwm-arch.setup/files/configs/dwn/config.def.h"
 STCONFIG_FILES="$HOME/bash.dwm-arch.setup/files/configs/st/config.def.h"
+AUR_FILE="$HOME/bash.dwm-arch.setup/files/scripts/access.aur.sh"
 
 ############ APPLICATIONS.TXT
 
@@ -25,6 +26,11 @@ while IFS= read -r app; do
         sudo pacman -S --noconfirm "$app"
     fi
 done < "$APPLICATIONS_FILE"
+
+############ AUR ACCESS
+
+# Installs Paru and or Yay by user choice.
+./$AUR_FILE
 
 ############ ST
 
