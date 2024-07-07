@@ -138,6 +138,7 @@ echo ".xinitrc file created successfully."
 # Create .bashrc file in the home directory with specific content
 echo "Creating .bashrc file in the home directory..."
 
+rn ~/.bashrc ~/.bashrc.bak
 cp $BASHRC_FILE ~/
 
 echo ".bashrc file created successfully."
