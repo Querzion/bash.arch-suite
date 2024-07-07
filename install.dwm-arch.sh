@@ -11,6 +11,18 @@ DWMCONFIG_FILES="$HOME/bash.dwm-arch.setup/files/configs/dwn/config.def.h"
 STCONFIG_FILES="$HOME/bash.dwm-arch.setup/files/configs/st/config.def.h"
 AUR_FILE="$HOME/bash.dwm-arch.setup/files/scripts/"
 
+############ AUR ACCESS
+# Installs Paru and Yay.
+
+# Folder Location
+cd $AUR_FILE/
+# Make executable and install paru.
+chmod +x install.paru.sh
+./install.paru.sh
+# Make executable and install yay.
+chmod +x install.yay.sh
+./install.yay.sh
+
 ############ APPLICATIONS.TXT
 
 # Check if the applications file exists
@@ -177,18 +189,6 @@ EOF
 
 # Inform the user that the file has been created
 echo "Created $CONF_FILE with Swedish Dvorak keyboard configuration."
-
-############ AUR ACCESS
-# Installs Paru and Yay.
-
-# Folder Location
-cd $AUR_FILE/
-# Make executable and install paru.
-chmod +x install.paru.sh
-./install.paru.sh
-# Make executable and install yay.
-chmod +x install.yay.sh
-./install.yay.sh
 
 # ANSI color codes
 RED='\033[0;31m'
