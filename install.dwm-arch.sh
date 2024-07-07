@@ -27,12 +27,6 @@ while IFS= read -r app; do
     fi
 done < "$APPLICATIONS_FILE"
 
-############ AUR ACCESS
-
-# Installs Paru and or Yay by user choice.
-chmod +x $AUR_FILE/access.aur.sh
-./$AUR_FILE/access.aur.sh
-
 ############ ST
 
 # Install st (suckless terminal)
@@ -183,6 +177,14 @@ EOF
 
 # Inform the user that the file has been created
 echo "Created $CONF_FILE with Swedish Dvorak keyboard configuration."
+
+############ AUR ACCESS
+# Installs Paru and or Yay by user choice.
+cd $AUR_FILE/
+chmod +x access.aur.sh
+./access.aur.sh
+
+
 
 # ANSI color codes
 RED='\033[0;31m'
