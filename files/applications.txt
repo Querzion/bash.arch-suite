@@ -35,3 +35,4 @@ docker
 simplescreenrecorder
 variety
 unzip
+github-desktop
