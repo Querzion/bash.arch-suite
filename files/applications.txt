@@ -34,3 +34,4 @@ flatpak
 docker
 simplescreenrecorder
 variety
+unzip
