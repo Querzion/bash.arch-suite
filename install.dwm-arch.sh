@@ -1,5 +1,7 @@
 #!/bin/bash
-# Path to the applications list
+
+############ FILE & FOLDER PATHS
+
 APPLICATIONS_FILE="$HOME/bash.dwm-arch.setup/files/applications.txt"
 XINITRC_FILE="$HOME/.xinitrc"
 BASHRC_FILE="$HOME/bash.dwm-arch.setup/files/configs/.bashrc"
@@ -7,6 +9,8 @@ FFCONFIG_FILES="$HOME/bash.dwm-arch.setup/files/configs/.config/fastfetch/"
 DMCONFIG_FILES="$HOME/bash.dwm-arch.setup/files/configs/dmenu/config.def.h"
 DWMCONFIG_FILES="$HOME/bash.dwm-arch.setup/files/configs/dwn/config.def.h"
 STCONFIG_FILES="$HOME/bash.dwm-arch.setup/files/configs/st/config.def.h"
+
+############ APPLICATIONS.TXT
 
 # Check if the applications file exists
 if [[ ! -f $APPLICATIONS_FILE ]]; then
@@ -22,6 +26,8 @@ while IFS= read -r app; do
     fi
 done < "$APPLICATIONS_FILE"
 
+############ ST
+
 # Install st (suckless terminal)
 echo "Installing st (suckless terminal)..."
 git clone https://git.suckless.org/st ~/st
@@ -29,6 +35,8 @@ cd ~/st
 sudo make clean install
 
 echo "st installed successfully."
+
+############ DWM
 
 # Install dwm (Dynamic Window Manager)
 echo "Installing dwm (Dynamic Window Manager)..."
@@ -38,6 +46,8 @@ sudo make clean install
 
 echo "dwm installed successfully."
 
+############ NNN
+
 # Install nnn (file manager)
 echo "Installing nnn (file manager)..."
 git clone https://github.com/jarun/nnn ~/nnn
@@ -46,6 +56,8 @@ sudo make
 sudo make install
 
 echo "nnn installed successfully."
+
+############ DMENU
 
 # Install dmenu (dynamic menu)
 echo "Installing dmenu (dynamic menu)..."
@@ -58,9 +70,13 @@ echo "dmenu installed successfully."
 # Go back to the home directory
 cd $HOME
 
+############ FASTFETCH CONFIG
+
 # Fix FastFetch Visuals
 fastfetch --gen-config
 cp 
+
+############ FLATPAK CONFIG
 
 # Set up Flatpak
 echo "Setting up Flatpak..."
@@ -68,11 +84,15 @@ flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flat
 
 echo "Flatpak installed and set up successfully."
 
+############ DISCORD
+
 # Install Discord via Flatpak
 echo "Installing Discord via Flatpak..."
 flatpak install flathub com.discordapp.Discord -y
 
 echo "Discord installed successfully."
+
+############ OBS STUDIO
 
 # Install OBS Studio via Flatpak
 echo "Installing OBS Studio via Flatpak..."
@@ -80,11 +100,15 @@ flatpak install flathub com.obsproject.Studio -y
 
 echo "OBS Studio installed successfully."
 
+############ BRAVE BROWSER
+
 # Install Brave browser via Flatpak
 echo "Installing Brave browser via Flatpak..."
 flatpak install brave -y
 
 echo "Brave browser installed successfully."
+
+############ DOCKER
 
 # Start and enable Docker service
 echo "Starting Docker service..."
@@ -92,6 +116,8 @@ sudo systemctl start docker.service
 sudo systemctl enable docker.service
 
 echo "Docker installed and configured successfully."
+
+############ .XINITRC
 
 # Create .xinitrc file in the home directory with specific content
 echo "Creating .xinitrc file in the home directory..."
@@ -107,10 +133,12 @@ EOL
 
 echo ".xinitrc file created successfully."
 
+############ .BASHRC
+
 # Create .bashrc file in the home directory with specific content
 echo "Creating .bashrc file in the home directory..."
 
-cp $HOME/bash.dwm-arch.setup/files/.bashrc ~/
+cp $BASHRC_FILE ~/
 
 echo ".bashrc file created successfully."
 
