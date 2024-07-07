@@ -5,7 +5,7 @@ RED='\033[0;31m'
 NC='\033[0m' # No Color
 
 # LOCATION
-DIR="$HOME/bash.dwm-arch.setup/files/scripts"
+DIR="$HOME/bash.dwm-arch.setup/files/scripts/"
 
 
 # Function to check if a command exists
