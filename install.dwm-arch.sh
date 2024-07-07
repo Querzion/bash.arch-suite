@@ -74,7 +74,7 @@ cd $HOME
 
 # Fix FastFetch Visuals
 fastfetch --gen-config
-cp 
+cp -R $FFCONFIG_FILES ~/.config/
 
 ############ FLATPAK CONFIG
 
