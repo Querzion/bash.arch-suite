@@ -431,7 +431,7 @@ alias personal='cp -Rf /personal/* ~'
 [[ -f ~/.bashrc-personal ]] && . ~/.bashrc-personal
 
 # reporting tools - install when not installed
-fastfetch | lolcat
+fastfetch # | lolcat # Install lolcat in order to have this working!
 #neofetch
 #screenfetch
 #alsi
