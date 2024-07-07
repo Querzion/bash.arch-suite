@@ -198,4 +198,4 @@ cd $HOME
 sudo rm -R bash.dwm-arch.setup
 
 # Print in red
-echo -e "${RED}TIME TO REBOOT!${NC}"
+echo -e "${RED} | SETUP IS DONE! TIME TO REBOOT!${NC}"
