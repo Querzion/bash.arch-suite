@@ -20,6 +20,7 @@ FLATPAC_APPS="$CUT/flatpak-list.txt"
 XINITRC_FILE="$HOME/.xinitrc"
 BASHRC_FILE="$CUT/configs/.bashrc"
 #MIRRORLIST="/etc/pacman.d/mirrorlist"
+#PACMAN_CONF="/etc/pacman.conf"
 
 FFCONFIG_FILES="$CUT/configs/.config/fastfetch/"
 SCRIPT_FILES="$CUT/scripts/"
