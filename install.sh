@@ -158,7 +158,7 @@ while IFS= read -r app; do
     if [[ ! -z "$app" ]]; then
         echo -e "${GREEN} Installing $app from flatpak-list.txt. ${NC}"
         # Install the flatpak package
-        flatpak install --non-interactive --assumeyes $app
+        flatpak install -y $app
     fi
 done < "$PACMAN_APPS"
 
