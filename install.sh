@@ -10,7 +10,7 @@ NC='\033[0m' # No Color
 
 ############ FILE & FOLDER PATHS
 # CHANGE THE FOLDER NAME & LOCATION IF YOU RENAME THE FOLDER
-NAME_FOLDER="$HOME/bash.dwm-arch.startup"
+NAME_FOLDER="$HOME/startup"
 
 # LOCATIONS
 CUT="$NAME_FOLDER/files"
