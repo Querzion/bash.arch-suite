@@ -23,9 +23,22 @@ SCRIPT_FILES="$CUT/scripts/"
 DRIVERS="$CUT/scripts/install.video-drivers.sh"
 SAMBA="$CUT/samba/"
 
+
+
 ############ MAKE SCRIPTS EXECUTABLE
 
 chmod +x -R $SCRIPT_FILES
+
+############ UPDATE THE MIRROR LIST
+# SETTINGS
+COUNTRY="Sweden"
+
+# INSTALL
+sudo pacman -S reflector --noconfirm
+
+# CONFIGURE
+sudo mv /etc/pacman.d/mirriorlist /etc/pacman.d/mirrorlist.old 
+sudo reflector --country $COUNTRY --protocol https --sort rate --save /etc/pacman.d/mirrorlist
 
 ############ APPLICATIONS.TXT
 
