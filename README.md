@@ -1,6 +1,6 @@
 # Arch Linux Setup with dwm Installation Script
 
-This repository contains scripts and instructions for setting up an Arch Linux system with dwm (Dynamic Window Manager) and other essential applications.
+This repository contains scripts and instructions for setting up an Arch Linux system with dwm (Dynamic Window Manager) and other essential applications. It starts of installing Paru & Yay from their git repositories for access to the AUR, after that it installs the applications in the txt file applications. When it's done with that it will start downloading dwm, st, dmenu & nnn from suckless, and then flatpaks are installed. Last is to copy config files and other scripts, like adding text to .xinitrc, copying a .bashrc that has a multitude of useful alias commands pre-created. Configs (config.def.h) for dwm, st & dmenu will be copied to their folders, the old one will be renamed (confid.def.h.bak) and the command "sudo make clean install" will be used, last startx will be added to .bashrc. Other changes that will be added to the system are the change to Swedish Dvorak. If this is not to your liking there are alias commands in the .bashrc that will change to other keyboard layouts.  
 
 ## Installation
 
@@ -27,49 +27,5 @@ To automate the installation of applications and configure dwm, follow these ste
    ```bash
    reboot
    ```
-
-
-## Applications "files/applications.txt"
- - vim
- - nano
- - bluez
- - bluez-utils
- - blueman
- - btop
- - fastfetch
- - pipewire
- - pipewire-pulse
- - pavucontrol
- - xbindkeys
- - xev
- - exa
- - xorg
- - xorg-server
- - xorg-xinit
- - xorg-xkb-layouts
- - make
- - gcc
- - libx11
- - libxft
- - libxinerama
- - base-devel
- - webkit2gtk
- - nodejs
- - npm
- - mpv
- - python
- - code
- - dotnet-sdk
- - dotnet-runtime
- - vlc
- - flatpak
- - docker
-
-## Applications "install.dwm-arch.sh"
- - flatpak source
- - docker services
- - brave-browser
- - discord
- - obs-studio 
 
 Change the files however you like, I have it be like this because it's what I 'need' to have installed, but I will probably make separate applications, games, streaming, vm repos that is then added to this. Right now however, this is going to have to do. 
