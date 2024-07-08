@@ -70,7 +70,6 @@ sh $SCRIPT_FILES/install.wm-dwm.sh
 ############ SAMBA
 
 sh $SAMBA/install.samba.sh
-cp
 
 ############ THUNAR
 
