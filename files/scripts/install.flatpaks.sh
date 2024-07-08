@@ -1,5 +1,18 @@
 #!/bin/bash
 
+############ INSTALL FLATPAK
+
+# Install Flatpak
+sudo pacman -S flatpak
+
+############ FLATPAK CONFIG
+
+# Set up Flatpak
+echo "Setting up Flatpak..."
+flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+
+echo -e "${GREEN} Flatpak installed and set up successfully. ${NC}"
+
 ############ DISCORD
 
 # Install Discord via Flatpak
