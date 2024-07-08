@@ -197,6 +197,10 @@ echo "Created $CONF_FILE with Swedish Dvorak keyboard configuration."
 RED='\033[0;31m'
 NC='\033[0m' # No Color
 
+cp $NAME_FOLDER/files/scripts/.update.sh ~/
+chmod +x ~/.update.sh
+./update.sh
+
 sudo rm -R $NAME_FOLDER
 
 # Print in red
