@@ -15,7 +15,7 @@ NAME_FOLDER="$HOME/bash.dwm-arch.startup"
 # LOCATIONS
 CUT="$NAME_FOLDER/files"
 PACMAN_APPS="$CUT/pacman-list.txt"
-FLATPAC_APPS="$CUT/flatpak-list.txt"
+FLATPAK_APPS="$CUT/flatpak-list.txt"
 
 XINITRC_FILE="$HOME/.xinitrc"
 BASHRC_FILE="$CUT/configs/.bashrc"
@@ -139,12 +139,28 @@ echo -e "${GREEN} Flatpak installed and set up successfully. ${NC}"
 ################################################################### INSTALL FLATPAK-LIST.TXT
 ############ FLATPAKS
 
+# Check if the applications file exists
+if [[ ! -f $FLATPAK_APPS ]]; then
+    echo "The applications file does not exist at $FLATPAK_APPS"
+    exit 1
+fi
+
+
 # Loop through each line in the file
+#while IFS= read -r app; do
+#    echo -e "${GREEN} Installing $app from flatpak-list.txt. ${NC}"
+#    # Install the flatpak package
+#    flatpak install --non-interactive --assumeyes $app
+#    
+#done < "$FLATPAK_APPS" 
+
 while IFS= read -r app; do
-  # Install the flatpak package
-  flatpak install --non-interactive --assumeyes $app
-    echo -e "${GREEN} Installing $app from flatpak-list.txt. ${NC}"
-done < "$FLATPAC_APPS"
+    if [[ ! -z "$app" ]]; then
+        echo -e "${GREEN} Installing $app from flatpak-list.txt. ${NC}"
+        # Install the flatpak package
+        flatpak install --non-interactive --assumeyes $app
+    fi
+done < "$PACMAN_APPS"
 
 
 ################################################################### CONFIGURE DOCKER
