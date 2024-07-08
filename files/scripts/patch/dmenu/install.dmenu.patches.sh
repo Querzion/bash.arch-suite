@@ -25,13 +25,13 @@ for url in "${patch_urls[@]}"; do
     fi
 done
 
-# Compile dwm
+# Compile dmenu
 cd $DMENU_DIR
 if sudo make clean install; then
     echo "dwm compiled and installed successfully."
 else
-    echo "Failed to compile and install dwm."
+    echo "Failed to compile and install dmenu."
     exit 1
 fi
 
-echo "All patches have been downloaded, applied, and dwm has been installed."
+echo "All patches have been downloaded, applied, and dmenu has been installed."
