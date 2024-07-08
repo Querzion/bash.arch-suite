@@ -131,6 +131,14 @@ flatpak install brave -y
 
 echo "Brave browser installed successfully."
 
+############ KEYPASSXC
+
+# Install KeePassXC
+echo "Installing KeePassXC..."
+sudo flatpak install flathub org.keepassxc.KeePassXC -y
+
+echo "KeePassXC installation is complete."
+
 ############ DOCKER
 
 # Start and enable Docker service
