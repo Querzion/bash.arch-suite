@@ -14,7 +14,6 @@ install_package() {
 echo "Updating system and installing necessary packages..."
 sudo pacman -Syu --noconfirm
 install_package "samba"
-install_package "nemo"
 install_package "avahi"
 install_package "nss-mdns"
 
