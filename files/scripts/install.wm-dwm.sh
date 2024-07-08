@@ -37,7 +37,7 @@ sudo make clean install
 echo -e "${GREEN} dwm installed successfully. ${NC}"
 
 # Copy to replace config.def.h
-cp $DWMCONFIG_FILES ~/dwm
+cp $DWMCONFIG_FILES ~/dwm/config.def.h
 rm config.h
 cd ~/dwm
 sudo make clean install
@@ -60,7 +60,7 @@ sudo make clean install
 echo -e "${GREEN} st installed successfully. ${NC}"
 
 # Copy to replace config.def.h
-cp $STCONFIG_FILES ~/st
+cp $STCONFIG_FILES ~/st/config.def.h
 rm config.h
 cd ~/st
 sudo make clean install
@@ -83,7 +83,7 @@ sudo make clean install
 echo -e "${GREEN} dmenu installed successfully. ${NC}"
 
 # Copy to replace config.def.h
-cp $DMENUCONFIG_FILES ~/dmenu
+cp $DMENUCONFIG_FILES ~/dmenu/config.def.h
 rm config.h
 cd ~/dmenu
 sudo make clean install
@@ -98,7 +98,7 @@ echo -e "${GREEN} dmenu is now patched. ${NC}"
 ############ SLSTATUS
 
 # Install slstatus (taskbar status)
-echo "Installing dwm (Dynamic Window Manager)..."
+echo "Installing slstatus (Taskbar Status)..."
 git clone https://git.suckless.org/slstatus ~/slstatus
 cd ~/slstatus
 sudo make clean install
@@ -106,17 +106,17 @@ sudo make clean install
 echo -e "${GREEN} slstatus installed successfully. ${NC}"
 
 # Copy to replace config.def.h
-cp $DWMCONFIG_FILES ~/dwm
+cp $DWMCONFIG_FILES ~/slstatus/config.def.h
 rm config.h
-cd ~/dwm
+cd ~/slstatus
 sudo make clean install
 
-echo -e "${GREEN} dwm is now reconfigured. ${NC}"
+echo -e "${GREEN} slstatus is now reconfigured. ${NC}"
 
-# Patch dwm
-sh $PATCH_DWM
+# Patch slstatus
+sh $PATCH_SLSTATUS
 
-echo -e "${GREEN} dwm is now patched. ${NC}"
+echo -e "${GREEN} slstatus is now patched. ${NC}"
 
 ############ NNN
 
