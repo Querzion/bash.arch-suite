@@ -3,3 +3,4 @@ brave
 keepassxc
 obs-studio
 chatterino
+streamlink
