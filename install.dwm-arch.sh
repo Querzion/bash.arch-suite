@@ -15,6 +15,10 @@ STCONFIG_FILES="$NAME_FOLDER/files/configs/st/config.def.h"
 SCRIPT_FILES="$NAME_FOLDER/files/scripts/"
 DRIVERS="$NAME_FOLDER/files/scripts/install.video-drivers.sh"
 
+############ MAKE SCRIPTS EXECUTABLE
+
+chmod +x -R $SCRIPT_FILES
+
 ############ APPLICATIONS.TXT
 
 # Check if the applications file exists
