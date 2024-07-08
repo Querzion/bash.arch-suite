@@ -67,4 +67,14 @@ pulseaudio-module-bluetooth
 network-manager
 dhcpcd5
 wpasupplicant
-
+nemo
+nemo-fileroller
+nemo-share
+nautilus
+nautilus-actions
+nautilus-open-terminal
+nautilus-image-converter
+nautilus-share
+thunar
+thunar-volman
+thunar-shares
