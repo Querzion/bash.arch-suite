@@ -26,7 +26,10 @@ PATCH_ST="$CUT/scripts/patch/st/install.st.patches.sh"
 PATCH_DMENU="$CUT/scripts/patch/dmenu/install.dmenu.patches.sh"
 PATCH_SLSTATUS="$CUT/scripts/patch/slstatus/install.slstatus.patches.sh"
 
+################################################################### DWM
 ############ DWM
+
+echo -e "${BLUE} Installing dwm. ${NC}"
 
 # Install dwm (Dynamic Window Manager)
 echo "Installing dwm (Dynamic Window Manager)..."
@@ -36,21 +39,29 @@ sudo make clean install
 
 echo -e "${GREEN} dwm installed successfully. ${NC}"
 
+echo -e "${BLUE} Configuring config.def.h file. ${NC}"
+
 # Copy to replace config.def.h
-mv ~/dwm/config.def.h ~/dwm/config.def.h.bak
-cp $DWMCONFIG_FILES/config.def.h ~/dwm/
-rm config.h
+sudo mv ~/dwm/config.def.h ~/dwm/config.def.h.bak
+sudo cp $DWMCONFIG_FILES/config.def.h ~/dwm/
+sudo rm config.h
 cd ~/dwm
 sudo make clean install
 
 echo -e "${GREEN} dwm is now reconfigured. ${NC}"
+
+echo -e "${BLUE} Patching dwm. ${NC}"
 
 # Patch dwm
 sh $PATCH_DWM
 
 echo -e "${GREEN} dwm is now patched. ${NC}"
 
+
+################################################################### ST
 ############ ST
+
+echo -e "${BLUE} Installing st. ${NC}"
 
 # Install st (suckless terminal)
 echo "Installing st (suckless terminal)..."
@@ -60,21 +71,28 @@ sudo make clean install
 
 echo -e "${GREEN} st installed successfully. ${NC}"
 
+echo -e "${BLUE} Configuring config.def.h file. ${NC}"
+
 # Copy to replace config.def.h
-mv ~/st/config.def.h ~/st/config.def.h.bak
-cp $STCONFIG_FILES/config.def.h ~/st/
-rm config.h
+sudo mv ~/st/config.def.h ~/st/config.def.h.bak
+sudo cp $STCONFIG_FILES/config.def.h ~/st/
+sudo rm config.h
 cd ~/st
 sudo make clean install
 
 echo -e "${GREEN} st is now reconfigured. ${NC}"
+
+echo -e "${BLUE} Patching st. ${NC}"
 
 # Patch st
 sh $PATCH_ST
 
 echo -e "${GREEN} st is now patched. ${NC}"
 
+################################################################### DMENU
 ############ DMENU
+
+echo -e "${GREEN} Installing dmenu. ${NC}"
 
 # Install dmenu (dynamic menu)
 echo "Installing dmenu (dynamic menu)..."
@@ -84,21 +102,28 @@ sudo make clean install
 
 echo -e "${GREEN} dmenu installed successfully. ${NC}"
 
+echo -e "${BLUE} Configuring config.def.h file. ${NC}"
+
 # Copy to replace config.def.h
-mv ~/dmenu/config.def.h ~/dmenu/config.def.h.bak
-cp $DMENUCONFIG_FILES/config.def.h ~/dmenu/
-rm config.h
+sudo mv ~/dmenu/config.def.h ~/dmenu/config.def.h.bak
+sudo cp $DMENUCONFIG_FILES/config.def.h ~/dmenu/
+sudo rm config.h
 cd ~/dmenu
 sudo make clean install
 
 echo -e "${GREEN} dmenu is now reconfigured. ${NC}"
 
-# Patch dwm
+echo -e "${BLUE} Patching dmenu. ${NC}"
+
+# Patch dmenu
 sh $PATCH_DMENU
 
 echo -e "${GREEN} dmenu is now patched. ${NC}"
 
+################################################################### SLSTATUS
 ############ SLSTATUS
+
+echo -e "${GREEN} Installing slstatus. ${NC}"
 
 # Install slstatus (taskbar status)
 echo "Installing slstatus (Taskbar Status)..."
@@ -108,21 +133,28 @@ sudo make clean install
 
 echo -e "${GREEN} slstatus installed successfully. ${NC}"
 
+echo -e "${BLUE} Configuring config.def.h file. ${NC}"
+
 # Copy to replace config.def.h
-mv ~/slstatus/config.def.h ~/slstatus/config.def.h.bak
-cp $DWMCONFIG_FILES/config.def.h ~/slstatus/
-rm config.h
+sudo mv ~/slstatus/config.def.h ~/slstatus/config.def.h.bak
+sudo cp $DWMCONFIG_FILES/config.def.h ~/slstatus/
+sudo rm config.h
 cd ~/slstatus
 sudo make clean install
 
 echo -e "${GREEN} slstatus is now reconfigured. ${NC}"
+
+echo -e "${BLUE} Patching slstatus. ${NC}"
 
 # Patch slstatus
 sh $PATCH_SLSTATUS
 
 echo -e "${GREEN} slstatus is now patched. ${NC}"
 
+################################################################### NNN
 ############ NNN
+
+echo -e "${BLUE} Installing nnn. ${NC}"
 
 # Install nnn (file manager)
 echo "Installing nnn (file manager)..."
