@@ -28,10 +28,13 @@ SCRIPT_FILES="$CUT/scripts/"
 DRIVERS="$CUT/scripts/install.video-drivers.sh"
 SAMBA="$CUT/samba/"
 
+################################################################### MAKE SCRIPTS EXECUTABLE
 ############ MAKE SCRIPTS EXECUTABLE
 
 chmod +x -R $SCRIPT_FILES
 
+
+################################################################### UPDATE MIRROR LIST
 ############ UPDATE THE MIRROR LIST (Needs some work done before it goes public.)
 # SETTINGS
 #COUNTRY=Sweden
@@ -45,7 +48,8 @@ chmod +x -R $SCRIPT_FILES
 # UPDATE
 #pacman -Syyu
 
-############ APPLICATIONS.TXT
+################################################################### INSTALL PACMAN-LIST.TXT
+############ INSTALL PACMAN-LIST.TXT
 
 # Check if the applications file exists
 if [[ ! -f $PACMAN_APPS ]]; then
@@ -56,25 +60,30 @@ fi
 # Read the applications list and install each application
 while IFS= read -r app; do
     if [[ ! -z "$app" ]]; then
-        echo "Installing $app..."
+        echo -e "${GREEN} Installing $app from pacman-list.txt. ${NC}"
         sudo pacman -S --noconfirm "$app"
     fi
 done < "$PACMAN_APPS"
 
 
+################################################################### ACTIVATE BLUETOOTH
 ############ ACTIVATE BLUETOOTH
 
 # Enable and start Bluetooth service
 sudo systemctl enable bluetooth
 sudo systemctl start bluetooth
 
-############ ACTIVATE NETWORK MANAGER
+
+################################################################### ACTIVATE NETWORK MANAGER ???
+############ ACTIVATE NETWORK MANAGER ???
 
 # Enable and start NetworkManager service
 sudo systemctl enable NetworkManager
 sudo systemctl start NetworkManager
 
-############ AUR ACCESS
+
+################################################################### INSTALL PARU & YAY | AUR ACCESS
+############ INSTALL PARU & YAY | AUR ACCESS
 
 # Install paru.
 sh $SCRIPT_FILES/install.paru.sh
@@ -82,15 +91,21 @@ sh $SCRIPT_FILES/install.paru.sh
 # Install yay.
 sh $SCRIPT_FILES/install.yay.sh
 
+
+################################################################### INSTALL WINDOW MANAGER & CONFIGS
 ############ DWM, SLSTATUS, DMENU, NNN, ST 
 
 sh $SCRIPT_FILES/install.wm-dwm.sh
 
+
+################################################################### INSTALL SAMBA
 ############ SAMBA
 
 sh $SAMBA/install.samba.sh
 echo -e "${GREEN} Samba installed and set up successfully. ${NC}"
 
+
+################################################################### INSTALL THUNAR
 ############ THUNAR
 
 sh $SCRIPT_FILES/install.thunar.sh
@@ -101,6 +116,8 @@ echo -e "${GREEN} Thunar installed and set up successfully. ${NC}"
 # Go back to the home directory
 cd $HOME
 
+
+################################################################### CHANGE FASTFETCH LOOKS
 ############ FASTFETCH CONFIG
 
 # Fix FastFetch Visuals
@@ -108,6 +125,8 @@ fastfetch --gen-config-force
 mv ~/.config/fastfetch/config.jsonc ~/.config/fastfetch/config.jsonc.bak
 cp -R $FFCONFIG_FILES ~/.config/
 
+
+################################################################### FLATPAK CONFIGURATION
 ############ FLATPAK CONFIG
 
 # Set up Flatpak
@@ -116,14 +135,19 @@ flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flat
 
 echo -e "${GREEN} Flatpak installed and set up successfully. ${NC}"
 
-############ FLATPAK/-S
+
+################################################################### INSTALL FLATPAK-LIST.TXT
+############ FLATPAKS
 
 # Loop through each line in the file
 while IFS= read -r app; do
   # Install the flatpak package
   flatpak install --non-interactive --assumeyes $app
+    echo -e "${GREEN} Installing $app from flatpak-list.txt. ${NC}"
 done < "$FLATPAC_APPS"
 
+
+################################################################### CONFIGURE DOCKER
 ############ DOCKER
 
 # Start and enable Docker service
@@ -133,17 +157,8 @@ sudo systemctl enable docker.service
 
 echo -e "${GREEN} Docker installed and configured successfully. ${NC}"
 
-############ INSTALL CHATTERINO
 
-# Check if chatterino2-git is already installed (In case you start the script again.)
-if ! pacman -Qi chatterino2-git &> /dev/null; then
-    echo "Installing chatterino2-git..."
-    yay -S chatterino2-git --noconfirm
-    echo "Chatterino Installed."
-else
-    echo -e "${GREEN} chatterino2-git is already installed. ${NC}"
-fi
-
+################################################################### CHANGE .XINITRC
 ############ .XINITRC
 
 # Create .xinitrc file in the home directory with specific content
@@ -160,6 +175,8 @@ EOL
 
 echo -e "${GREEN} .xinitrc file created successfully. ${NC}"
 
+
+################################################################### CHANGE .BASHRC
 ############ .BASHRC
 
 # Create .bashrc file in the home directory with specific content
@@ -170,19 +187,30 @@ cp $BASHRC_FILE ~/
 
 echo -e "${GREEN} .bashrc file created successfully. ${NC}"
 
+
+################################################################### COPY TO HOME AND USE UPDATE SCRIPT
 ############ .UPDATE.SH
+
+echo -e "${GREEN} Copy update.sh to home folder. ${NC}"
 
 # Copy and Execute System Update Script
 cp $SCRIPT_FILES/.update.sh ~/
 chmod +x ~/.update.sh
+
+echo -e "${GREEN} Start ./update.sh from home folder. ${NC}"
+
 cd ~/
 ./update.sh
 
+
+################################################################### INSTALL GPU DRIVERS
 ############ GPU DRIVERS
 
 # Install GPU Drivers
 sh $DRIVERS
 
+
+################################################################### CHANGE KEYBOARD LAYOUT TO SWEDISH DVORAK
 ############ SWEDISH DVORAK SETUP
 
 echo "Changing keyboard Layout to Swedish Dvorak."
@@ -214,10 +242,14 @@ EOF
 # Inform the user that the file has been created
 echo -e "${BLUE} Created $CONF_FILE with Swedish Dvorak keyboard configuration. ${NC}"
 
+
+################################################################### REMOVE BASH.DWM-ARCH.STARTUP / STARTUP FOLDER
 ############ REMOVE STARTUP FOLDER
 
 sudo rm -R $NAME_FOLDER
 
+
+################################################################### REBOOT MESSAGE
 ############ REBOOT MESSAGE
 # Optionally, reboot the system to apply changes
 echo -e "${RED} | It is recommended to reboot your system to apply the changes .${NC} Do you want to reboot now? (y/n)"
