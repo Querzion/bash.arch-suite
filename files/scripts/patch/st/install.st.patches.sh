@@ -10,7 +10,7 @@ cd $PATCHES_DIR
 
 # Define patch URLs
 declare -a patch_urls=(
-    # Put patch links here
+    # ADD SUCKLESS PATCH LINKS HERE
 )
 
 # Download and apply patches
