@@ -13,12 +13,14 @@ NC='\033[0m' # No Color
 NAME_FOLDER="$HOME/bash.dwm-arch.startup"
 
 # LOCATIONS
-APPLICATIONS_FILE="$NAME_FOLDER/files/applications.txt"
+CUT="$NAME_FOLDER/files"
+APPLICATIONS_FILE="$CUT/applications.txt"
 XINITRC_FILE="$HOME/.xinitrc"
-BASHRC_FILE="$NAME_FOLDER/files/configs/.bashrc"
-FFCONFIG_FILES="$NAME_FOLDER/files/configs/.config/fastfetch/"
-SCRIPT_FILES="$NAME_FOLDER/files/scripts/"
-DRIVERS="$NAME_FOLDER/files/scripts/install.video-drivers.sh"
+BASHRC_FILE="$CUT/configs/.bashrc"
+FFCONFIG_FILES="$CUT/configs/.config/fastfetch/"
+SCRIPT_FILES="$CUT/scripts/"
+DRIVERS="$CUT/scripts/install.video-drivers.sh"
+SAMBA="$CUT/samba/"
 
 ############ MAKE SCRIPTS EXECUTABLE
 
@@ -64,6 +66,11 @@ sh $SCRIPT_FILES/install.yay.sh
 ############ DWM, SLSTATUS, DMENU, NNN, ST 
 
 sh $SCRIPT_FILES/install.wm-dwm.sh
+
+############ SAMBA
+
+sh $SAMBA/install.samba.sh
+cp
 
 ############ THUNAR
 
