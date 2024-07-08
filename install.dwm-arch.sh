@@ -65,6 +65,10 @@ sh $SCRIPT_FILES/install.yay.sh
 
 sh $SCRIPT_FILES/install.wm-dwm.sh
 
+############ THUNAR
+
+sh $SCRIPT_FILES/install.thunar.sh
+
 ############ GO BACK
 
 # Go back to the home directory
