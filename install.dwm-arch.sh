@@ -1,5 +1,13 @@
 #!/bin/bash
 
+############ COLOURED BASH TEXT
+
+# ANSI color codes
+RED='\033[0;31m'
+BLUE='\033[0;34m'
+GREEN='\033[0;32m'
+NC='\033[0m' # No Color
+
 ############ FILE & FOLDER PATHS
 # CHANGE THE FOLDER NAME & LOCATION IF YOU RENAME THE FOLDER
 NAME_FOLDER="$HOME/bash.dwm-arch.startup"
@@ -56,12 +64,6 @@ sh $SCRIPT_FILES/install.paru.sh
 # Install yay.
 sh $SCRIPT_FILES/install.yay.sh
 
-############ INSTALL CHATTERINO
-
-echo "Installing Chatterino."
-yay -S chatterino2-git --noconfirm
-echo "Chatterino Installed."
-
 ############ ST
 
 # Install st (suckless terminal)
@@ -70,7 +72,7 @@ git clone https://git.suckless.org/st ~/st
 cd ~/st
 sudo make clean install
 
-echo "st installed successfully."
+echo "${GREEN}st installed successfully.${NC}"
 
 ############ DWM
 
@@ -80,7 +82,7 @@ git clone https://git.suckless.org/dwm ~/dwm
 cd ~/dwm
 sudo make clean install
 
-echo "dwm installed successfully."
+echo "${GREEN}dwm installed successfully.${NC}"
 
 ############ NNN
 
@@ -91,7 +93,7 @@ cd ~/nnn
 sudo make
 sudo make install
 
-echo "nnn installed successfully."
+echo "${GREEN}nnn installed successfully.${NC}"
 
 ############ DMENU
 
@@ -101,7 +103,7 @@ git clone https://git.suckless.org/dmenu ~/dmenu
 cd ~/dmenu
 sudo make clean install
 
-echo "dmenu installed successfully."
+echo "${GREEN}dmenu installed successfully.${NC}"
 
 # Go back to the home directory
 cd $HOME
@@ -119,7 +121,7 @@ cp -R $FFCONFIG_FILES ~/.config/
 echo "Setting up Flatpak..."
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
-echo "Flatpak installed and set up successfully."
+echo "${GREEN}Flatpak installed and set up successfully.${NC}"
 
 ############ DISCORD
 
@@ -127,7 +129,7 @@ echo "Flatpak installed and set up successfully."
 echo "Installing Discord via Flatpak..."
 flatpak install flathub com.discordapp.Discord -y
 
-echo "Discord installed successfully."
+echo "${GREEN}Discord installed successfully.${NC}"
 
 ############ OBS STUDIO
 
@@ -135,7 +137,7 @@ echo "Discord installed successfully."
 echo "Installing OBS Studio via Flatpak..."
 flatpak install flathub com.obsproject.Studio -y
 
-echo "OBS Studio installed successfully."
+echo "${GREEN}OBS Studio installed successfully.${NC}"
 
 ############ BRAVE BROWSER
 
@@ -143,7 +145,7 @@ echo "OBS Studio installed successfully."
 echo "Installing Brave browser via Flatpak..."
 flatpak install brave -y
 
-echo "Brave browser installed successfully."
+echo "${GREEN}Brave browser installed successfully.${NC}"
 
 ############ KEYPASSXC
 
@@ -151,7 +153,7 @@ echo "Brave browser installed successfully."
 echo "Installing KeePassXC..."
 sudo flatpak install flathub org.keepassxc.KeePassXC -y
 
-echo "KeePassXC installation is complete."
+echo "${GREEN}KeePassXC installation is complete.${NC}"
 
 ############ DOCKER
 
@@ -160,7 +162,18 @@ echo "Starting Docker service..."
 sudo systemctl start docker.service
 sudo systemctl enable docker.service
 
-echo "Docker installed and configured successfully."
+echo "${GREEN}Docker installed and configured successfully.${NC}"
+
+############ INSTALL CHATTERINO
+
+# Check if chatterino2-git is already installed (In case you start the script again.)
+if ! pacman -Qi chatterino2-git &> /dev/null; then
+    echo "Installing chatterino2-git..."
+    yay -S chatterino2-git --noconfirm
+    echo "Chatterino Installed."
+else
+    echo "${GREEN}chatterino2-git is already installed.${NC}"
+fi
 
 ############ .XINITRC
 
@@ -176,7 +189,7 @@ cat <<EOL > $XINITRC_FILE
 exec dwm
 EOL
 
-echo ".xinitrc file created successfully."
+echo "${GREEN}.xinitrc file created successfully.${NC}"
 
 ############ .BASHRC
 
@@ -186,9 +199,20 @@ echo "Creating .bashrc file in the home directory..."
 rn ~/.bashrc ~/.bashrc.bak
 cp $BASHRC_FILE ~/
 
-echo ".bashrc file created successfully."
+echo "${GREEN}.bashrc file created successfully.${NC}"
 
-echo "All applications installed successfully."
+############ .UPDATE.SH
+
+# Copy and Execute System Update Script
+cp $SCRIPT_FILES/.update.sh ~/
+chmod +x ~/.update.sh
+cd ~/
+./update.sh
+
+############ GPU DRIVERS
+
+# Install GPU Drivers
+sh DRIVERS
 
 ############ SWEDISH DVORAK SETUP
 
@@ -219,23 +243,13 @@ EndSection
 EOF
 
 # Inform the user that the file has been created
-echo "Created $CONF_FILE with Swedish Dvorak keyboard configuration."
+echo "${BLUE}Created $CONF_FILE with Swedish Dvorak keyboard configuration.${NC}"
 
-# ANSI color codes
-RED='\033[0;31m'
-NC='\033[0m' # No Color
+############ REMOVE STARTUP FOLDER
 
-# Copy and Execute System Update Script
-cp $SCRIPT_FILES/.update.sh ~/
-chmod +x ~/.update.sh
-./update.sh
-
-# Install GPU Drivers
-sh DRIVERS
-
-# Remove Startup Folder
 sudo rm -R $NAME_FOLDER
 
+############ REBOOT MESSAGE
 # Optionally, reboot the system to apply changes
 echo "${RED} | It is recommended to reboot your system to apply the changes.${NC} Do you want to reboot now? (y/n)"
 read REBOOT
