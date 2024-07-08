@@ -118,20 +118,11 @@ echo -e "${GREEN} Flatpak installed and set up successfully. ${NC}"
 
 ############ FLATPAK/-S
 
-# Check if the applications file exists
-if [[ ! -f $FLATPAK_APPS ]]; then
-    echo -e "${RED} The applications file does not exist at $FLATPAK_APPS ${NC}"
-    exit 1
-fi
-
-# Read the applications list and install each application
+# Loop through each line in the file
 while IFS= read -r app; do
-    if [[ ! -z "$app" ]]; then
-        echo "Installing $app..."
-        flatpak install --noconfirm "$app"
-        echo -e "${GREEN} $app Installed. ${NC}
-    fi
-done < "$FLATPAK_APPS"
+  # Install the flatpak package
+  flatpak install --non-interactive --assumeyes $app
+done < "$FLATPAC_APPS"
 
 ############ DOCKER
 
