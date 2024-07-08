@@ -17,15 +17,11 @@ To automate the installation of applications and configure dwm, follow these ste
 3. **Make Executable:**
    ```bash
    cd startup
-   chmod +x install.dwm-arch.sh
+   chmod +x install.sh
    ```
 4. **Start:**
    ```bash
-   ./install.dwm-arch.sh
-   ```
-5. **Reboot:**
-   ```bash
-   reboot
+   ./install.sh
    ```
 
 Change the files however you like, I have it be like this because it's what I 'need' to have installed, but I will probably make separate applications, games, streaming, vm repos that is then added to this. Right now however, this is going to have to do. 
