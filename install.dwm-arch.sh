@@ -12,13 +12,14 @@ FFCONFIG_FILES="$NAME_FOLDER/files/configs/.config/fastfetch/"
 DMCONFIG_FILES="$NAME_FOLDER/files/configs/dmenu/config.def.h"
 DWMCONFIG_FILES="$NAME_FOLDER/files/configs/dwn/config.def.h"
 STCONFIG_FILES="$NAME_FOLDER/files/configs/st/config.def.h"
-AUR_FILE="$NAME_FOLDER/files/scripts/"
+SCRIPT_FILES="$NAME_FOLDER/files/scripts/"
+DRIVERS="$NAME_FOLDER/files/scripts/install.video-drivers.sh"
 
 ############ AUR ACCESS
 # Installs Paru and Yay.
 
 # Folder Location
-cd $AUR_FILE/
+cd $SCRIPT_FILES/
 # Make executable and install paru.
 chmod +x install.paru.sh
 ./install.paru.sh
@@ -224,11 +225,18 @@ echo "Created $CONF_FILE with Swedish Dvorak keyboard configuration."
 RED='\033[0;31m'
 NC='\033[0m' # No Color
 
-cp $NAME_FOLDER/files/scripts/.update.sh ~/
+# Copy and Execute System Update Script
+cp $SCRIPT_FILES/.update.sh ~/
 chmod +x ~/.update.sh
 ./update.sh
 
+# Install GPU Drivers
+sh DRIVERS
+
+# Remove Startup Folder
 sudo rm -R $NAME_FOLDER
 
 # Print in red
 echo -e "${RED} | SETUP IS DONE! TIME TO REBOOT!${NC}"
+
+
