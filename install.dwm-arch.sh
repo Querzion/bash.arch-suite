@@ -70,10 +70,12 @@ sh $SCRIPT_FILES/install.wm-dwm.sh
 ############ SAMBA
 
 sh $SAMBA/install.samba.sh
+echo -e "${GREEN} Samba installed and set up successfully. ${NC}"
 
 ############ THUNAR
 
 sh $SCRIPT_FILES/install.thunar.sh
+echo -e "${GREEN} Thunar installed and set up successfully. ${NC}"
 
 ############ GO BACK
 
