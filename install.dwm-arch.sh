@@ -28,7 +28,9 @@ chmod +x install.yay.sh
 
 ############ INSTALL CHATTERINO
 
+echo "Installing Chatterino."
 yay -S chatterino2-git --noconfirm
+echo "Chatterino Installed."
 
 ############ APPLICATIONS.TXT
 
