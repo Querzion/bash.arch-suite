@@ -89,45 +89,10 @@ fastfetch --gen-config-force
 mv ~/.config/fastfetch/config.jsonc ~/.config/fastfetch/config.jsonc.bak
 cp -R $FFCONFIG_FILES ~/.config/
 
-############ FLATPAK CONFIG
+############ FLATPAKS
 
-# Set up Flatpak
-echo "Setting up Flatpak..."
-flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-
-echo -e "${GREEN} Flatpak installed and set up successfully. ${NC}"
-
-############ DISCORD
-
-# Install Discord via Flatpak
-echo "Installing Discord via Flatpak..."
-flatpak install flathub com.discordapp.Discord -y
-
-echo -e "${GREEN} Discord installed successfully. ${NC}"
-
-############ OBS STUDIO
-
-# Install OBS Studio via Flatpak
-echo "Installing OBS Studio via Flatpak..."
-flatpak install flathub com.obsproject.Studio -y
-
-echo -e "${GREEN} OBS Studio installed successfully. ${NC}"
-
-############ BRAVE BROWSER
-
-# Install Brave browser via Flatpak
-echo "Installing Brave browser via Flatpak..."
-flatpak install brave -y
-
-echo -e "${GREEN} Brave browser installed successfully. ${NC}"
-
-############ KEYPASSXC
-
-# Install KeePassXC
-echo "Installing KeePassXC..."
-sudo flatpak install flathub org.keepassxc.KeePassXC -y
-
-echo -e "${GREEN} KeePassXC installation is complete. ${NC}"
+# Installs flatpak, configures it and installs some applications
+sh $SCRIPT_FILES/install.flatpaks.sh
 
 ############ DOCKER
 
