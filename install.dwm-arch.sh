@@ -26,6 +26,10 @@ chmod +x install.paru.sh
 chmod +x install.yay.sh
 ./install.yay.sh
 
+############ INSTALL CHATTERINO
+
+yay -S chatterino2-git --noconfirm
+
 ############ APPLICATIONS.TXT
 
 # Check if the applications file exists
