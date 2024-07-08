@@ -256,7 +256,7 @@ EndSection
 EOF
 
 # Inform the user that the file has been created
-echo -e "${BLUE} Created $CONF_FILE with Swedish Dvorak keyboard configuration. ${NC}"
+echo -e "${GREEN} Created $CONF_FILE with Swedish Dvorak keyboard configuration. ${NC}"
 
 
 ################################################################### REMOVE BASH.DWM-ARCH.STARTUP / STARTUP FOLDER
