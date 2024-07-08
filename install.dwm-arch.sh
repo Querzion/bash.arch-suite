@@ -22,6 +22,9 @@ DWMCONFIG_FILES="$NAME_FOLDER/files/configs/dwn/config.def.h"
 STCONFIG_FILES="$NAME_FOLDER/files/configs/st/config.def.h"
 SCRIPT_FILES="$NAME_FOLDER/files/scripts/"
 DRIVERS="$NAME_FOLDER/files/scripts/install.video-drivers.sh"
+PATCH_DWM="$NAME_FOLDER/files/scripts/patch/dwm/install.dwm.patches.sh"
+PATCH_ST="$NAME_FOLDER/files/scripts/patch/st/install.st.patches.sh"
+PATCH_DMENU="$NAME_FOLDER/files/scripts/patch/dmenu/install.dmenu.patches.sh"
 
 ############ MAKE SCRIPTS EXECUTABLE
 
@@ -74,6 +77,19 @@ sudo make clean install
 
 echo -e "${GREEN} st installed successfully. ${NC}"
 
+# Copy to replace config.def.h
+cp $STCONFIG_FILES ~/st
+rm config.h
+cd ~/st
+sudo make clean install
+
+echo -e "${GREEN} st is now reconfigured. ${NC}"
+
+# Patch st
+sh $PATCH_ST
+
+echo -e "${GREEN} st is now patched. ${NC}"
+
 ############ DWM
 
 # Install dwm (Dynamic Window Manager)
@@ -83,6 +99,19 @@ cd ~/dwm
 sudo make clean install
 
 echo -e "${GREEN} dwm installed successfully. ${NC}"
+
+# Copy to replace config.def.h
+cp $DWMCONFIG_FILES ~/dwm
+rm config.h
+cd ~/dwm
+sudo make clean install
+
+echo -e "${GREEN} dwm is now reconfigured. ${NC}"
+
+# Patch dwm
+sh $PATCH_DWM
+
+echo -e "${GREEN} dwm is now patched. ${NC}"
 
 ############ NNN
 
@@ -104,6 +133,21 @@ cd ~/dmenu
 sudo make clean install
 
 echo -e "${GREEN} dmenu installed successfully. ${NC}"
+
+# Copy to replace config.def.h
+cp $DMENUCONFIG_FILES ~/dmenu
+rm config.h
+cd ~/dmenu
+sudo make clean install
+
+echo -e "${GREEN} dmenu is now reconfigured. ${NC}"
+
+# Patch dwm
+sh $PATCH_DMENU
+
+echo -e "${GREEN} dmenu is now patched. ${NC}"
+
+############ GO BACK
 
 # Go back to the home directory
 cd $HOME
