@@ -41,10 +41,4 @@ sudo pacman -S --noconfirm mesa-utils vulkan-tools
 
 echo "Driver installation completed."
 
-# Optionally, reboot the system to apply changes
-echo "It is recommended to reboot your system to apply the changes. Do you want to reboot now? (y/n)"
-read REBOOT
 
-if [ "$REBOOT" = "y" ]; then
-    sudo reboot
-fi
