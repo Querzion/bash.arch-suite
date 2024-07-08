@@ -60,6 +60,7 @@ sudo bash -c 'cat > /etc/samba/smb.conf <<EOF
    writable = yes
    guest ok = yes
    read only = no
+   public = yes
 
 # Change the username - create the SHARED folder
 [SAMBASHARE]
@@ -68,6 +69,7 @@ sudo bash -c 'cat > /etc/samba/smb.conf <<EOF
     guest ok = yes
     public = yes
     writable = yes
+    read only = no
 EOF'
 
 # Create the shared directory and set permissions
@@ -76,6 +78,13 @@ sudo mkdir -p /srv/samba/public
 sudo chown -R nobody:nogroup /srv/samba/public
 sudo chmod -R 0775 /srv/samba/public
 sudo chown -R nobody:nogroup /srv/samba/public
+
+# Create the shared directory and set permissions
+echo "Creating shared directory and setting permissions..."
+sudo mkdir -p /home/querzion/Shared
+sudo chown -R nobody:nogroup /home/querzion/Shared
+sudo chmod -R 0775 /home/querzion/Shared
+sudo chown -R nobody:nogroup /home/querzion/Shared
 
 # Enable and start the Samba services
 echo "Enabling and starting Samba services..."
