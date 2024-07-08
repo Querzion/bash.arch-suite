@@ -48,6 +48,19 @@ while IFS= read -r app; do
     fi
 done < "$APPLICATIONS_FILE"
 
+
+############ ACTIVATE BLUETOOTH
+
+# Enable and start Bluetooth service
+sudo systemctl enable bluetooth
+sudo systemctl start bluetooth
+
+############ ACTIVATE NETWORK MANAGER
+
+# Enable and start NetworkManager service
+sudo systemctl enable NetworkManager
+sudo systemctl start NetworkManager
+
 ############ ST
 
 # Install st (suckless terminal)
