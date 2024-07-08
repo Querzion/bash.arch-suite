@@ -61,5 +61,9 @@ variety
 unzip
 github-desktop
 meld
-
+pulseaudio
+pulseaudio-module-bluetooth
+network-manager
+dhcpcd5
+wpasupplicant
 
