@@ -66,6 +66,10 @@ pulseaudio
 pulseaudio-module-bluetooth
 network-manager
 dhcpcd5
+samba
+avahi
+nss-mdns
+ufw
 wpasupplicant
 feh
 kitty
