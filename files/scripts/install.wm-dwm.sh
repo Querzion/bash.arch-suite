@@ -15,10 +15,10 @@ NAME_FOLDER="$HOME/bash.dwm-arch.startup"
 # LOCATIONS
 CUT="$NAME_FOLDER/files"
 # CONFIGS
-DMCONFIG_FILES="$CUT/configs/dmenu/config.def.h"
-DWMCONFIG_FILES="$CUT/configs/dwn/config.def.h"
-STCONFIG_FILES="$CUT/configs/st/config.def.h"
-SLSTATUSCONFIG_FILES="$CUT/configs/slstatus/config.def.h"
+DMCONFIG_FILES="$CUT/configs/dmenu"
+DWMCONFIG_FILES="$CUT/configs/dwn"
+STCONFIG_FILES="$CUT/configs/st"
+SLSTATUSCONFIG_FILES="$CUT/configs/slstatus"
 #SCRIPTS
 DRIVERS="$CUT/scripts/install.video-drivers.sh"
 PATCH_DWM="$CUT/scripts/patch/dwm/install.dwm.patches.sh"
@@ -37,7 +37,8 @@ sudo make clean install
 echo -e "${GREEN} dwm installed successfully. ${NC}"
 
 # Copy to replace config.def.h
-cp $DWMCONFIG_FILES ~/dwm/config.def.h
+mv ~/dwm/config.def.h ~/dwm/config.def.h.bak
+cp $DWMCONFIG_FILES/config.def.h ~/dwm/
 rm config.h
 cd ~/dwm
 sudo make clean install
@@ -60,7 +61,8 @@ sudo make clean install
 echo -e "${GREEN} st installed successfully. ${NC}"
 
 # Copy to replace config.def.h
-cp $STCONFIG_FILES ~/st/config.def.h
+mv ~/st/config.def.h ~/st/config.def.h.bak
+cp $STCONFIG_FILES/config.def.h ~/st/
 rm config.h
 cd ~/st
 sudo make clean install
@@ -83,7 +85,8 @@ sudo make clean install
 echo -e "${GREEN} dmenu installed successfully. ${NC}"
 
 # Copy to replace config.def.h
-cp $DMENUCONFIG_FILES ~/dmenu/config.def.h
+mv ~/dmenu/config.def.h ~/dmenu/config.def.h.bak
+cp $DMENUCONFIG_FILES/config.def.h ~/dmenu/
 rm config.h
 cd ~/dmenu
 sudo make clean install
@@ -106,7 +109,8 @@ sudo make clean install
 echo -e "${GREEN} slstatus installed successfully. ${NC}"
 
 # Copy to replace config.def.h
-cp $DWMCONFIG_FILES ~/slstatus/config.def.h
+mv ~/slstatus/config.def.h ~/slstatus/config.def.h.bak
+cp $DWMCONFIG_FILES/config.def.h ~/slstatus/
 rm config.h
 cd ~/slstatus
 sudo make clean install
