@@ -14,7 +14,8 @@ NAME_FOLDER="$HOME/bash.dwm-arch.startup"
 
 # LOCATIONS
 CUT="$NAME_FOLDER/files"
-APPLICATIONS_FILE="$CUT/applications.txt"
+PACMAN_APPS="$CUT/pacman-list.txt"
+FLATPAC_APPS="$CUT/flatpak-list.txt"
 XINITRC_FILE="$HOME/.xinitrc"
 BASHRC_FILE="$CUT/configs/.bashrc"
 FFCONFIG_FILES="$CUT/configs/.config/fastfetch/"
@@ -29,8 +30,8 @@ chmod +x -R $SCRIPT_FILES
 ############ APPLICATIONS.TXT
 
 # Check if the applications file exists
-if [[ ! -f $APPLICATIONS_FILE ]]; then
-    echo "The applications file does not exist at $APPLICATIONS_FILE"
+if [[ ! -f $PACMAN_APPS ]]; then
+    echo "The applications file does not exist at $PACMAN_APPS"
     exit 1
 fi
 
@@ -40,7 +41,7 @@ while IFS= read -r app; do
         echo "Installing $app..."
         sudo pacman -S --noconfirm "$app"
     fi
-done < "$APPLICATIONS_FILE"
+done < "$PACMAN_APPS"
 
 
 ############ ACTIVATE BLUETOOTH
@@ -89,10 +90,21 @@ fastfetch --gen-config-force
 mv ~/.config/fastfetch/config.jsonc ~/.config/fastfetch/config.jsonc.bak
 cp -R $FFCONFIG_FILES ~/.config/
 
-############ FLATPAKS
+############ FLATPAK/-S
 
-# Installs flatpak, configures it and installs some applications
-sh $SCRIPT_FILES/install.flatpaks.sh
+# Check if the applications file exists
+if [[ ! -f $FLATPAK_APPS ]]; then
+    echo "The applications file does not exist at $FLATPAK_APPS"
+    exit 1
+fi
+
+# Read the applications list and install each application
+while IFS= read -r app; do
+    if [[ ! -z "$app" ]]; then
+        echo "Installing $app..."
+        flatpak install --noconfirm "$app"
+    fi
+done < "$FLATPAK_APPS"
 
 ############ DOCKER
 
