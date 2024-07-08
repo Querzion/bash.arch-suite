@@ -15,24 +15,6 @@ STCONFIG_FILES="$NAME_FOLDER/files/configs/st/config.def.h"
 SCRIPT_FILES="$NAME_FOLDER/files/scripts/"
 DRIVERS="$NAME_FOLDER/files/scripts/install.video-drivers.sh"
 
-############ AUR ACCESS
-# Installs Paru and Yay.
-
-# Folder Location
-cd $SCRIPT_FILES/
-# Make executable and install paru.
-chmod +x install.paru.sh
-./install.paru.sh
-# Make executable and install yay.
-chmod +x install.yay.sh
-./install.yay.sh
-
-############ INSTALL CHATTERINO
-
-echo "Installing Chatterino."
-yay -S chatterino2-git --noconfirm
-echo "Chatterino Installed."
-
 ############ APPLICATIONS.TXT
 
 # Check if the applications file exists
@@ -61,6 +43,24 @@ sudo systemctl start bluetooth
 # Enable and start NetworkManager service
 sudo systemctl enable NetworkManager
 sudo systemctl start NetworkManager
+
+############ AUR ACCESS
+# Installs Paru and Yay.
+
+# Folder Location
+cd $SCRIPT_FILES/
+# Make executable and install paru.
+chmod +x install.paru.sh
+./install.paru.sh
+# Make executable and install yay.
+chmod +x install.yay.sh
+./install.yay.sh
+
+############ INSTALL CHATTERINO
+
+echo "Installing Chatterino."
+yay -S chatterino2-git --noconfirm
+echo "Chatterino Installed."
 
 ############ ST
 
