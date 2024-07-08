@@ -145,22 +145,18 @@ if [[ ! -f $FLATPAK_APPS ]]; then
     exit 1
 fi
 
-
-# Loop through each line in the file
-#while IFS= read -r app; do
-#    echo -e "${GREEN} Installing $app from flatpak-list.txt. ${NC}"
-#    # Install the flatpak package
-#    flatpak install --non-interactive --assumeyes $app
-#    
-#done < "$FLATPAK_APPS" 
-
 while IFS= read -r app; do
-    if [[ ! -z "$app" ]]; then
+    # Skip empty lines and lines starting with #
+    if [[ -z "$app" || "$app" == \#* ]]; then
+        continue
+    fi
         echo -e "${GREEN} Installing $app from flatpak-list.txt. ${NC}"
         # Install the flatpak package
-        flatpak install -y $app
+        flatpak install -y "$app"
     fi
 done < "$FLATPAK_APPS"
+
+echo -e "${GREEN} All flatpak packages have been installed. ${NC}"
 
 
 ################################################################### CONFIGURE DOCKER
