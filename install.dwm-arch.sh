@@ -1,15 +1,18 @@
 #!/bin/bash
 
 ############ FILE & FOLDER PATHS
+# CHANGE THE FOLDER NAME & LOCATION IF YOU RENAME THE FOLDER
+NAME_FOLDER="$HOME/bash.dwm-arch.startup"
 
-APPLICATIONS_FILE="$HOME/bash.dwm-arch.setup/files/applications.txt"
+# LOCATIONS
+APPLICATIONS_FILE="$NAME_FOLDER/files/applications.txt"
 XINITRC_FILE="$HOME/.xinitrc"
-BASHRC_FILE="$HOME/bash.dwm-arch.setup/files/configs/.bashrc"
-FFCONFIG_FILES="$HOME/bash.dwm-arch.setup/files/configs/.config/fastfetch/"
-DMCONFIG_FILES="$HOME/bash.dwm-arch.setup/files/configs/dmenu/config.def.h"
-DWMCONFIG_FILES="$HOME/bash.dwm-arch.setup/files/configs/dwn/config.def.h"
-STCONFIG_FILES="$HOME/bash.dwm-arch.setup/files/configs/st/config.def.h"
-AUR_FILE="$HOME/bash.dwm-arch.setup/files/scripts/"
+BASHRC_FILE="$NAME_FOLDER/files/configs/.bashrc"
+FFCONFIG_FILES="$NAME_FOLDER/files/configs/.config/fastfetch/"
+DMCONFIG_FILES="$NAME_FOLDER/files/configs/dmenu/config.def.h"
+DWMCONFIG_FILES="$NAME_FOLDER/files/configs/dwn/config.def.h"
+STCONFIG_FILES="$NAME_FOLDER/files/configs/st/config.def.h"
+AUR_FILE="$NAME_FOLDER/files/scripts/"
 
 ############ AUR ACCESS
 # Installs Paru and Yay.
@@ -194,8 +197,7 @@ echo "Created $CONF_FILE with Swedish Dvorak keyboard configuration."
 RED='\033[0;31m'
 NC='\033[0m' # No Color
 
-cd $HOME
-sudo rm -R bash.dwm-arch.setup
+sudo rm -R $NAME_FOLDER
 
 # Print in red
 echo -e "${RED} | SETUP IS DONE! TIME TO REBOOT!${NC}"
