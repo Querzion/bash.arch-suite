@@ -68,3 +68,4 @@ network-manager
 dhcpcd5
 wpasupplicant
 feh
+kitty
