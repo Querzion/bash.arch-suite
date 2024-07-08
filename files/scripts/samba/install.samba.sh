@@ -1,161 +1,81 @@
 #!/bin/bash
-set -e
-##################################################################################################################
-# Author	:	Erik Dubois
-# Website	:	https://www.erikdubois.be
-# Website	:	https://www.arcolinux.info
-# Website	:	https://www.arcolinux.com
-# Website	:	https://www.arcolinuxd.com
-# Website	:	https://www.arcolinuxforum.com
-##################################################################################################################
-#
-#   DO NOT JUST RUN THIS. EXAMINE AND JUDGE. RUN AT YOUR OWN RISK.
-#
-##################################################################################################################
 
-sudo pacman -S --noconfirm --needed samba
-sudo wget "https://git.samba.org/samba.git/?p=samba.git;a=blob_plain;f=examples/smb.conf.default;hb=HEAD" -O /etc/samba/smb.conf.original
-sudo wget "https://raw.githubusercontent.com/arcolinux/arcolinux-system-config/master/etc/samba/smb.conf.arcolinux" -O /etc/samba/smb.conf.arcolinux
-sudo wget "https://raw.githubusercontent.com/arcolinux/arcolinux-system-config/master/etc/samba/smb.conf.arcolinux" -O /etc/samba/smb.conf
-sudo systemctl enable smb.service
-sudo systemctl start smb.service
-sudo systemctl enable nmb.service
-sudo systemctl start nmb.service
+# Function to install a package
+install_package() {
+    if ! pacman -Qi $1 &> /dev/null; then
+        echo "Installing $1..."
+        sudo pacman -S --noconfirm $1
+    else
+        echo "$1 is already installed."
+    fi
+}
 
-##Change your username here
-read -p "What is your login? It will be used to add this user to smb : " choice
-sudo smbpasswd -a $choice
+# Update system and install necessary packages
+echo "Updating system and installing necessary packages..."
+sudo pacman -Syu --noconfirm
+install_package "samba"
+install_package "nemo"
+install_package "avahi"
+install_package "nss-mdns"
 
-#access samba share windows
-sudo pacman -S --noconfirm --needed gvfs-smb
-
-echo "################################################################"
-echo "#########   samba  software installed           ################"
-echo "################################################################"
-
-echo "Network Discovery"
-
-sudo pacman -S --noconfirm --needed avahi
-sudo systemctl enable avahi-daemon.service
-sudo systemctl start avahi-daemon.service
-
-#shares on a mac
-sudo pacman -S --noconfirm --needed nss-mdns
-
-tput setaf 5;echo "################################################################"
-echo "Change /etc/nsswitch.conf for access to nas servers"
-echo "We assume you are on ArcoLinux and have"
-echo "arcolinux-system-config-git or arcolinuxd-system-config-git"
-echo "installed. Else check and change the content of this file to your liking"
-echo "################################################################"
-echo;tput sgr0
-
-# https://wiki.archlinux.org/title/Domain_name_resolution
-if [ -f /usr/local/share/arcolinux/nsswitch.conf ]; then
-	echo "Make backup and copy ArcoLinux conf over"
-	echo
-	sudo cp /etc/nsswitch.conf /etc/nsswitch.conf.bak
-	sudo cp /usr/local/share/arcolinux/nsswitch.conf /etc/nsswitch.conf
+# Backup the original smb.conf file
+if [ ! -f /etc/samba/smb.conf.bak ]; then
+    echo "Backing up the original smb.conf file..."
+    sudo cp /etc/samba/smb.conf /etc/samba/smb.conf.bak
 fi
 
-echo "################################################################"
-echo "####       network discovery  software installed        ########"
-echo "################################################################"
+# Create a basic smb.conf file
+echo "Creating a basic smb.conf file..."
+sudo bash -c 'cat > /etc/samba/smb.conf <<EOF
+[global]
+   workgroup = WORKGROUP
+   server string = Samba Server
+   netbios name = archlinux
+   security = user
+   map to guest = Bad User
+   dns proxy = no
 
-#source fedora 23 : https://opsech.io/posts/2016/Apr/06/sharing-files-with-kde-and-samba.html
+[Public]
+   path = /srv/samba/public
+   browsable = yes
+   writable = yes
+   guest ok = yes
+   read only = no
+EOF'
 
-if pacman -Qi samba &> /dev/null; then
-  echo "###################################################################"
-  echo "Samba is installed"
-  echo "###################################################################"
-else
-  tput setaf 1;echo "###################################################################"
-  echo "First use our scripts to install samba and/or network discovery"
-  echo "###################################################################";tput sgr0
-  exit 1
-fi
+# Create the shared directory and set permissions
+echo "Creating shared directory and setting permissions..."
+sudo mkdir -p /srv/samba/public
+sudo chown -R nobody:nogroup /srv/samba/public
+sudo chmod -R 0775 /srv/samba/public
+sudo chown -R nobody:nogroup /srv/samba/public
 
-FILE=/etc/samba/smb.conf
+# Enable and start the Samba services
+echo "Enabling and starting Samba services..."
+sudo systemctl enable smb nmb
+sudo systemctl start smb nmb
 
-if test -f "$FILE"; then
-    echo "/etc/samba/smb.conf has been found"
-else
-  tput setaf 1;echo "###################################################################"
-  echo "We did not find /etc/samba/smb.conf"
-  echo "First use our scripts to install samba and/or network discovery"
-  echo "###################################################################";tput sgr0
-  exit 1
-fi
+# Configure Avahi
+echo "Configuring Avahi for network discovery..."
+sudo systemctl enable avahi-daemon
+sudo systemctl start avahi-daemon
 
+# Configure mDNS
+echo "Configuring nss-mdns..."
+sudo sed -i 's/hosts: files mymachines myhostname/hosts: files mymachines myhostname mdns_minimal [NOTFOUND=return] dns/g' /etc/nsswitch.conf
 
-#checking if filemanager is installed then install extra packages
-if pacman -Qi nemo &> /dev/null; then
-  sudo pacman -S --noconfirm --needed nemo-share
-fi
-if pacman -Qi nautilus &> /dev/null; then
-  sudo pacman -S --noconfirm --needed nautilus-share
-fi
-if pacman -Qi caja &> /dev/null; then
-  sudo pacman -S --noconfirm --needed caja-share
-fi
-if pacman -Qi dolphin &> /dev/null; then
-  sudo pacman -S --noconfirm --needed kdenetwork-filesharing
-fi
-if pacman -Qi thunar &> /dev/null; then
+# Open necessary ports in the firewall
+install_package "ufw"
+echo "Configuring UFW (Uncomplicated Firewall)..."
+sudo ufw allow proto tcp from any to any port 139,445
+sudo ufw allow proto udp from any to any port 137,138
+sudo ufw allow proto udp from any to any port 5353
+sudo ufw enable
 
-  echo "Select what package you would like to install"
+# Print status of Samba and Avahi services
+echo "Checking status of Samba and Avahi services..."
+sudo systemctl status smb
+sudo systemctl status nmb
+sudo systemctl status avahi-daemon
 
-  echo "0.  Do nothing"
-  echo "1.  ArcoLinux-thunar-shares-plugin - PREFERRED"
-  echo "2.  Default thunar-shares-plugin"
-  echo "3.  Default thunar-shares-plugin-git"
-  echo "Type the number..."
-
-  read CHOICE
-
-  case $CHOICE in
-
-      0 )
-        echo
-        echo "########################################"
-        echo "We did nothing as per your request"
-        echo "########################################"
-        echo
-        ;;
-      1 )
-        sudo pacman -S --noconfirm --needed arcolinux-thunar-shares-plugin
-        ;;
-      2 )
-        sudo pacman -S --noconfirm --needed thunar-shares-plugin
-        ;;
-      3 )
-        sudo pacman -S --noconfirm --needed thunar-shares-plugin-git
-        ;;
-      * )
-        echo "#################################"
-        echo "Choose the correct number"
-        echo "Nothing installed - install manually"
-        echo "#################################"
-        ;;
-    esac
-fi
-
-file="/etc/samba/smb.conf"
-
-sudo sed -i '/^\[global\]/a \
-\
-usershare allow guests = true \
-usershare max shares =  50 \
-usershare owner only = true \
-usershare path = /var/lib/samba/usershares' $file
-
-
-sudo mkdir -p /var/lib/samba/usershares
-sudo groupadd -r sambashare
-sudo gpasswd -a $USER sambashare
-sudo chown root:sambashare /var/lib/samba/usershares
-sudo chmod 1770 /var/lib/samba/usershares
-
-tput setaf 1;echo "###################################################################"
-echo "Now reboot before sharing folders"
-echo "###################################################################";tput sgr0
+echo "Setup completed successfully! You can now access the shared folder at \\archlinux.local\Public"
