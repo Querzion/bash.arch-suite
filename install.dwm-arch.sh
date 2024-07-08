@@ -67,7 +67,9 @@ sh $SCRIPT_FILES/install.paru.sh
 # Install yay.
 sh $SCRIPT_FILES/install.yay.sh
 
-¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤
+############ DWM, SLSTATUS, DMENU, NNN, ST 
+
+sh $SCRIPT_FILES/install.wm-dwm.sh
 
 ############ GO BACK
 
