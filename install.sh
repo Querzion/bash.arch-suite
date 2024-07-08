@@ -10,35 +10,39 @@ NC='\033[0m' # No Color
 
 ############ FILE & FOLDER PATHS
 # CHANGE THE FOLDER NAME & LOCATION IF YOU RENAME THE FOLDER
-NAME_FOLDER="$HOME/startup"
+NAME_FOLDER="$HOME/bash.dwm-arch.startup"
 
 # LOCATIONS
 CUT="$NAME_FOLDER/files"
 PACMAN_APPS="$CUT/pacman-list.txt"
 FLATPAC_APPS="$CUT/flatpak-list.txt"
+
 XINITRC_FILE="$HOME/.xinitrc"
 BASHRC_FILE="$CUT/configs/.bashrc"
+MIRRORLIST="/etc/pacman.d/mirrorlist"
+
 FFCONFIG_FILES="$CUT/configs/.config/fastfetch/"
 SCRIPT_FILES="$CUT/scripts/"
+
 DRIVERS="$CUT/scripts/install.video-drivers.sh"
 SAMBA="$CUT/samba/"
-
-
 
 ############ MAKE SCRIPTS EXECUTABLE
 
 chmod +x -R $SCRIPT_FILES
 
-############ UPDATE THE MIRROR LIST
+############ UPDATE THE MIRROR LIST (Needs some work done before it goes public.)
 # SETTINGS
-COUNTRY="Sweden"
+#COUNTRY=Sweden
 
 # INSTALL
-sudo pacman -S reflector --noconfirm
+#sudo pacman -S reflector --noconfirm
 
 # CONFIGURE
-sudo mv /etc/pacman.d/mirriorlist /etc/pacman.d/mirrorlist.old 
-sudo reflector --country $COUNTRY --protocol https --sort rate --save /etc/pacman.d/mirrorlist
+#sudo reflector --country $COUNTRY --protocol https --sort rate --save /etc/pacman.d/mirrorlist
+
+# UPDATE
+#pacman -Syyu
 
 ############ APPLICATIONS.TXT
 
