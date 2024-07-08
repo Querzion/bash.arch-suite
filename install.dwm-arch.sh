@@ -72,7 +72,7 @@ git clone https://git.suckless.org/st ~/st
 cd ~/st
 sudo make clean install
 
-echo "${GREEN}st installed successfully.${NC}"
+echo -e "${GREEN} st installed successfully. ${NC}"
 
 ############ DWM
 
@@ -82,7 +82,7 @@ git clone https://git.suckless.org/dwm ~/dwm
 cd ~/dwm
 sudo make clean install
 
-echo "${GREEN}dwm installed successfully.${NC}"
+echo -e "${GREEN} dwm installed successfully. ${NC}"
 
 ############ NNN
 
@@ -93,7 +93,7 @@ cd ~/nnn
 sudo make
 sudo make install
 
-echo "${GREEN}nnn installed successfully.${NC}"
+echo -e "${GREEN} nnn installed successfully. ${NC}"
 
 ############ DMENU
 
@@ -103,7 +103,7 @@ git clone https://git.suckless.org/dmenu ~/dmenu
 cd ~/dmenu
 sudo make clean install
 
-echo "${GREEN}dmenu installed successfully.${NC}"
+echo -e "${GREEN} dmenu installed successfully. ${NC}"
 
 # Go back to the home directory
 cd $HOME
@@ -121,7 +121,7 @@ cp -R $FFCONFIG_FILES ~/.config/
 echo "Setting up Flatpak..."
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
-echo "${GREEN}Flatpak installed and set up successfully.${NC}"
+echo -e "${GREEN} Flatpak installed and set up successfully. ${NC}"
 
 ############ DISCORD
 
@@ -129,7 +129,7 @@ echo "${GREEN}Flatpak installed and set up successfully.${NC}"
 echo "Installing Discord via Flatpak..."
 flatpak install flathub com.discordapp.Discord -y
 
-echo "${GREEN}Discord installed successfully.${NC}"
+echo -e "${GREEN} Discord installed successfully. ${NC}"
 
 ############ OBS STUDIO
 
@@ -137,7 +137,7 @@ echo "${GREEN}Discord installed successfully.${NC}"
 echo "Installing OBS Studio via Flatpak..."
 flatpak install flathub com.obsproject.Studio -y
 
-echo "${GREEN}OBS Studio installed successfully.${NC}"
+echo -e "${GREEN} OBS Studio installed successfully. ${NC}"
 
 ############ BRAVE BROWSER
 
@@ -145,7 +145,7 @@ echo "${GREEN}OBS Studio installed successfully.${NC}"
 echo "Installing Brave browser via Flatpak..."
 flatpak install brave -y
 
-echo "${GREEN}Brave browser installed successfully.${NC}"
+echo -e "${GREEN} Brave browser installed successfully. ${NC}"
 
 ############ KEYPASSXC
 
@@ -153,7 +153,7 @@ echo "${GREEN}Brave browser installed successfully.${NC}"
 echo "Installing KeePassXC..."
 sudo flatpak install flathub org.keepassxc.KeePassXC -y
 
-echo "${GREEN}KeePassXC installation is complete.${NC}"
+echo -e "${GREEN} KeePassXC installation is complete. ${NC}"
 
 ############ DOCKER
 
@@ -162,7 +162,7 @@ echo "Starting Docker service..."
 sudo systemctl start docker.service
 sudo systemctl enable docker.service
 
-echo "${GREEN}Docker installed and configured successfully.${NC}"
+echo -e "${GREEN} Docker installed and configured successfully. ${NC}"
 
 ############ INSTALL CHATTERINO
 
@@ -172,7 +172,7 @@ if ! pacman -Qi chatterino2-git &> /dev/null; then
     yay -S chatterino2-git --noconfirm
     echo "Chatterino Installed."
 else
-    echo "${GREEN}chatterino2-git is already installed.${NC}"
+    echo -e "${GREEN} chatterino2-git is already installed. ${NC}"
 fi
 
 ############ .XINITRC
@@ -189,7 +189,7 @@ cat <<EOL > $XINITRC_FILE
 exec dwm
 EOL
 
-echo "${GREEN}.xinitrc file created successfully.${NC}"
+echo -e "${GREEN} .xinitrc file created successfully. ${NC}"
 
 ############ .BASHRC
 
@@ -199,7 +199,7 @@ echo "Creating .bashrc file in the home directory..."
 rn ~/.bashrc ~/.bashrc.bak
 cp $BASHRC_FILE ~/
 
-echo "${GREEN}.bashrc file created successfully.${NC}"
+echo -e "${GREEN} .bashrc file created successfully. ${NC}"
 
 ############ .UPDATE.SH
 
@@ -243,7 +243,7 @@ EndSection
 EOF
 
 # Inform the user that the file has been created
-echo "${BLUE}Created $CONF_FILE with Swedish Dvorak keyboard configuration.${NC}"
+echo -e "${BLUE} Created $CONF_FILE with Swedish Dvorak keyboard configuration. ${NC}"
 
 ############ REMOVE STARTUP FOLDER
 
@@ -251,7 +251,7 @@ sudo rm -R $NAME_FOLDER
 
 ############ REBOOT MESSAGE
 # Optionally, reboot the system to apply changes
-echo "${RED} | It is recommended to reboot your system to apply the changes.${NC} Do you want to reboot now? (y/n)"
+echo -e "${RED} | It is recommended to reboot your system to apply the changes .${NC} Do you want to reboot now? (y/n)"
 read REBOOT
 
 if [ "$REBOOT" = "y" ]; then
