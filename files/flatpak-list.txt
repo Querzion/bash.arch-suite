@@ -1,1 +1,5 @@
-
+discord
+brave
+keepassxc
+obs-studio
+chatterino
