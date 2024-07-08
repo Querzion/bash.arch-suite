@@ -160,7 +160,7 @@ while IFS= read -r app; do
         # Install the flatpak package
         flatpak install -y $app
     fi
-done < "$PACMAN_APPS"
+done < "$FLATPAK_APPS"
 
 
 ################################################################### CONFIGURE DOCKER
