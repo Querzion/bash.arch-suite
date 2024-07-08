@@ -12,11 +12,11 @@ To automate the installation of applications and configure dwm, follow these ste
    ```
 2. **Clone the Repository:**
    ```bash
-   git clone https://github.com/querzion/bash.dwm-arch.setup.git
+   git clone https://github.com/querzion/bash.dwm-arch.startup.git ~/startup
    ```
 3. **Make Executable:**
    ```bash
-   cd startup.dwm-arch
+   cd startup
    chmod +x install.dwm-arch.sh
    ```
 4. **Start:**
