@@ -1,5 +1,7 @@
 #!/bin/bash
 
+SMB="/etc/samba/smb.conf"
+
 # Function to install a package
 install_package() {
     if ! pacman -Qi $1 &> /dev/null; then
@@ -10,13 +12,6 @@ install_package() {
     fi
 }
 
-# Update system and install necessary packages
-echo "Updating system and installing necessary packages..."
-sudo pacman -Syu --noconfirm
-install_package "samba"
-install_package "avahi"
-install_package "nss-mdns"
-
 # Backup the original smb.conf file
 if [ ! -f /etc/samba/smb.conf.bak ]; then
     echo "Backing up the original smb.conf file..."
@@ -25,7 +20,7 @@ fi
 
 # Create a basic smb.conf file
 echo "Creating a basic smb.conf file..."
-sudo bash -c 'cat > /etc/samba/smb.conf <<EOF
+cat <<EOL > $SMB
 #======================= Global Settings =====================================
 [global]
    workgroup = WORKGROUP
@@ -70,7 +65,7 @@ sudo bash -c 'cat > /etc/samba/smb.conf <<EOF
     public = yes
     writable = yes
     read only = no
-EOF'
+EOL
 
 # Create the shared directory and set permissions
 echo "Creating shared directory and setting permissions..."
@@ -101,7 +96,6 @@ echo "Configuring nss-mdns..."
 sudo sed -i 's/hosts: files mymachines myhostname/hosts: files mymachines myhostname mdns_minimal [NOTFOUND=return] dns/g' /etc/nsswitch.conf
 
 # Open necessary ports in the firewall
-install_package "ufw"
 echo "Configuring UFW (Uncomplicated Firewall)..."
 sudo ufw allow proto tcp from any to any port 139,445
 sudo ufw allow proto udp from any to any port 137,138
@@ -113,5 +107,6 @@ echo "Checking status of Samba and Avahi services..."
 sudo systemctl status smb
 sudo systemctl status nmb
 sudo systemctl status avahi-daemon
+sudo systemctl status ufw
 
 echo "Setup completed successfully! You can now access the shared folder at \\archlinux.local\Public"
