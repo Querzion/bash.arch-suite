@@ -1,3 +1,4 @@
+base
 base-devel
 webkit2gtk
 nodejs
