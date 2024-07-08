@@ -26,6 +26,7 @@ fi
 # Create a basic smb.conf file
 echo "Creating a basic smb.conf file..."
 sudo bash -c 'cat > /etc/samba/smb.conf <<EOF
+#======================= Global Settings =====================================
 [global]
    workgroup = WORKGROUP
    server string = Samba Server
@@ -34,12 +35,39 @@ sudo bash -c 'cat > /etc/samba/smb.conf <<EOF
    map to guest = Bad User
    dns proxy = no
 
+# Most people will want "standalone server" or "member server".
+# Running as "active directory domain controller" will require first
+# running "samba-tool domain provision" to wipe databases and create a
+# new domain.
+   server role = standalone server
+
+# this tells Samba to use a separate log file for each machine
+# that connects
+   log file = /var/log/samba/%m.log
+
+# Put a capping on the size of the log files (in Kb).
+   max log size = 50
+
+#============================ Share Definitions ==============================
+[homes]
+   comment = Home Directories
+   browseable = no
+   writable = yes
+
 [Public]
    path = /srv/samba/public
    browsable = yes
    writable = yes
    guest ok = yes
    read only = no
+
+# Change the username - create the SHARED folder
+[SAMBASHARE]
+    path = /home/querzion/Shared
+    browseable = yes
+    guest ok = yes
+    public = yes
+    writable = yes
 EOF'
 
 # Create the shared directory and set permissions
