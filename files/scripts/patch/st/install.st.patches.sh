@@ -30,7 +30,7 @@ cd $ST_DIR
 if sudo make clean install; then
     echo "st compiled and installed successfully."
 else
-    echo "Failed to compile and install dwm."
+    echo "Failed to compile and install st."
     exit 1
 fi
 
