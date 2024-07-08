@@ -212,7 +212,7 @@ cd ~/
 ############ GPU DRIVERS
 
 # Install GPU Drivers
-sh DRIVERS
+sh $DRIVERS
 
 ############ SWEDISH DVORAK SETUP
 
