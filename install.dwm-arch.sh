@@ -236,7 +236,10 @@ sh DRIVERS
 # Remove Startup Folder
 sudo rm -R $NAME_FOLDER
 
-# Print in red
-echo -e "${RED} | SETUP IS DONE! TIME TO REBOOT!${NC}"
+# Optionally, reboot the system to apply changes
+echo "${RED} | It is recommended to reboot your system to apply the changes.${NC} Do you want to reboot now? (y/n)"
+read REBOOT
 
-
+if [ "$REBOOT" = "y" ]; then
+    sudo reboot
+fi
