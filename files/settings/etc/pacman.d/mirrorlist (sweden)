@@ -1,0 +1,24 @@
+##
+## Arch Linux repository mirrorlist
+## Filtered by mirror score from mirror status page
+## Generated on 2024-07-08
+##
+
+## Sweden
+#Server = https://mirror.osbeck.com/archlinux/$repo/os/$arch
+## Sweden
+#Server = https://mirror.bahnhof.net/pub/archlinux/$repo/os/$arch
+## Sweden
+#Server = http://ftpmirror.infania.net/mirror/archlinux/$repo/os/$arch
+## Sweden
+#Server = https://mirror.accum.se/mirror/archlinux/$repo/os/$arch
+## Sweden
+#Server = http://mirror.accum.se/mirror/archlinux/$repo/os/$arch
+## Sweden
+#Server = http://ftp.myrveln.se/pub/linux/archlinux/$repo/os/$arch
+## Sweden
+#Server = http://mirror.bahnhof.net/pub/archlinux/$repo/os/$arch
+## Sweden
+#Server = https://ftp.myrveln.se/pub/linux/archlinux/$repo/os/$arch
+## Sweden
+#Server = https://ftp.ludd.ltu.se/mirrors/archlinux/$repo/os/$arch
