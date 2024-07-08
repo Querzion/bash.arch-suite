@@ -4,7 +4,7 @@
 
 # ANSI color codes
 RED='\033[0;31m'
-BLUE='\033[0;34m'
+BLUE='\033[93m' #YELLOW!! THE BLUE IS BARELY READABLE
 GREEN='\033[0;32m'
 NC='\033[0m' # No Color
 
