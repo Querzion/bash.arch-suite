@@ -90,11 +90,19 @@ fastfetch --gen-config-force
 mv ~/.config/fastfetch/config.jsonc ~/.config/fastfetch/config.jsonc.bak
 cp -R $FFCONFIG_FILES ~/.config/
 
+############ FLATPAK CONFIG
+
+# Set up Flatpak
+echo "Setting up Flatpak..."
+flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+
+echo -e "${GREEN} Flatpak installed and set up successfully. ${NC}"
+
 ############ FLATPAK/-S
 
 # Check if the applications file exists
 if [[ ! -f $FLATPAK_APPS ]]; then
-    echo "The applications file does not exist at $FLATPAK_APPS"
+    echo -e "${RED} The applications file does not exist at $FLATPAK_APPS ${NC}"
     exit 1
 fi
 
@@ -103,6 +111,7 @@ while IFS= read -r app; do
     if [[ ! -z "$app" ]]; then
         echo "Installing $app..."
         flatpak install --noconfirm "$app"
+        echo -e "${GREEN} $app Installed. ${NC}
     fi
 done < "$FLATPAK_APPS"
 
