@@ -49,16 +49,12 @@ sudo systemctl enable NetworkManager
 sudo systemctl start NetworkManager
 
 ############ AUR ACCESS
-# Installs Paru and Yay.
 
-# Folder Location
-cd $SCRIPT_FILES/
-# Make executable and install paru.
-chmod +x install.paru.sh
-./install.paru.sh
-# Make executable and install yay.
-chmod +x install.yay.sh
-./install.yay.sh
+# Install paru.
+sh $SCRIPT_FILES/install.paru.sh
+
+# Install yay.
+sh $SCRIPT_FILES/install.yay.sh
 
 ############ INSTALL CHATTERINO
 
