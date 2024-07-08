@@ -17,14 +17,8 @@ APPLICATIONS_FILE="$NAME_FOLDER/files/applications.txt"
 XINITRC_FILE="$HOME/.xinitrc"
 BASHRC_FILE="$NAME_FOLDER/files/configs/.bashrc"
 FFCONFIG_FILES="$NAME_FOLDER/files/configs/.config/fastfetch/"
-DMCONFIG_FILES="$NAME_FOLDER/files/configs/dmenu/config.def.h"
-DWMCONFIG_FILES="$NAME_FOLDER/files/configs/dwn/config.def.h"
-STCONFIG_FILES="$NAME_FOLDER/files/configs/st/config.def.h"
 SCRIPT_FILES="$NAME_FOLDER/files/scripts/"
 DRIVERS="$NAME_FOLDER/files/scripts/install.video-drivers.sh"
-PATCH_DWM="$NAME_FOLDER/files/scripts/patch/dwm/install.dwm.patches.sh"
-PATCH_ST="$NAME_FOLDER/files/scripts/patch/st/install.st.patches.sh"
-PATCH_DMENU="$NAME_FOLDER/files/scripts/patch/dmenu/install.dmenu.patches.sh"
 
 ############ MAKE SCRIPTS EXECUTABLE
 
