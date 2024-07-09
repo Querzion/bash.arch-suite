@@ -90,8 +90,8 @@ sudo systemctl start nmb.service
 
 # Configure Avahi
 echo "Configuring Avahi for network discovery..."
-sudo systemctl enable avahi-daemon
-sudo systemctl start avahi-daemon
+sudo systemctl enable avahi-daemon.service
+sudo systemctl start avahi-daemon.service
 
 # Configure mDNS
 echo "Configuring nss-mdns..."
