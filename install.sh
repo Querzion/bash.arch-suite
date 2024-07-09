@@ -189,18 +189,20 @@ while IFS= read -r app; do
     if [[ -z "$app" || "$app" == \#* ]]; then
         continue
     fi
-        echo -e "${GREEN} Installing $app from flatpak-list.txt. ${NC}"
-        # Install the flatpak package
-        flatpak install flathub "$app" -y
-
- # Check the exit status of the last command
-    if [ $? -ne 0 ]; then
-        cho -e "${RED} Application; $app failed to install. ${NC}"
-    else
-        cho -e "${GREEN} $app installed successfully. ${NC}"
-    fi
+         # Check if the application is already installed or not, and acts accordingly.
+        if ! flatpak list $app &> /dev/null; then
+            echo -e "${GREEN} Installing $app from flatpak-list.txt. ${NC}"
+            flatpak install flathub $app -y
+                 # Check the exit status of the last command
+                if [ $? -ne 0 ]; then
+                    echo -e "${RED} Application; $app failed to install. ${NC}"
+                else
+                    echo -e "${GREEN} $app installed successfully. ${NC}"
+                fi
+        else
+            echo "$app is already installed."
+        fi
 done < "$FLATPAK_APPS"
-
 
 echo -e "${GREEN} All flatpak packages have been installed. ${NC}"
 
