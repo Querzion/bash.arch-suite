@@ -103,31 +103,69 @@ sudo systemctl start avahi-daemon.service
 echo -e "${YELLOW} Configuring nss-mdns... ${NC}"
 sudo sed -i 's/hosts: files mymachines myhostname/hosts: files mymachines myhostname mdns_minimal [NOTFOUND=return] dns/g' /etc/nsswitch.conf
 
-# Install nfs-utils (Uncheck if using script separatly.)
-#echo -e "${GREEN} Installing nfs-utils. ${NC}"
-#sudo pacman -S nfs-utils
+# Function to install nfs-utils if not already installed
+install_nfs_utils() {
+  if ! pacman -Qs nfs-utils > /dev/null; then
+    echo "Installing nfs-utils..."
+    sudo pacman -S --noconfirm nfs-utils
+    echo "nfs-utils installed."
+    echo "Enabling & Starting service"
+    # Enable & Start NFS Server service
+    sudo systemctl enable nfs-server.service
+    sudo systemctl start nfs-server.service
+  else
+    echo "nfs-utils is already installed."
+  fi
+}
 
-# Enable & Start NFS Server service
-sudo systemctl enable nfs-server.service
-sudo systemctl start nfs-server.service
-
-# Configure exports
-echo -e "${YELLOW} Configuring NFS Exports (/etc/exports) ${NC}"
-# Define the NFS export line
-NFS_EXPORT_LINE="/srv/nfs 192.168.1.0/24(rw,sync,no_subtree_check)"
-
-# Check if the line already exists in /etc/exports
-if ! grep -Fxq "$NFS_EXPORT_LINE" /etc/exports; then
-    # Append the line to /etc/exports
+# Function to configure NFS exports (Change the IP!)
+configure_nfs_exports() {
+  local NFS_EXPORT_LINE="/srv/nfs 192.168.1.0/24(rw,sync,no_subtree_check)"
+  
+  if ! grep -Fxq "$NFS_EXPORT_LINE" /etc/exports; then
     echo "$NFS_EXPORT_LINE" | sudo tee -a /etc/exports
     echo "NFS export configuration added to /etc/exports."
-else
+  else
     echo "NFS export configuration already exists in /etc/exports."
-fi
+  fi
+}
 
-# Reload the NFS server to apply changes
-sudo exportfs -ra
-sudo systemctl restart nfs-server
+# Function to restart NFS server
+restart_nfs_server() {
+  sudo exportfs -ra
+  sudo systemctl restart nfs-server
+  echo "NFS server restarted."
+}
+
+# Function to configure firewall with ufw
+configure_ufw_for_nfs() {
+  sudo ufw allow 111/tcp
+  sudo ufw allow 111/udp
+  sudo ufw allow 2049/tcp
+  sudo ufw allow 2049/udp
+  sudo ufw reload
+  echo "Firewall rules updated for NFS."
+}
+
+# Main script execution
+nfs-server() {
+  # Check if NFS should be installed and configured
+  read -p "Do you want to install and configure NFS? (y/n) " INSTALL_NFS
+  if [ "$INSTALL_NFS" = "y" ]; then
+    install_nfs_utils
+    configure_nfs_exports
+    restart_nfs_server
+  fi
+
+  # Check if firewall should be configured
+  read -p "Do you want to configure the firewall for NFS? (y/n) " CONFIGURE_UFW
+  if [ "$CONFIGURE_UFW" = "y" ]; then
+    configure_ufw_for_nfs
+  fi
+}
+
+# Run the main function
+#nfs-server
 
 # Install ufw (Uncheck if using script separatly.)
 #echo -e "${GREEN} Installing Uncomplicated FireWall. ${NC}"
@@ -135,11 +173,6 @@ sudo systemctl restart nfs-server
 
 # Open necessary ports in the firewall
 echo -e "${YELLOW} Configuring UFW (Uncomplicated Firewall) ${NC}"
-# NFS Server ports
-sudo ufw allow 111/tcp
-sudo ufw allow 111/udp
-sudo ufw allow 2049/tcp
-sudo ufw allow 2049/udp
 
 # Samba ports
 sudo ufw allow proto tcp from any to any port 139,445
@@ -157,7 +190,6 @@ sudo systemctl restart smb.service
 sudo systemctl restart nmb.service
 sudo systemctl restart avahi-daemon.service
 sudo systemctl restart ufw.service
-sudo systemctl restart nfs-server.service
 
 # Print status of Samba and Avahi services
 echo -e "${YELLOW} Checking status of Samba, Avahi & Ufw.${NC}"
@@ -166,7 +198,7 @@ sudo systemctl status smb.service
 sudo systemctl status nmb.service
 sudo systemctl status avahi-daemon.service
 sudo systemctl status ufw.service
-sudo systemctl status nfs-server.service
+#sudo systemctl status nfs-server.service
 
 echo -e "${RED} If the status is not enabled and active, reboot, and test it again. ${NC}"
 echo -e "${GREEN} Setup completed! ${NC} You can now access the shared folder at ${YELLOW} \ \ archlinux.local\Public ${NC}"
