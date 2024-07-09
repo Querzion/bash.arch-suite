@@ -64,8 +64,13 @@ while IFS= read -r app; do
     if [[ -z "$app" || "$app" == \#* ]]; then
         continue
     fi
-        echo -e "${GREEN} Installing $app from pacman-list.txt. ${NC}"
-        sudo pacman -S --noconfirm "$app"
+        # Check if the application is already installed or not, and acts accordingly.
+        if ! pacman -Qi $app &> /dev/null; then
+            echo -e "${GREEN} Installing $app from pacman-list.txt. ${NC}"
+            sudo pacman -S --noconfirm $app
+        else
+            echo "$app is already installed."
+        fi
 done < "$PACMAN_APPS"
 
 
@@ -105,20 +110,25 @@ sh $SCRIPT_FILES/install.yay.sh
 ############ INSTALL AUR-LIST.TXT
 
 ## Check if the applications file exists
-#if [[ ! -f $AUR_APPS ]]; then
-#    echo "The applications file does not exist at $AUR_APPS"
-#   exit 1
-#fi
-#
-## Read the applications list and install each application
-#while IFS= read -r app; do
-#    # Skip empty lines and lines starting with #
-#    if [[ -z "$app" || "$app" == \#* ]]; then
-#        continue
-#    fi
-#        echo -e "${GREEN} Installing $app from aur-list.txt. ${NC}"
-#        yay -S "$app"
-#done < "$AUR_APPS"
+if [[ ! -f $AUR_APPS ]]; then
+    echo "The applications file does not exist at $AUR_APPS"
+   exit 1
+fi
+
+# Read the applications list and install each application
+while IFS= read -r app; do
+    # Skip empty lines and lines starting with #
+    if [[ -z "$app" || "$app" == \#* ]]; then
+        continue
+    fi
+        # Check if the application is already installed or not, and acts accordingly.
+        if ! yay -Qi $app &> /dev/null; then
+            echo -e "${GREEN} Installing $app from aur-list.txt. ${NC}"
+            sudo yay -S --noconfirm $app
+        else
+            echo "$app is already installed."
+        fi
+done < "$AUR_APPS"
 
 
 ################################################################### INSTALL WINDOW MANAGER & CONFIGS
