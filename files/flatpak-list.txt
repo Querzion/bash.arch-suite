@@ -3,6 +3,8 @@ com.discordapp.Discord
 
 # BROWSER
 com.brave.Browser
+
+# PASSWORD MANAGER
 org.keepassxc.KeePassXC
 
 # STREAMING
