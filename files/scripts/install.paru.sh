@@ -1,5 +1,13 @@
 #!/bin/bash
 
+############ COLOURED BASH TEXT
+
+# ANSI color codes
+RED='\033[0;31m'
+BLUE='\033[0;34m'
+GREEN='\033[0;32m'
+NC='\033[0m' # No Color
+
 # Exit immediately if a command exits with a non-zero status
 set -e
 
@@ -9,21 +17,21 @@ command_exists() {
 }
 
 # Install dependencies for building AUR packages
-sudo pacman -S --needed base-devel git
+#sudo pacman -S --needed base-devel git
 
-# Install paru
+# Install Paru
 if ! command_exists paru; then
-    echo "Installing paru..."
+    echo -e "${GREEN} Installing PARU. ${NC}"
     cd /tmp
     git clone https://aur.archlinux.org/paru.git
     cd paru
     makepkg -si --noconfirm
 else
-    echo "paru is already installed."
+    echo -e "${GREEN} PARU is already installed. ${NC}"
 fi
 
 # Clean up temporary files
 echo "Cleaning up..."
 rm -rf /tmp/paru
 
-echo "Installation of paru is complete."
+echo -e "${GREEN} Installation of PARU Complete. ${NC}"
