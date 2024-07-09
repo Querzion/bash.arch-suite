@@ -16,6 +16,7 @@ NAME_FOLDER="$HOME/bash.dwm-arch.startup"
 CUT="$NAME_FOLDER/files"
 PACMAN_APPS="$CUT/pacman-list.txt"
 FLATPAK_APPS="$CUT/flatpak-list.txt"
+AUR_APPS="$CUT/aur-list.txt"
 
 XINITRC_FILE="$HOME/.xinitrc"
 BASHRC_FILE="$CUT/configs/.bashrc"
@@ -93,6 +94,27 @@ sh $SCRIPT_FILES/install.paru.sh
 
 # Install yay.
 sh $SCRIPT_FILES/install.yay.sh
+
+
+################################################################### INSTALL AUR-LIST.TXT
+############ INSTALL AUR-LIST.TXT
+
+# Check if the applications file exists
+if [[ ! -f $AUR_APPS ]]; then
+    echo "The applications file does not exist at $AUR_APPS"
+    exit 1
+fi
+
+# Read the applications list and install each application
+while IFS= read -r app; do
+    # Skip empty lines and lines starting with #
+    if [[ -z "$app" || "$app" == \#* ]]; then
+        continue
+    fi
+        echo -e "${GREEN} Installing $app from aur-list.txt. ${NC}"
+        sudo yay -S --noconfirm "$app"
+    fi
+done < "$AUR_APPS"
 
 
 ################################################################### INSTALL WINDOW MANAGER & CONFIGS
