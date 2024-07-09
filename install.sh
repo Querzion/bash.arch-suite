@@ -290,8 +290,13 @@ echo -e "${GREEN} Created $CONF_FILE with Swedish Dvorak keyboard configuration.
 
 sudo rm -R $NAME_FOLDER
 
+
+################################################################### CHATTERINO INSTALL
+############ CHATTERINO INSTALL
+
 echo -e "${GREEN} CHATTERINO MANUAL INSTALL SINCE AUTO CHOOSES TO ABORT THIS ONE! ${NC}"
 flatpak install flathub com.chatterino.chatterino
+
 
 ################################################################### REBOOT MESSAGE
 ############ REBOOT MESSAGE
