@@ -71,6 +71,8 @@ network-manager
 dhcpcd5
 samba
 avahi
+nfs-utils
+openvpn
 nss-mdns
 ufw
 wpasupplicant
