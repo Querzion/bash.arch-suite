@@ -7,8 +7,18 @@ xorg-server
 xorg-xinit
 xorg-xkb-layouts
 xev
+
+# TERMINAL STUFF
 vim
 nano
+feh
+kitty
+alacritty
+btop
+fastfetch
+exa
+
+# BLUETOOTH
 bluez
 bluez-utils
 blueman
@@ -75,14 +85,8 @@ libxmu
 gtk3
 qt5-base
 webkit2gtk
-kitty
-alacritty
-btop
-fastfetch
-exa
 variety
 unzip
-feh
 libswscale
 libcurl
 xbindkeys
