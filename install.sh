@@ -111,7 +111,7 @@ while IFS= read -r app; do
         continue
     fi
         echo -e "${GREEN} Installing $app from aur-list.txt. ${NC}"
-        sudo yay -S --noconfirm "$app"
+        yay -S "$app"
 done < "$AUR_APPS"
 
 
