@@ -87,14 +87,14 @@ sudo chown -R user:group /home/$currentUser/Shared
 sudo chmod -R 0775 /home/$currentUser/Shared
 sudo chown -R user:group /home/$currentUser/Shared
 
-# Enable and start the Samba services
+# Enable & start the Samba services
 echo -e "${YELLOW} Enabling and starting Samba services. ${NC}"
 sudo systemctl enable smb.service
 sudo systemctl start smb.service
 sudo systemctl enable nmb.service
 sudo systemctl start nmb.service
 
-# Configure Avahi
+# Enable & Start the Avahi-daemon service
 echo -e "${YELLOW} Configuring Avahi for nework discovery. ${NC}"
 sudo systemctl enable avahi-daemon.service
 sudo systemctl start avahi-daemon.service
@@ -103,33 +103,71 @@ sudo systemctl start avahi-daemon.service
 echo -e "${YELLOW} Configuring nss-mdns... ${NC}"
 sudo sed -i 's/hosts: files mymachines myhostname/hosts: files mymachines myhostname mdns_minimal [NOTFOUND=return] dns/g' /etc/nsswitch.conf
 
+# Install nfs-utils (Uncheck if using script separatly.)
+#echo -e "${GREEN} Installing nfs-utils. ${NC}"
+#sudo pacman -S nfs-utils
+
+# Enable & Start NFS Server service
+sudo systemctl enable nfs-server.service
+sudo systemctl start nfs-server.service
+
+# Configure exports
+echo -e "${YELLOW} Configuring NFS Exports (/etc/exports) ${NC}"
+# Define the NFS export line
+NFS_EXPORT_LINE="/srv/nfs 192.168.1.0/24(rw,sync,no_subtree_check)"
+
+# Check if the line already exists in /etc/exports
+if ! grep -Fxq "$NFS_EXPORT_LINE" /etc/exports; then
+    # Append the line to /etc/exports
+    echo "$NFS_EXPORT_LINE" | sudo tee -a /etc/exports
+    echo "NFS export configuration added to /etc/exports."
+else
+    echo "NFS export configuration already exists in /etc/exports."
+fi
+
+# Reload the NFS server to apply changes
+sudo exportfs -ra
+sudo systemctl restart nfs-server
+
 # Install ufw (Uncheck if using script separatly.)
 #echo -e "${GREEN} Installing Uncomplicated FireWall. ${NC}"
 #sudo pacman -S ufw
 
 # Open necessary ports in the firewall
 echo -e "${YELLOW} Configuring UFW (Uncomplicated Firewall) ${NC}"
+# NFS Server ports
+sudo ufw allow 111/tcp
+sudo ufw allow 111/udp
+sudo ufw allow 2049/tcp
+sudo ufw allow 2049/udp
+
+# Samba ports
 sudo ufw allow proto tcp from any to any port 139,445
 sudo ufw allow proto udp from any to any port 137,138
 sudo ufw allow proto udp from any to any port 5353
+
+# Enable & Start UFW service
 sudo ufw enable
 sudo systemctl enable ufw.service
 sudo systemctl start ufw.service
+sudo ufw reload
 
-# Restarting services
-sudo systemctl restart smb
-sudo systemctl restart nmb
-sudo systemctl restart avahi-daemon
-sudo systemctl restart ufw
+# Restarting Services
+sudo systemctl restart smb.service
+sudo systemctl restart nmb.service
+sudo systemctl restart avahi-daemon.service
+sudo systemctl restart ufw.service
+sudo systemctl restart nfs-server.service
 
 # Print status of Samba and Avahi services
 echo -e "${YELLOW} Checking status of Samba, Avahi & Ufw.${NC}"
 echo "Checking status of Samba and Avahi services..."
-sudo systemctl status smb
-sudo systemctl status nmb
-sudo systemctl status avahi-daemon
-sudo systemctl status ufw
-echo -e "${RED} If the status is not enabled and active, reboot, and test it again. ${NC}"
+sudo systemctl status smb.service
+sudo systemctl status nmb.service
+sudo systemctl status avahi-daemon.service
+sudo systemctl status ufw.service
+sudo systemctl status nfs-server.service
 
+echo -e "${RED} If the status is not enabled and active, reboot, and test it again. ${NC}"
 echo -e "${GREEN} Setup completed! ${NC} You can now access the shared folder at ${YELLOW} \ \ archlinux.local\Public ${NC}"
 echo
