@@ -339,7 +339,8 @@ cd ~/
 # Function to prompt the user
 network_shares() {
     while true; do
-        read -p "echo -e "${GREEN} CONFIGURE NETWORK SHARES? ${NC} (y/n): " yn
+        echo -e "${GREEN} CONFIGURE NETWORK SHARES? ${NC}
+        read -p " (y/n): " yn
         case $yn in
             [Yy]* ) execute_command; break;;
             [Nn]* ) echo "Operation cancelled."; exit;;
