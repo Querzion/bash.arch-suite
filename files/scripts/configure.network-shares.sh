@@ -15,9 +15,17 @@ create_folders() {
 
     for share in "${shares[@]}"; do
         if [[ "$share" == "Shared" || "$share" == "Archive" || "$share" == "Users" || "$share" == "Backups" || "$share" == "ISOs" || "$share" == "VMs" ]]; then
-            mkdir -p "$home_folder/Shares/$share"
+            local folder_path="$home_folder/Shares/$share"
         else
-            mkdir -p "$home_folder/$share"
+            local folder_path="$home_folder/$share"
+        fi
+
+        # Check if folder exists
+        if [ ! -d "$folder_path" ]; then
+            mkdir -p "$folder_path"
+            echo -e "${GREEN}Created${NC} $folder_path"
+        else
+            echo -e "${YELLOW}Folder already exists:${NC} $folder_path"
         fi
     done
 }
