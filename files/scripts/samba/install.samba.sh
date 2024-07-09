@@ -1,6 +1,7 @@
 #!/bin/bash
 
 SMB="/etc/samba/smb.conf"
+SMB_FILES="bash.dwm-arch.startup/files/scripts/samba/conf/"
 
 # Function to install a package
 install_package() {
@@ -18,54 +19,8 @@ if [ ! -f /etc/samba/smb.conf.bak ]; then
     sudo cp /etc/samba/smb.conf /etc/samba/smb.conf.bak
 fi
 
-# Create a basic smb.conf file
-echo "Creating a basic smb.conf file..."
-cat <<EOL > $SMB
-#======================= Global Settings =====================================
-[global]
-   workgroup = WORKGROUP
-   server string = Samba Server
-   netbios name = archlinux
-   security = user
-   map to guest = Bad User
-   dns proxy = no
-
-# Most people will want "standalone server" or "member server".
-# Running as "active directory domain controller" will require first
-# running "samba-tool domain provision" to wipe databases and create a
-# new domain.
-   server role = standalone server
-
-# this tells Samba to use a separate log file for each machine
-# that connects
-   log file = /var/log/samba/%m.log
-
-# Put a capping on the size of the log files (in Kb).
-   max log size = 50
-
-#============================ Share Definitions ==============================
-[homes]
-   comment = Home Directories
-   browseable = no
-   writable = yes
-
-[Public]
-   path = /srv/samba/public
-   browsable = yes
-   writable = yes
-   guest ok = yes
-   read only = no
-   public = yes
-
-# Change the username - create the SHARED folder
-[SAMBASHARE]
-    path = /home/querzion/Shared
-    browseable = yes
-    guest ok = yes
-    public = yes
-    writable = yes
-    read only = no
-EOL
+# Copy smb.conf from startup
+sudo cp $SMB_FILES/smb.conf.guided $SMB/smb.conf
 
 # Create the shared directory and set permissions
 echo "Creating shared directory and setting permissions..."
