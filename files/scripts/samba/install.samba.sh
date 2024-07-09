@@ -125,5 +125,5 @@ sudo systemctl status avahi-daemon
 sudo systemctl status ufw
 echo -e "${RED} If the status is not enabled and active, reboot, and test it again. ${NC}"
 
-echo -e "${GREEN} Setup completed! ${NC} You can now access the shared folder at ${YELLOW} \\archlinux.local\Public ${NC}"
+echo -e "${GREEN} Setup completed! ${NC} You can now access the shared folder at ${YELLOW} \ \ archlinux.local\Public ${NC}"
 echo
