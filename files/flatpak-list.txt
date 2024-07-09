@@ -1,5 +1,10 @@
+# COMMUNICATION
 com.discordapp.Discord
+
+# BROWSER
 com.brave.Browser
 org.keepassxc.KeePassXC
+
+# STREAMING
 com.obsproject.Studio
 #com.chatterino.chatterino
