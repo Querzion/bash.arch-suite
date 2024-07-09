@@ -38,6 +38,8 @@ nano
 bluez
 bluez-utils
 blueman
+blueberry
+blueberry-systray
 btop
 fastfetch
 pipewire
