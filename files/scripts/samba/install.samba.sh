@@ -7,6 +7,7 @@ GREEN='\033[0;32m'
 NC='\033[0m' # No Color
 
 currentUser=$(whoami)
+currentHostname=$(hostname)
 
 SMB="/etc/samba/smb.conf"
 SMB_FILES="bash.dwm-arch.startup/files/scripts/samba/conf/"
@@ -37,7 +38,7 @@ cat <<EOL > $SMB_CONF_PATH
 [global]
    workgroup = WORKGROUP
    server string = Samba Server
-   netbios name = archlinux
+   netbios name = $currentHostname
    security = user
    map to guest = Bad User
    dns proxy = no
