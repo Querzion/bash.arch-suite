@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Define variables
-SLSTATUS_DIR=~/slstatus
+SLSTATUS_DIR=~/.config/slstatus
 PATCHES_DIR=$DMENU_DIR/patches
 
 # Create the patches directory
