@@ -200,6 +200,16 @@ sudo systemctl enable docker.service
 echo -e "${GREEN} Docker installed and configured successfully. ${NC}"
 
 
+################################################################### MANUAL INSTALLATIONS SINCE SOME OF THEM BROKE
+############ MANUAL INSTALLS
+
+echo -e "${GREEN} CHATTERINO MANUAL INSTALL SINCE AUTO CHOOSES TO ABORT THIS ONE! ${NC}"
+flatpak install flathub com.chatterino.chatterino
+
+echo -e "${GREEN} SPOTIFY-ADBLOCK MANUAL INSTALL SINCE IT DIDN'T WORK! ${NC}"
+yay -S spotify-adblock
+
+
 ################################################################### CHANGE .XINITRC
 ############ .XINITRC
 
@@ -289,16 +299,6 @@ echo -e "${GREEN} Created $CONF_FILE with Swedish Dvorak keyboard configuration.
 ############ REMOVE STARTUP FOLDER
 
 sudo rm -R $NAME_FOLDER
-
-
-################################################################### MANUAL INSTALLATIONS SINCE SOME OF THEM BROKE
-############ MANUAL INSTALLS
-
-echo -e "${GREEN} CHATTERINO MANUAL INSTALL SINCE AUTO CHOOSES TO ABORT THIS ONE! ${NC}"
-flatpak install flathub com.chatterino.chatterino
-
-echo -e "${GREEN} SPOTIFY-ADBLOCK MANUAL INSTALL SINCE IT DIDN'T WORK! ${NC}"
-yay -S spotify-adblock
 
 
 ################################################################### REBOOT MESSAGE
