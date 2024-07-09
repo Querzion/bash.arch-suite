@@ -304,7 +304,7 @@ echo -e "${GREEN} .xinitrc file created successfully. ${NC}"
 # Create .bashrc file in the home directory with specific content
 echo "Creating .bashrc file in the home directory..."
 
-rn ~/.bashrc ~/.bashrc.bak
+mv ~/.bashrc ~/.bashrc.bak
 cp $BASHRC_FILE ~/
 
 echo -e "${GREEN} .bashrc file created successfully. ${NC}"
@@ -321,8 +321,7 @@ chmod +x ~/.update.sh
 
 echo -e "${GREEN} Start ./update.sh from home folder. ${NC}"
 
-cd ~/
-./update.sh
+sh ~/.update.sh
 
 
 ################################################################### NETWORK SHARES CONFIGURATION
