@@ -1,7 +1,6 @@
 #!/bin/bash
 
 # ANSI color codes
-
 YELLOW='\033[93m'
 GREEN='\033[0;32m'
 NC='\033[0m' # No Color
