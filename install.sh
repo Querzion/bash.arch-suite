@@ -11,10 +11,10 @@ NC='\033[0m' # No Color
 
 ############ FILE & FOLDER PATHS
 # CHANGE THE FOLDER NAME & LOCATION IF YOU RENAME THE FOLDER
-NAME_FOLDER="$HOME/bash.dwm-arch.startup"
+STARTUP="$HOME/bash.dwm-arch.startup"
 
 # LOCATIONS
-CUT="$NAME_FOLDER/files"
+CUT="$STARTUP/files"
 PACMAN_APPS="$CUT/pacman-list.txt"
 FLATPAK_APPS="$CUT/flatpak-list.txt"
 AUR_APPS="$CUT/aur-list.txt"
@@ -233,6 +233,41 @@ done < "$FLATPAK_APPS"
 echo -e "${GREEN} All flatpak packages have been installed. ${NC}"
 
 
+################################################################### REDOWNLOAD OF BASH.DWM-ARCH.$STARTUP 
+############ REDOWNLOAD OF BASH.DWM-ARCH.$STARTUP 
+
+# This is because I have a tendency to change things while I'm doing things.
+# It's a development loop. ;P 
+
+# Function to prompt the user
+Restart() {
+    while true; do
+        read -p "echo -e "${GREEN} DO YOU WANT TO RESTART THE INSTALLATION PROCESS? ${NC} (y/n): " yn
+        case $yn in
+            [Yy]* ) execute_Restart; break;;
+            [Nn]* ) echo "Operation cancelled."; exit;;
+            * ) echo "Please answer yes or no.";;
+        esac
+    done
+}
+
+# Function to execute the command
+execute_Restart() {
+    echo -e "${YELLOW} EXECUTING CODE ${NC}"
+    
+    rm -R $STARTUP
+    cd ~/
+    git clone https://github.com/querzion/bash.dwm-arch.startup.git
+    chmod +x -R $STARTUP
+    ./$STARTUP/install.sh
+    
+    echo -e "${GREEN} DONE. ${NC}"
+}
+
+# Call the prompt_user function
+Restart
+
+
 ################################################################### MANUAL INSTALLATIONS SINCE SOME OF THEM BROKE
 ############ MANUAL INSTALLS
 
@@ -302,7 +337,7 @@ cd ~/
 # Network Shares (Configure this before executing though!)
 
 # Function to prompt the user
-prompt_user() {
+network_shares() {
     while true; do
         read -p "echo -e "${GREEN} CONFIGURE NETWORK SHARES? ${NC} (y/n): " yn
         case $yn in
@@ -323,7 +358,7 @@ execute_command() {
 }
 
 # Call the prompt_user function
-prompt_user
+network_shares
 
 # Network Shares (Configure this before executing though!)
 # Network Shares (Configure this before executing though!)
@@ -369,10 +404,10 @@ echo -e "${GREEN} Created $CONF_FILE with Swedish Dvorak keyboard configuration.
 
 
 ################################################################### REMOVE BASH.DWM-ARCH.STARTUP / STARTUP FOLDER
-############ REMOVE STARTUP FOLDER
+############ REMOVE $STARTUP FOLDER
 
 # Delete bash.dwm-arch.startup folder. (If there's updates to be made, then it's not good having an old version.)
-sudo rm -R $NAME_FOLDER
+sudo rm -R $STARTUP
 
 
 ################################################################### REBOOT MESSAGE
