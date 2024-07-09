@@ -36,3 +36,17 @@ static const char *colors[][3] = {
     [SchemeNorm] = { "#bbbbbb", "#000000", "#222222" },
     [SchemeSel]  = { "#eeeeee", "#005577", "#444444" },
 };
+
+
+
+////////////////////////// DWM CONFIG FILE
+// Add the Rofi command
+static const char *rofircmd[]  = { "rofi", "-show", "drun", NULL };
+
+// Key bindings
+static Key keys[] = {
+    /* modifier                     key        function        argument */
+    { MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
+    { MODKEY,                       XK_a,      spawn,          {.v = rofircmd } },
+    // Other key bindings...
+};
