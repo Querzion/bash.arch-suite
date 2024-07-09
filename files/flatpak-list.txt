@@ -1,6 +1,5 @@
-discord
-brave
-keepassxc
-obs-studio
-chatterino
-streamlink
+com.discordapp.Discord
+com.brave.Browser
+org.keepassxc.KeePassXC
+com.obsproject.Studio
+com.chatterino.chatterino
