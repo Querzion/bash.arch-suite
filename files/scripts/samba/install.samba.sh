@@ -101,6 +101,8 @@ sudo ufw allow proto tcp from any to any port 139,445
 sudo ufw allow proto udp from any to any port 137,138
 sudo ufw allow proto udp from any to any port 5353
 sudo ufw enable
+sudo systemctl enable ufw.service
+sudo systemctl start ufw.service
 
 # Print status of Samba and Avahi services
 echo "Checking status of Samba and Avahi services..."
