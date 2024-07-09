@@ -78,6 +78,7 @@ done < "$PACMAN_APPS"
 ################################################################### INSTALL GPU DRIVERS
 ############ GPU DRIVERS
 
+echo -e "${GREEN} STARTING GPU DRIVER INSTALL. ${NC}"
 # Install GPU Drivers
 sh $DRIVERS
 
