@@ -304,6 +304,7 @@ echo -e "${GREEN} Created $CONF_FILE with Swedish Dvorak keyboard configuration.
 ################################################################### REMOVE BASH.DWM-ARCH.STARTUP / STARTUP FOLDER
 ############ REMOVE STARTUP FOLDER
 
+# Delete bash.dwm-arch.startup folder. (If there's updates to be made, then it's not good having an old version.)
 sudo rm -R $NAME_FOLDER
 
 
