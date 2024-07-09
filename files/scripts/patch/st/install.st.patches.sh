@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Define variables
-ST_DIR=~/st
+ST_DIR=~/.config/st
 PATCHES_DIR=$ST_DIR/patches
 
 # Create the patches directory
