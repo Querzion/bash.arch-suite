@@ -257,11 +257,11 @@ Restart() {
 execute_Restart() {
     echo -e "${YELLOW} EXECUTING CODE ${NC}"
     
-    rm -R $STARTUP
+    sudo rm -R $STARTUP
     cd ~/
     git clone https://github.com/querzion/bash.dwm-arch.startup.git
     chmod +x -R $STARTUP
-    ./$STARTUP/install.sh
+    sh $STARTUP/install.sh
     
     echo -e "${GREEN} DONE. ${NC}"
 }
