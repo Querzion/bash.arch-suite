@@ -175,7 +175,7 @@ while IFS= read -r app; do
     fi
         echo -e "${GREEN} Installing $app from flatpak-list.txt. ${NC}"
         # Install the flatpak package
-        flatpak install -y flathub "$app"
+        flatpak install -y "$app"
 done < "$FLATPAK_APPS"
 
 echo -e "${GREEN} All flatpak packages have been installed. ${NC}"
