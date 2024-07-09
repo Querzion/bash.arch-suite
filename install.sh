@@ -298,7 +298,7 @@ echo -e "${GREEN} CHATTERINO MANUAL INSTALL SINCE AUTO CHOOSES TO ABORT THIS ONE
 flatpak install flathub com.chatterino.chatterino
 
 echo -e "${GREEN} SPOTIFY-ADBLOCK MANUAL INSTALL SINCE IT DIDN'T WORK! ${NC}"
-sudo yay -S spotify-adblock
+yay -S spotify-adblock
 
 
 ################################################################### REBOOT MESSAGE
