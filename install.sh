@@ -6,6 +6,7 @@
 RED='\033[0;31m'
 BLUE='\033[0;34m'
 GREEN='\033[0;32m'
+YELLOW='\033[93m' 
 NC='\033[0m' # No Color
 
 ############ FILE & FOLDER PATHS
@@ -69,9 +70,16 @@ while IFS= read -r app; do
             echo -e "${GREEN} Installing $app from pacman-list.txt. ${NC}"
             sudo pacman -S --noconfirm $app
         else
-            echo "$app is already installed."
+            echo -e "${YELLOW} $app is already installed. ${NC}"
         fi
 done < "$PACMAN_APPS"
+
+
+################################################################### INSTALL GPU DRIVERS
+############ GPU DRIVERS
+
+# Install GPU Drivers
+sh $DRIVERS
 
 
 ################################################################### INSTALL & CONFIGURE ROFI
@@ -137,7 +145,7 @@ while IFS= read -r app; do
             echo -e "${GREEN} Installing $app from aur-list.txt. ${NC}"
             sudo yay -S --noconfirm $app
         else
-            echo "$app is already installed."
+            echo -e "${YELLOW} $app is already installed. ${NC}"
         fi
 done < "$AUR_APPS"
 
@@ -212,7 +220,7 @@ while IFS= read -r app; do
                     echo -e "${GREEN} $app installed successfully. ${NC}"
                 fi
         else
-            echo "$app is already installed."
+            echo -e "${YELLOW} $app is already installed. ${NC}"
         fi
 done < "$FLATPAK_APPS"
 
@@ -274,13 +282,6 @@ cd ~/
 ./update.sh
 
 
-################################################################### INSTALL GPU DRIVERS
-############ GPU DRIVERS
-
-# Install GPU Drivers
-sh $DRIVERS
-
-
 ################################################################### CHANGE KEYBOARD LAYOUT TO SWEDISH DVORAK
 ############ SWEDISH DVORAK SETUP
 
@@ -324,7 +325,8 @@ sudo rm -R $NAME_FOLDER
 ################################################################### REBOOT MESSAGE
 ############ REBOOT MESSAGE
 # Optionally, reboot the system to apply changes
-echo -e "${RED}    It is recommended to reboot your system to apply the changes. ${NC} Do you want to reboot now? (y/n)"
+echo -e "${YELLOW} TIME TO REBOOT! TIME TO REBOOT! TIME TO REBOOT! ${NC}"
+echo -e "${RED} It is recommended to reboot your system to apply the changes. ${NC} Do you want to reboot now? (y/n)"
 read REBOOT
 
 if [ "$REBOOT" = "y" ]; then
