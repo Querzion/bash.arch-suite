@@ -242,7 +242,7 @@ echo -e "${GREEN} All flatpak packages have been installed. ${NC}"
 # Function to prompt the user
 Restart() {
     while true; do
-        echo -e "${GREEN} DO YOU WANT TO RESTART THE INSTALLATION PROCESS? ${NC}
+        echo -e "${GREEN} DO YOU WANT TO RESTART THE INSTALLATION PROCESS? ${NC}"
         read -p " (y/n): " yn
         case $yn in
             [Yy]* ) execute_Restart; break;;
@@ -340,7 +340,7 @@ cd ~/
 # Function to prompt the user
 network_shares() {
     while true; do
-        echo -e "${GREEN} CONFIGURE NETWORK SHARES? ${NC}
+        echo -e "${GREEN} CONFIGURE NETWORK SHARES? ${NC}"
         read -p " (y/n): " yn
         case $yn in
             [Yy]* ) execute_command; break;;
