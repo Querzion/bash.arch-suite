@@ -242,7 +242,8 @@ echo -e "${GREEN} All flatpak packages have been installed. ${NC}"
 # Function to prompt the user
 Restart() {
     while true; do
-        read -p "echo -e "${GREEN} DO YOU WANT TO RESTART THE INSTALLATION PROCESS? ${NC} (y/n): " yn
+        echo -e "${GREEN} DO YOU WANT TO RESTART THE INSTALLATION PROCESS? ${NC}
+        read -p " (y/n): " yn
         case $yn in
             [Yy]* ) execute_Restart; break;;
             [Nn]* ) echo "Operation cancelled."; exit;;
