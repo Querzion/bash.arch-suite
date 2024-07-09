@@ -354,7 +354,7 @@ network_shares() {
 execute_command() {
     echo -e "${YELLOW} EXECUTING CODE ${NC}"
     
-    sh NMSHARES
+    sh $NMSHARES
 
     echo -e "${GREEN} DONE. ${NC}"
 }
