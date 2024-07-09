@@ -1,5 +1,13 @@
 #!/bin/bash
 
+############ COLOURED BASH TEXT
+
+# ANSI color codes
+RED='\033[0;31m'
+BLUE='\033[0;34m'
+GREEN='\033[0;32m'
+NC='\033[0m' # No Color
+
 # Exit immediately if a command exits with a non-zero status
 set -e
 
@@ -19,7 +27,7 @@ if ! command_exists yay; then
     cd yay
     makepkg -si --noconfirm
 else
-    echo "yay is already installed."
+    echo -e "${GREEN} YAY is already installed. ${NC}"
 fi
 
 # Clean up temporary files
