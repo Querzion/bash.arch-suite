@@ -20,6 +20,7 @@ libxmu
 gtk3
 qt5-base
 ffmpeg
+gimp
 libavcodec
 libavformat
 libswscale
