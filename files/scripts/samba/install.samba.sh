@@ -83,8 +83,10 @@ sudo chown -R nobody:nogroup /home/querzion/Shared
 
 # Enable and start the Samba services
 echo "Enabling and starting Samba services..."
-sudo systemctl enable smb nmb
-sudo systemctl start smb nmb
+sudo systemctl enable smb.service
+sudo systemctl start smb.service
+sudo systemctl enable nmb.service
+sudo systemctl start nmb.service
 
 # Configure Avahi
 echo "Configuring Avahi for network discovery..."
