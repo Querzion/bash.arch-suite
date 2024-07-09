@@ -66,7 +66,6 @@ while IFS= read -r app; do
     fi
         echo -e "${GREEN} Installing $app from pacman-list.txt. ${NC}"
         sudo pacman -S --noconfirm "$app"
-    fi
 done < "$PACMAN_APPS"
 
 
@@ -113,7 +112,6 @@ while IFS= read -r app; do
     fi
         echo -e "${GREEN} Installing $app from aur-list.txt. ${NC}"
         sudo yay -S --noconfirm "$app"
-    fi
 done < "$AUR_APPS"
 
 
@@ -178,7 +176,6 @@ while IFS= read -r app; do
         echo -e "${GREEN} Installing $app from flatpak-list.txt. ${NC}"
         # Install the flatpak package
         flatpak install -y flathub "$app"
-    fi
 done < "$FLATPAK_APPS"
 
 echo -e "${GREEN} All flatpak packages have been installed. ${NC}"
