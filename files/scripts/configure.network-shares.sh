@@ -34,8 +34,8 @@ create_folders() {
 mount_shares() {
     local home_folder="/home/$(whoami)"
     local server_ip="192.168.0.3"
-    local username="myuser"
-    local password="mypassword"
+    local username="$1"
+    local password="$2"
 
     for share in "${shares[@]}"; do
         local share_path="//${server_ip}/${share}"
