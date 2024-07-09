@@ -21,6 +21,56 @@ if [ ! -f /etc/samba/smb.conf.bak ]; then
     sudo cp /etc/samba/smb.conf /etc/samba/smb.conf.bak
 fi
 
+#!/bin/bash
+
+# Define the path to the smb.conf file
+SMB_CONF_PATH="$HOME/smb.conf"
+
+# Write the content to the smb.conf file
+cat <<EOL > $SMB_CONF_PATH
+[global]
+   workgroup = WORKGROUP
+   server string = Samba Server
+   netbios name = archlinux
+   security = user
+   map to guest = Bad User
+   dns proxy = no
+
+# Most people will want "standalone server" or "member server".
+# Running as "active directory domain controller" will require first
+# running "samba-tool domain provision" to wipe databases and create a
+# new domain.
+   server role = standalone server
+
+# this tells Samba to use a separate log file for each machine that connects
+   log file = /var/log/samba/%m.log
+
+# Put a capping on the size of the log files (in Kb).
+   max log size = 50
+
+[Public]
+   path = /srv/samba/public
+   browsable = yes
+   writable = yes
+   guest ok = yes
+   read only = no
+   public = yes
+
+# Change the username - create the SHARED folder
+[SAMBASHARE]
+    path = /home/$currentUser/Shared
+    browseable = yes
+    guest ok = yes
+    public = yes
+    writable = yes
+    read only = no
+EOL
+
+echo "smb.conf file created at $SMB_CONF_PATH"
+
+# Move the newly created conf file
+sudo mv ~/smb.conf /etc/samba/smb.conf
+
 # Copy smb.conf from startup
 sudo cp $SMB_FILES/smb.conf.guided $SMB/smb.conf
 
