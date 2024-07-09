@@ -15,9 +15,6 @@ install_package() {
     fi
 }
 
-sudo mkdir /home/$currentUser/Shared
-sudo chmod 775 /home/$currentUser/Shared
-
 # Backup the original smb.conf file
 if [ ! -f /etc/samba/smb.conf.bak ]; then
     echo "Backing up the original smb.conf file..."
@@ -36,10 +33,10 @@ sudo chown -R nobody:nogroup /srv/samba/public
 
 # Create the shared directory and set permissions
 echo "Creating shared directory and setting permissions..."
-sudo mkdir -p /home/querzion/Shared
-sudo chown -R nobody:nogroup /home/querzion/Shared
-sudo chmod -R 0775 /home/querzion/Shared
-sudo chown -R nobody:nogroup /home/querzion/Shared
+sudo mkdir -p /home/$currentUser/Shared
+sudo chown -R nobody:nogroup /home/$currentUser/Shared
+sudo chmod -R 0775 /home/$currentUser/Shared
+sudo chown -R nobody:nogroup /home/$currentUser/Shared
 
 # Enable and start the Samba services
 echo "Enabling and starting Samba services..."
