@@ -103,9 +103,9 @@ sudo systemctl start avahi-daemon.service
 echo -e "${YELLOW} Configuring nss-mdns... ${NC}"
 sudo sed -i 's/hosts: files mymachines myhostname/hosts: files mymachines myhostname mdns_minimal [NOTFOUND=return] dns/g' /etc/nsswitch.conf
 
-# Install ufw
-echo -e "${GREEN} Installing Uncomplicated FireWall. ${NC}"
-sudo pacman -S ufw
+# Install ufw (Uncheck if using script separatly.)
+#echo -e "${GREEN} Installing Uncomplicated FireWall. ${NC}"
+#sudo pacman -S ufw
 
 # Open necessary ports in the firewall
 echo -e "${YELLOW} Configuring UFW (Uncomplicated Firewall) ${NC}"
