@@ -80,9 +80,19 @@ done < "$PACMAN_APPS"
 sh $SCRIPT_FILES/install.rofi.sh
 
 
+################################################################### CONFIGURE DOCKER
+############ DOCKER
+
+echo -e "${GREEN} Enabling & Starting Docker service ${NC}"
+# Start and enable Docker service
+sudo systemctl start docker.service
+sudo systemctl enable docker.service
+
+
 ################################################################### ACTIVATE BLUETOOTH
 ############ ACTIVATE BLUETOOTH
 
+echo -e "${GREEN} Enabling & Starting bluetooth service ${NC}"
 # Enable and start Bluetooth service
 sudo systemctl enable bluetooth
 sudo systemctl start bluetooth
@@ -91,9 +101,10 @@ sudo systemctl start bluetooth
 ################################################################### ACTIVATE NETWORK MANAGER ???
 ############ ACTIVATE NETWORK MANAGER ???
 
+#echo -e "${GREEN} Enabling & Starting Network Manager service ${NC}"
 # Enable and start NetworkManager service
-sudo systemctl enable NetworkManager
-sudo systemctl start NetworkManager
+#sudo systemctl enable NetworkManager
+#sudo systemctl start NetworkManager
 
 
 ################################################################### INSTALL PARU & YAY | AUR ACCESS
@@ -147,8 +158,9 @@ echo -e "${GREEN} Samba installed and set up successfully. ${NC}"
 ################################################################### INSTALL THUNAR
 ############ THUNAR
 
-sh $SCRIPT_FILES/install.thunar.sh
-echo -e "${GREEN} Thunar installed and set up successfully. ${NC}"
+# This is now installed through the /files/aur-list.txt
+#sh $SCRIPT_FILES/install.thunar.sh
+#echo -e "${GREEN} Thunar installed and set up successfully. ${NC}"
 
 ############ GO BACK
 
@@ -205,17 +217,6 @@ while IFS= read -r app; do
 done < "$FLATPAK_APPS"
 
 echo -e "${GREEN} All flatpak packages have been installed. ${NC}"
-
-
-################################################################### CONFIGURE DOCKER
-############ DOCKER
-
-# Start and enable Docker service
-echo "Starting Docker service..."
-sudo systemctl start docker.service
-sudo systemctl enable docker.service
-
-echo -e "${GREEN} Docker installed and configured successfully. ${NC}"
 
 
 ################################################################### MANUAL INSTALLATIONS SINCE SOME OF THEM BROKE
