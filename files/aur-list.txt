@@ -3,3 +3,11 @@
 
 # STREAMING
 #chatterino2-git
+
+# FILE EXPLORER
+thunar
+thunar-volman
+imdb-thumbnailer
+thunar-shares-plugin
+thunar-media-tags-plugin
+thunar-archive-plugin
