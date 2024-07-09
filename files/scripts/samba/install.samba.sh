@@ -1,5 +1,11 @@
 #!/bin/bash
 
+# ANSI color codes
+RED='\033[0;31m'
+YELLOW='\033[93m'
+GREEN='\033[0;32m'
+NC='\033[0m' # No Color
+
 currentUser=$(whoami)
 
 SMB="/etc/samba/smb.conf"
@@ -21,10 +27,10 @@ if [ ! -f /etc/samba/smb.conf.bak ]; then
     sudo cp /etc/samba/smb.conf /etc/samba/smb.conf.bak
 fi
 
-#!/bin/bash
-
 # Define the path to the smb.conf file
 SMB_CONF_PATH="/etc/samba/smb.conf"
+
+echo -e "${GREEN} Creating smb.conf file. ${NC}"
 
 # Write the content to the smb.conf file
 cat <<EOL > $SMB_CONF_PATH
@@ -65,43 +71,44 @@ cat <<EOL > $SMB_CONF_PATH
     read only = no
 EOL
 
-echo "smb.conf file created at $SMB_CONF_PATH"
+echo -e "${GREEN} smb.conf file created at $SMB_CONF_PATH ${NC}"
 
 # Create the shared directory and set permissions
-echo "Creating shared directory and setting permissions..."
+echo -e "${YELLOW} Creating shared directory and setting permissions... ${NC}"
 sudo mkdir -p /srv/samba/public
 sudo chown -R user:group /srv/samba/public
 sudo chmod -R 0775 /srv/samba/public
 sudo chown -R user:group /srv/samba/public
 
 # Create the shared directory and set permissions
-echo "Creating shared directory and setting permissions..."
+echo -e "${YELLOW} Creating shared directory and setting permissions... ${NC}"
 sudo mkdir -p /home/$currentUser/Shared
 sudo chown -R user:group /home/$currentUser/Shared
 sudo chmod -R 0775 /home/$currentUser/Shared
 sudo chown -R user:group /home/$currentUser/Shared
 
 # Enable and start the Samba services
-echo "Enabling and starting Samba services..."
+echo -e "${YELLOW} Enabling and starting Samba services. ${NC}"
 sudo systemctl enable smb.service
 sudo systemctl start smb.service
 sudo systemctl enable nmb.service
 sudo systemctl start nmb.service
 
 # Configure Avahi
-echo "Configuring Avahi for network discovery..."
+echo -e "${YELLOW} Configuring Avahi for nework discovery. ${NC}"
 sudo systemctl enable avahi-daemon.service
 sudo systemctl start avahi-daemon.service
 
 # Configure mDNS
-echo "Configuring nss-mdns..."
+echo -e "${YELLOW} Configuring nss-mdns... ${NC}"
 sudo sed -i 's/hosts: files mymachines myhostname/hosts: files mymachines myhostname mdns_minimal [NOTFOUND=return] dns/g' /etc/nsswitch.conf
 
 # Install ufw
+echo -e "${GREEN} Installing Uncomplicated FireWall. ${NC}"
 sudo pacman -S ufw
 
 # Open necessary ports in the firewall
-echo "Configuring UFW (Uncomplicated Firewall)..."
+echo -e "${YELLOW} Configuring UFW (Uncomplicated Firewall) ${NC}"
 sudo ufw allow proto tcp from any to any port 139,445
 sudo ufw allow proto udp from any to any port 137,138
 sudo ufw allow proto udp from any to any port 5353
@@ -110,10 +117,13 @@ sudo systemctl enable ufw.service
 sudo systemctl start ufw.service
 
 # Print status of Samba and Avahi services
+echo -e "${YELLOW} Checking status of Samba, Avahi & Ufw.${NC}"
 echo "Checking status of Samba and Avahi services..."
 sudo systemctl status smb
 sudo systemctl status nmb
 sudo systemctl status avahi-daemon
 sudo systemctl status ufw
+echo -e "${RED} If the status is not enabled and active, reboot, and test it again. ${NC}"
 
-echo "Setup completed successfully! You can now access the shared folder at \\archlinux.local\Public"
+echo -e "${GREEN} Setup completed! ${NC} You can now access the shared folder at ${YELLOW} \\archlinux.local\Public ${NC}"
+echo
