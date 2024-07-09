@@ -27,7 +27,7 @@ BASHRC_FILE="$CUT/configs/.bashrc"
 NWSHARES="$SCRIPT_FILES/configure.network-shares.sh"
 
 FFCONFIG_FILES="$CUT/configs/.config/fastfetch/"
-SCRIPT_FILES="$CUT/scripts/"
+SCRIPT_FILES="$CUT/scripts"
 # GPU Driver Installation path.
 DRIVERS="$CUT/scripts/install.video-drivers.sh"
 # Samba installation path.
