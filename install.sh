@@ -354,7 +354,8 @@ network_shares() {
 execute_command() {
     echo -e "${YELLOW} EXECUTING CODE ${NC}"
     
-    sh $NMSHARES
+    sh $NWSHARES
+    #sh $SCRIPT_FILES/configuring.network-shares.sh
 
     echo -e "${GREEN} DONE. ${NC}"
 }
