@@ -1,2 +1,5 @@
+# MEDIA
 #spotify-adblock
+
+# STREAMING
 #chatterino2-git
