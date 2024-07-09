@@ -1,5 +1,7 @@
 #!/bin/bash
 
+currentUser=$(whoami)
+
 SMB="/etc/samba/smb.conf"
 SMB_FILES="bash.dwm-arch.startup/files/scripts/samba/conf/"
 
@@ -13,8 +15,8 @@ install_package() {
     fi
 }
 
-sudo mkdir /home/Shared
-sudo chmod 775 /home/Shared
+sudo mkdir /home/$currentUser/Shared
+sudo chmod 775 /home/$currentUser/Shared
 
 # Backup the original smb.conf file
 if [ ! -f /etc/samba/smb.conf.bak ]; then
