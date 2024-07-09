@@ -52,7 +52,7 @@ xorg-xinit
 xorg-xkb-layouts
 mpv
 python
-code
+vscode
 dotnet-sdk
 dotnet-runtime
 vlc
