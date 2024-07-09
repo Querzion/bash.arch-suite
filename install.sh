@@ -176,7 +176,15 @@ while IFS= read -r app; do
         echo -e "${GREEN} Installing $app from flatpak-list.txt. ${NC}"
         # Install the flatpak package
         flatpak install -y "$app"
+
+ # Check the exit status of the last command
+    if [ $? -ne 0 ]; then
+        cho -e "${RED} Application; $app failed to install. ${NC}"
+    else
+        cho -e "${GREEN} $app installed successfully. ${NC}"
+    fi
 done < "$FLATPAK_APPS"
+
 
 echo -e "${GREEN} All flatpak packages have been installed. ${NC}"
 
