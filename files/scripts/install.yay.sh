@@ -9,11 +9,11 @@ command_exists() {
 }
 
 # Install dependencies for building AUR packages
-sudo pacman -S --needed base-devel git
+#sudo pacman -S --needed base-devel git
 
 # Install yay
 if ! command_exists yay; then
-    echo "Installing yay..."
+    echo -e "${GREEN} Installing YAY. ${NC}"
     cd /tmp
     git clone https://aur.archlinux.org/yay.git
     cd yay
@@ -26,4 +26,4 @@ fi
 echo "Cleaning up..."
 rm -rf /tmp/yay
 
-echo "Installation of yay is complete."
+echo -e "${GREEN} Installation of YAY Complete. ${NC}"
