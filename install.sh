@@ -69,6 +69,12 @@ while IFS= read -r app; do
 done < "$PACMAN_APPS"
 
 
+################################################################### INSTALL & CONFIGURE ROFI
+############ INSTALL & CONFIGURE ROFI
+
+sh $SCRIPT_FILES/install.rofi.sh
+
+
 ################################################################### ACTIVATE BLUETOOTH
 ############ ACTIVATE BLUETOOTH
 
