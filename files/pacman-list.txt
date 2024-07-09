@@ -90,6 +90,7 @@ unzip
 libswscale
 libcurl
 xbindkeys
+rofi
 
 # MEDIA
 ffmpeg
