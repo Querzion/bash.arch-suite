@@ -175,7 +175,7 @@ while IFS= read -r app; do
     fi
         echo -e "${GREEN} Installing $app from flatpak-list.txt. ${NC}"
         # Install the flatpak package
-        flatpak install -y "$app"
+        flatpak install "$app"
 
  # Check the exit status of the last command
     if [ $? -ne 0 ]; then
