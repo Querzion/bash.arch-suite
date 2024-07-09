@@ -247,7 +247,7 @@ Restart() {
         read -p " (y/n): " yn
         case $yn in
             [Yy]* ) execute_Restart; break;;
-            [Nn]* ) echo "Operation cancelled."; exit;;
+            [Nn]* ) echo "SKIPPING DEV LOOP."; break;;
             * ) echo "Please answer yes or no.";;
         esac
     done
@@ -344,7 +344,7 @@ network_shares() {
         read -p " (y/n): " yn
         case $yn in
             [Yy]* ) execute_command; break;;
-            [Nn]* ) echo "Operation cancelled."; exit;;
+            [Nn]* ) echo "Operation cancelled."; break;;
             * ) echo "Please answer yes or no.";;
         esac
     done
