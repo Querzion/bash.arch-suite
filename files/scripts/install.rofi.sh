@@ -32,7 +32,7 @@
 
 
 # Install rofi
-sudo pacman -Syu --noconfirm rofi
+#sudo pacman -Syu --noconfirm rofi
 
 # Create the rofi configuration directory
 mkdir -p ~/.config/rofi
