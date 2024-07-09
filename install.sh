@@ -55,7 +55,7 @@ chmod +x -R $SCRIPT_FILES
 
 # Check if the applications file exists
 if [[ ! -f $PACMAN_APPS ]]; then
-    echo "The applications file does not exist at $PACMAN_APPS"
+    echo -e "${RED} The applications file does not exist at $PACMAN_APPS ${NC}"
     exit 1
 fi
 
@@ -86,13 +86,14 @@ sh $DRIVERS
 ################################################################### INSTALL & CONFIGURE ROFI
 ############ INSTALL & CONFIGURE ROFI
 
+echo -e "${GREEN} Starting Rofi Configuration. ${NC}"
 sh $SCRIPT_FILES/install.rofi.sh
 
 
 ################################################################### CONFIGURE DOCKER
 ############ DOCKER
 
-echo -e "${GREEN} Enabling & Starting Docker service ${NC}"
+echo -e "${GREEN} Enabling & Starting Docker service. ${NC}"
 # Start and enable Docker service
 sudo systemctl start docker.service
 sudo systemctl enable docker.service
@@ -101,7 +102,7 @@ sudo systemctl enable docker.service
 ################################################################### ACTIVATE BLUETOOTH
 ############ ACTIVATE BLUETOOTH
 
-echo -e "${GREEN} Enabling & Starting bluetooth service ${NC}"
+echo -e "${GREEN} Enabling & Starting bluetooth service. ${NC}"
 # Enable and start Bluetooth service
 sudo systemctl enable bluetooth
 sudo systemctl start bluetooth
@@ -116,8 +117,8 @@ sudo systemctl start bluetooth
 #sudo systemctl start NetworkManager
 
 
-################################################################### INSTALL PARU & YAY | AUR ACCESS
-############ INSTALL PARU & YAY | AUR ACCESS
+################################################################### INSTALL PARU AND OR YAY | AUR ACCESS
+############ INSTALL PARU AND OR YAY | AUR ACCESS
 
 # Install paru.
 #sh $SCRIPT_FILES/install.paru.sh
@@ -131,7 +132,7 @@ sh $SCRIPT_FILES/install.yay.sh
 
 ## Check if the applications file exists
 if [[ ! -f $AUR_APPS ]]; then
-    echo "The applications file does not exist at $AUR_APPS"
+    echo -e "${RED} The applications file does not exist at $AUR_APPS ${NC}"
    exit 1
 fi
 
@@ -180,6 +181,7 @@ cd $HOME
 ################################################################### CHANGE FASTFETCH LOOKS
 ############ FASTFETCH CONFIG
 
+echo -e "${GREEN} Fixing Fastfetch visuals. ${NC}"
 # Fix FastFetch Visuals
 fastfetch --gen-config-force
 mv ~/.config/fastfetch/config.jsonc ~/.config/fastfetch/config.jsonc.bak
@@ -190,10 +192,10 @@ cp -R $FFCONFIG_FILES ~/.config/
 ############ FLATPAK CONFIG
 
 # Set up Flatpak
-echo "Setting up Flatpak..."
+echo -e "${YELLOW} Configuring Flatpak. ${NC}"
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
-echo -e "${GREEN} Flatpak installed and set up successfully. ${NC}"
+echo -e "${GREEN} Flatpak is now configured. ${NC}"
 
 
 ################################################################### INSTALL FLATPAK-LIST.TXT
@@ -201,7 +203,7 @@ echo -e "${GREEN} Flatpak installed and set up successfully. ${NC}"
 
 # Check if the applications file exists
 if [[ ! -f $FLATPAK_APPS ]]; then
-    echo "The applications file does not exist at $FLATPAK_APPS"
+    echo -e "${RED} The applications file does not exist at $FLATPAK_APPS ${NC}"
     exit 1
 fi
 
