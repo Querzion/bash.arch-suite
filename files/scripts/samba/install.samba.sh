@@ -24,7 +24,7 @@ fi
 #!/bin/bash
 
 # Define the path to the smb.conf file
-SMB_CONF_PATH="$HOME/smb.conf"
+SMB_CONF_PATH="/etc/samba/smb.conf"
 
 # Write the content to the smb.conf file
 cat <<EOL > $SMB_CONF_PATH
@@ -56,7 +56,6 @@ cat <<EOL > $SMB_CONF_PATH
    read only = no
    public = yes
 
-# Change the username - create the SHARED folder
 [SAMBASHARE]
     path = /home/$currentUser/Shared
     browseable = yes
@@ -67,12 +66,6 @@ cat <<EOL > $SMB_CONF_PATH
 EOL
 
 echo "smb.conf file created at $SMB_CONF_PATH"
-
-# Move the newly created conf file
-sudo mv ~/smb.conf /etc/samba/smb.conf
-
-# Copy smb.conf from startup
-sudo cp $SMB_FILES/smb.conf.guided $SMB/smb.conf
 
 # Create the shared directory and set permissions
 echo "Creating shared directory and setting permissions..."
@@ -103,6 +96,9 @@ sudo systemctl start avahi-daemon.service
 # Configure mDNS
 echo "Configuring nss-mdns..."
 sudo sed -i 's/hosts: files mymachines myhostname/hosts: files mymachines myhostname mdns_minimal [NOTFOUND=return] dns/g' /etc/nsswitch.conf
+
+# Install ufw
+sudo pacman -S ufw
 
 # Open necessary ports in the firewall
 echo "Configuring UFW (Uncomplicated Firewall)..."
