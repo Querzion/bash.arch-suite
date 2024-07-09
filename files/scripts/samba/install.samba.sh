@@ -116,6 +116,12 @@ sudo ufw enable
 sudo systemctl enable ufw.service
 sudo systemctl start ufw.service
 
+# Restarting services
+sudo systemctl restart smb
+sudo systemctl restart nmb
+sudo systemctl restart avahi-daemon
+sudo systemctl restart ufw
+
 # Print status of Samba and Avahi services
 echo -e "${YELLOW} Checking status of Samba, Avahi & Ufw.${NC}"
 echo "Checking status of Samba and Avahi services..."
