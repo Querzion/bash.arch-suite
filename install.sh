@@ -95,24 +95,24 @@ sh $SCRIPT_FILES/install.paru.sh
 sh $SCRIPT_FILES/install.yay.sh
 
 
-################################################################### INSTALL AUR-LIST.TXT
+################################################################### INSTALL AUR-LIST.TXT (BROKEN ATM)
 ############ INSTALL AUR-LIST.TXT
 
-# Check if the applications file exists
-if [[ ! -f $AUR_APPS ]]; then
-    echo "The applications file does not exist at $AUR_APPS"
-    exit 1
-fi
-
-# Read the applications list and install each application
-while IFS= read -r app; do
-    # Skip empty lines and lines starting with #
-    if [[ -z "$app" || "$app" == \#* ]]; then
-        continue
-    fi
-        echo -e "${GREEN} Installing $app from aur-list.txt. ${NC}"
-        yay -S "$app"
-done < "$AUR_APPS"
+## Check if the applications file exists
+#if [[ ! -f $AUR_APPS ]]; then
+#    echo "The applications file does not exist at $AUR_APPS"
+#   exit 1
+#fi
+#
+## Read the applications list and install each application
+#while IFS= read -r app; do
+#    # Skip empty lines and lines starting with #
+#    if [[ -z "$app" || "$app" == \#* ]]; then
+#        continue
+#    fi
+#        echo -e "${GREEN} Installing $app from aur-list.txt. ${NC}"
+#        yay -S "$app"
+#done < "$AUR_APPS"
 
 
 ################################################################### INSTALL WINDOW MANAGER & CONFIGS
@@ -291,11 +291,14 @@ echo -e "${GREEN} Created $CONF_FILE with Swedish Dvorak keyboard configuration.
 sudo rm -R $NAME_FOLDER
 
 
-################################################################### CHATTERINO INSTALL
-############ CHATTERINO INSTALL
+################################################################### MANUAL INSTALLATIONS SINCE SOME OF THEM BROKE
+############ MANUAL INSTALLS
 
 echo -e "${GREEN} CHATTERINO MANUAL INSTALL SINCE AUTO CHOOSES TO ABORT THIS ONE! ${NC}"
 flatpak install flathub com.chatterino.chatterino
+
+echo -e "${GREEN} SPOTIFY-ADBLOCK MANUAL INSTALL SINCE IT DIDN'T WORK! ${NC}"
+sudo yay -S spotify-adblock
 
 
 ################################################################### REBOOT MESSAGE
