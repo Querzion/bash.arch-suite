@@ -95,7 +95,7 @@ sudo systemctl start NetworkManager
 ############ INSTALL PARU & YAY | AUR ACCESS
 
 # Install paru.
-sh $SCRIPT_FILES/install.paru.sh
+#sh $SCRIPT_FILES/install.paru.sh
 
 # Install yay.
 sh $SCRIPT_FILES/install.yay.sh
