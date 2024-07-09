@@ -1,5 +1,5 @@
-discord 
-brave 
+discord
+brave
 keepassxc
 obs-studio
 chatterino
