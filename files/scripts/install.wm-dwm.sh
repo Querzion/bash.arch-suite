@@ -15,12 +15,9 @@ NAME_FOLDER="$HOME/bash.dwm-arch.startup"
 # LOCATIONS
 CUT="$NAME_FOLDER/files"
 # CONFIGS
-DMCONFIG_FILES="$CUT/configs/dmenu"
-DWMCONFIG_FILES="$CUT/configs/dwn"
-STCONFIG_FILES="$CUT/configs/st"
-SLSTATUSCONFIG_FILES="$CUT/configs/slstatus"
-#SCRIPTS
-DRIVERS="$CUT/scripts/install.video-drivers.sh"
+CONF_F="$CUT/configs"
+
+# PATCHES
 PATCH_DWM="$CUT/scripts/patch/dwm/install.dwm.patches.sh"
 PATCH_ST="$CUT/scripts/patch/st/install.st.patches.sh"
 PATCH_DMENU="$CUT/scripts/patch/dmenu/install.dmenu.patches.sh"
@@ -43,9 +40,11 @@ echo -e "${BLUE} Configuring config.def.h file. ${NC}"
 
 # Copy to replace config.def.h
 sudo mv ~/dwm/config.def.h ~/dwm/config.def.h.bak
-sudo cp $DWMCONFIG_FILES/config.def.h ~/dwm/
-sudo rm config.h
+sudo cp $CONF_F/dwm/config.def.h ~/dwm/config.def.h
+
 cd ~/dwm
+
+sudo rm config.h
 sudo make clean install
 
 echo -e "${GREEN} dwm is now reconfigured. ${NC}"
@@ -75,9 +74,11 @@ echo -e "${BLUE} Configuring config.def.h file. ${NC}"
 
 # Copy to replace config.def.h
 sudo mv ~/st/config.def.h ~/st/config.def.h.bak
-sudo cp $STCONFIG_FILES/config.def.h ~/st/
-sudo rm config.h
+sudo cp $CONF_F/st/config.def.h ~/st/config.def.h
+
 cd ~/st
+
+sudo rm config.h
 sudo make clean install
 
 echo -e "${GREEN} st is now reconfigured. ${NC}"
@@ -106,9 +107,11 @@ echo -e "${BLUE} Configuring config.def.h file. ${NC}"
 
 # Copy to replace config.def.h
 sudo mv ~/dmenu/config.def.h ~/dmenu/config.def.h.bak
-sudo cp $DMENUCONFIG_FILES/config.def.h ~/dmenu/
-sudo rm config.h
+sudo cp $CONF_F/dmenu/config.def.h ~/dmenu/config.def.h
+
 cd ~/dmenu
+sudo rm config.h
+
 sudo make clean install
 
 echo -e "${GREEN} dmenu is now reconfigured. ${NC}"
@@ -137,9 +140,11 @@ echo -e "${BLUE} Configuring config.def.h file. ${NC}"
 
 # Copy to replace config.def.h
 sudo mv ~/slstatus/config.def.h ~/slstatus/config.def.h.bak
-sudo cp $DWMCONFIG_FILES/config.def.h ~/slstatus/
-sudo rm config.h
+sudo cp $CONF_F/slstatus/config.def.h ~/slstatus/config.def.h
+
 cd ~/slstatus
+sudo rm config.h
+
 sudo make clean install
 
 echo -e "${GREEN} slstatus is now reconfigured. ${NC}"
