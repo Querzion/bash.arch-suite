@@ -24,10 +24,13 @@ BASHRC_FILE="$CUT/configs/.bashrc"
 #MIRRORLIST="/etc/pacman.d/mirrorlist"
 #PACMAN_CONF="/etc/pacman.conf"
 
+NWSHARES="$SCRIPT_FILES/configure.network-shares.sh"
+
 FFCONFIG_FILES="$CUT/configs/.config/fastfetch/"
 SCRIPT_FILES="$CUT/scripts/"
-
+# GPU Driver Installation path.
 DRIVERS="$CUT/scripts/install.video-drivers.sh"
+# Samba installation path.
 SAMBA="$CUT/samba/"
 
 ################################################################### MAKE SCRIPTS EXECUTABLE
@@ -284,6 +287,53 @@ echo -e "${GREEN} Start ./update.sh from home folder. ${NC}"
 cd ~/
 ./update.sh
 
+
+################################################################### NETWORK SHARES CONFIGURATION
+############ NETWORK SHARES CONFIGURATION
+
+# Network Shares (Configure this before executing though!)
+# Network Shares (Configure this before executing though!)
+# Network Shares (Configure this before executing though!)
+# Network Shares (Configure this before executing though!)
+# Network Shares (Configure this before executing though!)
+# Network Shares (Configure this before executing though!)
+# Network Shares (Configure this before executing though!)
+# Network Shares (Configure this before executing though!)
+# Network Shares (Configure this before executing though!)
+
+# Function to prompt the user
+prompt_user() {
+    while true; do
+        read -p "echo -e "${GREEN} CONFIGURE NETWORK SHARES? ${NC} (y/n): " yn
+        case $yn in
+            [Yy]* ) execute_command; break;;
+            [Nn]* ) echo "Operation cancelled."; exit;;
+            * ) echo "Please answer yes or no.";;
+        esac
+    done
+}
+
+# Function to execute the command
+execute_command() {
+    echo -e "${YELLOW} EXECUTING CODE ${NC}"
+    
+    sh NMSHARES
+
+    echo -e "${GREEN} DONE. ${NC}"
+}
+
+# Call the prompt_user function
+prompt_user
+
+# Network Shares (Configure this before executing though!)
+# Network Shares (Configure this before executing though!)
+# Network Shares (Configure this before executing though!)
+# Network Shares (Configure this before executing though!)
+# Network Shares (Configure this before executing though!)
+# Network Shares (Configure this before executing though!)
+# Network Shares (Configure this before executing though!)
+# Network Shares (Configure this before executing though!)
+# Network Shares (Configure this before executing though!)
 
 ################################################################### CHANGE KEYBOARD LAYOUT TO SWEDISH DVORAK
 ############ SWEDISH DVORAK SETUP
