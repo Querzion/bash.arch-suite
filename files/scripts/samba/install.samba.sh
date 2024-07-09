@@ -13,6 +13,9 @@ install_package() {
     fi
 }
 
+sudo mkdir /home/Shared
+sudo chmod 775 /home/Shared
+
 # Backup the original smb.conf file
 if [ ! -f /etc/samba/smb.conf.bak ]; then
     echo "Backing up the original smb.conf file..."
