@@ -91,6 +91,7 @@ libswscale
 libcurl
 xbindkeys
 rofi
+cifs-utils
 
 # MEDIA
 ffmpeg
