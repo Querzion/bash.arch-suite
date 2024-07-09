@@ -59,7 +59,10 @@ fi
 
 # Read the applications list and install each application
 while IFS= read -r app; do
-    if [[ ! -z "$app" ]]; then
+    # Skip empty lines and lines starting with #
+    if [[ -z "$app" || "$app" == \#* ]]; then
+        continue
+    fi
         echo -e "${GREEN} Installing $app from pacman-list.txt. ${NC}"
         sudo pacman -S --noconfirm "$app"
     fi
