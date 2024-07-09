@@ -70,16 +70,16 @@ echo "smb.conf file created at $SMB_CONF_PATH"
 # Create the shared directory and set permissions
 echo "Creating shared directory and setting permissions..."
 sudo mkdir -p /srv/samba/public
-sudo chown -R nobody:nogroup /srv/samba/public
+sudo chown -R user:group /srv/samba/public
 sudo chmod -R 0775 /srv/samba/public
-sudo chown -R nobody:nogroup /srv/samba/public
+sudo chown -R user:group /srv/samba/public
 
 # Create the shared directory and set permissions
 echo "Creating shared directory and setting permissions..."
 sudo mkdir -p /home/$currentUser/Shared
-sudo chown -R nobody:nogroup /home/$currentUser/Shared
+sudo chown -R user:group /home/$currentUser/Shared
 sudo chmod -R 0775 /home/$currentUser/Shared
-sudo chown -R nobody:nogroup /home/$currentUser/Shared
+sudo chown -R user:group /home/$currentUser/Shared
 
 # Enable and start the Samba services
 echo "Enabling and starting Samba services..."
