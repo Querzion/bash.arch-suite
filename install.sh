@@ -294,7 +294,7 @@ sudo rm -R $NAME_FOLDER
 ################################################################### REBOOT MESSAGE
 ############ REBOOT MESSAGE
 # Optionally, reboot the system to apply changes
-echo -e "${RED} | It is recommended to reboot your system to apply the changes .${NC} Do you want to reboot now? (y/n)"
+echo -e "${RED}    It is recommended to reboot your system to apply the changes .${NC} Do you want to reboot now? (y/n)"
 read REBOOT
 
 if [ "$REBOOT" = "y" ]; then
