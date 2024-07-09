@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Define variables
-DMENU_DIR=~/dmenu
+DMENU_DIR=~/.config/dmenu
 PATCHES_DIR=$DMENU_DIR/patches
 
 # Create the patches directory
