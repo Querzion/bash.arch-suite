@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Define variables
-DWM_DIR=~/dwm
+DWM_DIR=~/.config/dwm
 PATCHES_DIR=$DWM_DIR/patches
 
 # Create the patches directory
