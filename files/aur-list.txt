@@ -1,1 +1,2 @@
 spotify-adblock
+chatterino2-git
