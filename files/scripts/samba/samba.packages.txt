@@ -1,0 +1,5 @@
+ufw
+samba
+nfs-utils
+avahi
+cifs-utils
