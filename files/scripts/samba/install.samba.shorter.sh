@@ -25,9 +25,9 @@ sambaShare="qShare" # Replace 'qShare' with your desired group name
 
 # Define directories
 currentUser=$(whoami)
-sharedDir="/home/$currentUser/Network/Shared"
-publicDir="/srv/samba/Public"
-nfsExportDir="/data/nfs_share"
+sharedDir="/home/$currentUser/Network/qSHARED"
+publicDir="/home/$currentUser/Network/qPUBLIC"
+nfsExportDir="/home/$currentUser/Network/qNFS_SHARE"
 
 # Setting Computer Hostname
 # Check current hostname
