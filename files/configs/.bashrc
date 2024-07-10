@@ -3,7 +3,7 @@ export EDITOR='nano'
 export VISUAL='nano'
 export HISTCONTROL=ignoreboth:erasedups
 export PAGER='most'
-export XDG_DATA_HOME=/home/$(whoami)/.local/share/flatpak/exports/share
+export XDG_DATA_HOME=/home/querzion/.local/share/flatpak/exports/share
 export XDG_DATA_DIRS=/var/lib/flatpak/exports/share:/usr/local/share:/usr/share
 
 #Ibus settings if you need them
