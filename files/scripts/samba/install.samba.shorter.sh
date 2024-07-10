@@ -37,7 +37,7 @@ currentHostname=$(hostname)
 echo -e "Current hostname: ${PURPLE}$currentHostname${NC}"
 
 # Prompt user if they want to change the hostname
-read -p "$(echo -e "${GREEN}Do you want to change the hostname? (y/n):${NC} ")" changeHostname
+read -p "$(echo -e "${GREEN}Do you want to change the hostname?${NC} (y/n): ")" changeHostname
 
 if [[ $changeHostname =~ ^[Yy]$ ]]; then
     # Prompt user for new hostname input
