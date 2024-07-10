@@ -8,7 +8,7 @@ NC='\033[0m' # No Color
 
 # Define Settings
 currentUser=$(whoami)
-currentHostname=$(hostname)
+currentHostname=$(cat /etc/hostname)
 sambaShare="qShare" # Replace 'qShare' with your desired group name
 
 # Define directories
