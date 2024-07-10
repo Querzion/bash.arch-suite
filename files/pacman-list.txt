@@ -7,7 +7,6 @@ xorg-server
 xorg-xinit
 xorg-xkb-layouts
 xev
-inetutils
 
 # TERMINAL STUFF
 vim
@@ -98,7 +97,6 @@ variety
 unzip
 xbindkeys
 rofi
-cifs-utils
 
 # MEDIA
 ffmpeg
