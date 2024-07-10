@@ -182,6 +182,11 @@ while IFS= read -r app; do
         fi
 done < "$AUR_APPS"
 
+# Pause the script
+echo -e "${GREEN} PRESS ENTER TO CONTINUE. ${NC}"
+read
+
+
 
 ################################################################### INSTALL WINDOW MANAGER & CONFIGS
 ############ DWM, SLSTATUS, DMENU, NNN, ST 
