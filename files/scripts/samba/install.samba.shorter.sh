@@ -2,8 +2,10 @@
 
 # ANSI color codes
 RED='\033[0;31m'
-YELLOW='\033[93m'
+YELLOW='\033[0;33m'
 GREEN='\033[0;32m'
+BLUE='\033[0;34m'
+CYAN='\033[0;36m'
 NC='\033[0m' # No Color
 
 # Samba Group Name
@@ -35,7 +37,7 @@ create_dir_if_not_exists() {
 # Backup the original smb.conf file
 sudo cp -n /etc/samba/smb.conf{,.bak} || true
 
-echo -e "${GREEN} Creating smb.conf file. ${NC}"
+echo -e "${GREEN} Creating smb.conf file.${NC}"
 
 # Write the content to the smb.conf file
 sudo tee "$SMB" > /dev/null <<EOL
@@ -82,7 +84,7 @@ sudo chown -R "$currentUser:$sambaShare" "$sharedDir"
 sudo chmod -R 0775 "$sharedDir"
 
 # Enable & start Samba and Avahi services
-echo -e "${YELLOW} Enabling and starting Samba and Avahi services. ${NC}"
+echo -e "${YELLOW} Enabling and starting Samba and Avahi services.${NC}"
 sudo systemctl enable --now smb nmb avahi-daemon
 
 # Configure nss-mdns
@@ -94,12 +96,12 @@ read -p "Do you want to install and configure NFS? (y/n) " INSTALL_NFS
 if [ "$INSTALL_NFS" = "y" ]; then
     install_package "nfs-utils"
     sudo systemctl enable --now nfs-server
-    echo "nfs-utils installed and NFS server started."
+    echo -e "${GREEN}nfs-utils installed and NFS server started.${NC}"
     # Configure NFS exports
     sudo tee -a /etc/exports > /dev/null <<< "/srv/nfs 192.168.1.0/24(rw,sync,no_subtree_check)"
     sudo exportfs -ra
     sudo systemctl restart nfs-server
-    echo "NFS export configuration added and NFS server restarted."
+    echo -e "${GREEN}NFS export configuration added and NFS server restarted.${NC}"
 fi
 
 # Configure firewall (UFW)
@@ -114,8 +116,8 @@ echo -e "${YELLOW} Restarting services... ${NC}"
 sudo systemctl restart smb nmb avahi-daemon ufw
 
 # Print status of services
-echo -e "${YELLOW} Checking status of Samba, Avahi & UFW. ${NC}"
+echo -e "${YELLOW} Checking status of Samba, Avahi & UFW.${NC}"
 sudo systemctl status smb nmb avahi-daemon ufw
 
 echo -e "${RED} If the status is not enabled and active, reboot and test it again.${NC}"
-echo -e "${GREEN} Setup completed! ${NC} You can now access the shared folder at ${YELLOW}\\\\$currentHostname\\Public${NC}"
+echo -e "${GREEN} Setup completed! ${NC} You can now access the shared folder at ${CYAN}\\\\$currentHostname\\Public${NC}"
