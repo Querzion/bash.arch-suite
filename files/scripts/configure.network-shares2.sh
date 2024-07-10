@@ -14,14 +14,14 @@ NC='\033[0m' # No Color
 ###############################
 
 # Define the shares array in the correct order
-shares=("qSHARED" "qPUBLIC" "qNFS_SHARE" "THE ARCHIVEs" "USERs" "BACKUPs" "ISOs" "DOWNLOADs" "VMs")
+shares=("THE ARCHIVEs" "USERs" "BACKUPs" "ISOs" "DOWNLOADs" "VMs")
 
 # Function to create folders if they do not exist
 create_folders() {
     local home_folder="$1"
 
     for share in "${shares[@]}"; do
-        if [[ "$share" == "qSHARED" || "$share" == "qPUBLIC" || "$share" == "qNFS_SHARE" || "$share" == "THE ARCHIVEs" || "$share" == "USERs" || "$share" == "BACKUPs" || "$share" == "ISOs" || "$share" == "VMs" || "$share" == "DOWNLOADs" ]]; then
+        if [[ "$share" == "THE ARCHIVEs" || "$share" == "USERs" || "$share" == "BACKUPs" || "$share" == "ISOs" || "$share" == "VMs" || "$share" == "DOWNLOADs" ]]; then
             local folder_path="$home_folder/Network/$share"
         else
             local folder_path="$home_folder/$share"
