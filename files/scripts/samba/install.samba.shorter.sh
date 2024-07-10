@@ -25,7 +25,7 @@ sambaShare="qShare" # Replace 'qShare' with your desired group name
 
 # Define directories
 currentUser=$(whoami)
-sharedDir="/home/$currentUser/Shares/Shared"
+sharedDir="/home/$currentUser/Network/Shared"
 publicDir="/srv/samba/Public"
 nfsExportDir="/data/nfs_share"
 
