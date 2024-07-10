@@ -78,6 +78,8 @@ sudo cat <<EOL > $SMB_CONF_PATH
     read only = no
 EOL
 
+testparm
+
 echo -e "${GREEN} smb.conf file created at $SMB_CONF_PATH ${NC}"
 
 sudo groupadd $sambaShare  
