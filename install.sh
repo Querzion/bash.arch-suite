@@ -84,7 +84,7 @@ if [[ $EUID -ne 0 ]]; then
 fi
 
 # Add repositories
-add_repositories
+sudo add_repositories
 
 # Update Pacman
 update_pacman
