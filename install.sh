@@ -198,7 +198,6 @@ network_shares() {
 execute_command() {
     echo -e "${YELLOW} EXECUTING CODE ${NC}"
     
-    chmod +x $SCRIPT_FILES/configure.network-shares.sh 
     sh $SCRIPT_FILES/configure.network-shares.sh
 
     echo -e "${GREEN} DONE. ${NC}"
