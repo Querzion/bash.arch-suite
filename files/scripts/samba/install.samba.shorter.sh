@@ -179,6 +179,10 @@ sudo ufw --force enable
 echo -e "${YELLOW} Restarting services... ${NC}"
 sudo systemctl restart smb nmb avahi-daemon nfs-server
 
+# Pause the script
+echo -e "${GREEN} PRESS ENTER TO CONTINUE. ${NC}"
+read
+
 # Print status of services
 echo -e "${YELLOW} Checking status of Samba, Avahi, NFS & UFW.${NC}"
 sudo systemctl status smb nmb avahi-daemon nfs-server
