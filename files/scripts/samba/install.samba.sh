@@ -88,13 +88,13 @@ create_dir_if_not_exists() {
     local dir=$1
 
     if [ -d "$dir" ]; then
-        echo "Directory '$dir' already exists."
+        echo -e "${YELLOW}Directory '$dir' already exists.${NC}"
     else
         sudo mkdir -p "$dir"
         if [ $? -eq 0 ]; then
-            echo "Directory '$dir' created successfully."
+            echo -e "${GREEN}Directory '$dir' created successfully.${NC}"
         else
-            echo "Error creating directory '$dir'."
+            echo -e "${RED}Error creating directory '$dir'.${NC}"
             exit 1
         fi
     fi
