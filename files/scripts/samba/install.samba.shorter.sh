@@ -23,20 +23,51 @@ packageFile="$CUT/samba.packages.txt"  # File containing package names
 # Define directories
 currentUser=$(whoami)
 
-# NAME SAMBA GROUP HERE
+
+########################################################################## NAME SAMBA GROUP HERE
+############ NAME SAMBA GROUP HERE
+
 sambaShare="qShare" # Replace 'qShare' with your desired group name
-# NAME SHARE FOLDERS HERE
-FOLDER_SHARED="qSHARED" #
-FOLDER_PUBLIC="qPUBLIC"
-FOLDER_NFS_S="qNFS_SHARE"
 
-# SHORTER ADDRESSES
-sCUT="/home/$currentUser/Network"
-sharedDir="$sCUT/$FOLDER_SHARED"
-publicDir="$sCUT/$FOLDER_PUBLIC"
-nfsExportDir="$sCUT/$FOLDER_NFS_S"
 
-sudo mkdir
+########################################################################## NAME SHARE FOLDERS HERE
+############ NAME SHARE FOLDERS HERE
+
+# This is the names of the FOLDERs that will be created in L
+S="qSHARED"        # Change 'qSHARED' into what you want the folder be named.
+P="qPUBLIC"        # Change 'qPUBLIC' into what you want the folder be named.
+N="qNFS_SHARE"     # Change 'qNFS_SHARE' into what you want the folder be named.
+
+
+########################################################################## LOCATION
+############ LOCATION
+
+# This is a folder in your HOME directory, Rename or keep it as is.
+# S, P & N will be folders that are located in this folder.
+L="Network"
+
+
+########################################################################## REFERENCES
+############ REFERENCES
+
+# DO NOT CHANGE THESE! 
+sCUT="/home/$currentUser"
+sharedDir="$sCUT/$L/$S"
+publicDir="$sCUT/$L/$P"
+nfsExportDir="$sCUT/$L/$N"
+
+
+########################################################################## FOLDER CREATION
+############ FOLDER CREATION
+
+# DO NOT CHANGE THESE!
+sudo mkdir -p "$sCUT/$L"
+sudo mkdir -p "$sCUT/$L/$S"
+sudo mkdir -p "$sCUT/$L/$P"
+sudo mkdir -p "$sCUT/$L/$N"
+
+########################################################################## CODE STARTS
+############ CODE STARTS
 
 # Setting Computer Hostname
 # Check current hostname
