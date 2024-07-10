@@ -40,7 +40,7 @@ SMB_CONF_PATH="/etc/samba/smb.conf"
 echo -e "${GREEN} Creating smb.conf file. ${NC}"
 
 # Write the content to the smb.conf file
-cat <<EOL > $SMB_CONF_PATH
+sudo cat <<EOL > $SMB_CONF_PATH
 [global]
    workgroup = WORKGROUP
    server string = Samba Server
