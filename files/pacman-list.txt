@@ -99,7 +99,6 @@ ffmpeg
 gimp
 mpv
 vlc
-simplescreenrecorder
 
 
 
