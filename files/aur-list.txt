@@ -1,5 +1,6 @@
 # MEDIA
 #spotify-adblock
+simplescreenrecorder
 
 # STREAMING
 #chatterino2-git
