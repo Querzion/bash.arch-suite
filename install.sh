@@ -177,10 +177,13 @@ while IFS= read -r app; do
         if ! yay -Qi $app &> /dev/null; then
             echo -e "${GREEN} Installing $app from aur-list.txt. ${NC}"
             yay -S --noconfirm $app
+            sudo rm -R /tmp/yay/$app
         else
             echo -e "${YELLOW} $app is already installed. ${NC}"
         fi
 done < "$AUR_APPS"
+
+
 
 # Pause the script
 echo -e "${GREEN} PRESS ENTER TO CONTINUE. ${NC}"
