@@ -217,7 +217,7 @@ sh $SCRIPT_FILES/install.yay.sh
 # Chmod Yay Temp Folder
 sudo chmod -R u+rwx /tmp/yay
 # Chmod Paru Temp Folder
-sudo chmod -R u+rwx /tmp/paru
+#sudo chmod -R u+rwx /tmp/paru
 
 
 ################################################################### INSTALL AUR-LIST.TXT (BROKEN ATM)
