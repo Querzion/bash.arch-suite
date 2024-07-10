@@ -1,5 +1,18 @@
 #!/bin/bash
 
+############ COLOURED BASH TEXT
+
+# ANSI color codes
+RED='\033[0;31m'
+YELLOW='\033[0;33m'
+GREEN='\033[0;32m'
+CYAN='\033[0;36m'
+PURPLE='\033[0;35m'
+BLUE='\033[0;34m'
+NC='\033[0m' # No Color
+
+###############################
+
 #install rofi in arch
 #To install Rofi on Arch Linux, you have a few options. You can use the Snap Store and install the rofi-snap package, or you can use the Arch User Repository (AUR) and install the rofi package.
 
