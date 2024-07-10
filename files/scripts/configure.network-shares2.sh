@@ -30,6 +30,7 @@ create_folders() {
         # Check if folder exists
         if [ ! -d "$folder_path" ]; then
             sudo mkdir -p "$folder_path"
+            chown $currentUser:$currentUser -R "$mount_point"
             echo -e "${GREEN}Created${NC} $folder_path"
         else
             echo -e "${YELLOW}Folder already exists:${NC} $folder_path"
@@ -55,6 +56,7 @@ mount_shares() {
         # Check if the mount point exists or create it
         if [ ! -d "$mount_point" ]; then
             sudo mkdir -p "$mount_point"
+            chmod -R 0770 "$mount_point"
         fi
 
         # Mount the share
