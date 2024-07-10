@@ -4,9 +4,17 @@
 RED='\033[0;31m'
 YELLOW='\033[0;33m'
 GREEN='\033[0;32m'
-BLUE='\033[0;34m'
 CYAN='\033[0;36m'
 NC='\033[0m' # No Color
+
+# Installation path
+#CUT="$HOME"
+CUT="$HOME/bash.dwm-arch.startup/files/scripts/samba"
+
+
+# Log file for package installations
+logFile="install_log.txt"
+packageFile="$CUT/samba.packages.txt"  # File containing package names
 
 # Samba Group Name
 sambaShare="qShare" # Replace 'qShare' with your desired group name
@@ -16,9 +24,15 @@ currentUser=$(whoami)
 sharedDir="/home/$currentUser/Shares/Shared"
 publicDir="/srv/samba/Public"
 
-# Function to install a package if not already installed
+# Function to install a package if not already installed and log to file
 install_package() {
-    pacman -Qi "$1" &> /dev/null || sudo pacman -S --noconfirm "$1"
+    local package="$1"
+    if pacman -Qi "$package" &> /dev/null; then
+        echo "$(date '+%Y-%m-%d %H:%M:%S') - $package is already installed." >> "$logFile"
+    else
+        echo "$(date '+%Y-%m-%d %H:%M:%S') - Installing $package..." >> "$logFile"
+        sudo pacman -S --noconfirm "$package" >> "$logFile" 2>&1
+    fi
 }
 
 # Function to create a directory if it doesn't exist
@@ -91,33 +105,36 @@ sudo systemctl enable --now smb nmb avahi-daemon
 echo -e "${YELLOW} Configuring nss-mdns... ${NC}"
 sudo sed -i 's/hosts: files mymachines myhostname/hosts: files mymachines myhostname mdns_minimal [NOTFOUND=return] dns/g' /etc/nsswitch.conf
 
-# Install and configure NFS if requested
-read -p "Do you want to install and configure NFS? (y/n) " INSTALL_NFS
-if [ "$INSTALL_NFS" = "y" ]; then
-    install_package "nfs-utils"
-    sudo systemctl enable --now nfs-server
-    echo -e "${GREEN}nfs-utils installed and NFS server started.${NC}"
-    # Configure NFS exports
-    sudo tee -a /etc/exports > /dev/null <<< "/srv/nfs 192.168.1.0/24(rw,sync,no_subtree_check)"
-    sudo exportfs -ra
-    sudo systemctl restart nfs-server
-    echo -e "${GREEN}NFS export configuration added and NFS server restarted.${NC}"
-fi
+# Install packages listed in packages.txt
+echo -e "${YELLOW} Installing packages from $packageFile... ${NC}"
+while IFS= read -r package; do
+    install_package "$package"
+done < "$packageFile"
 
 # Configure firewall (UFW)
 echo -e "${YELLOW} Configuring UFW (Uncomplicated Firewall)... ${NC}"
-sudo pacman -S --noconfirm ufw
-sudo ufw allow proto tcp from any to any port 139,445
-sudo ufw allow proto udp from any to any port 137,138,5353
+
+# SMB ports
+sudo ufw allow proto tcp from any to any port 139,445   # SMB/CIFS - File Sharing
+sudo ufw allow proto udp from any to any port 137,138,5353   # SMB/CIFS - NetBIOS over TCP/UDP and Bonjour Service Discovery
+
+# NFS ports
+sudo ufw allow proto tcp from any to any port 2049
+sudo ufw allow proto udp from any to any port 2049
+sudo ufw allow proto tcp from any to any port 111
+sudo ufw allow proto udp from any to any port 111
+
 sudo ufw --force enable
 
 # Restarting services
 echo -e "${YELLOW} Restarting services... ${NC}"
-sudo systemctl restart smb nmb avahi-daemon ufw
+sudo systemctl restart smb nmb avahi-daemon
 
 # Print status of services
 echo -e "${YELLOW} Checking status of Samba, Avahi & UFW.${NC}"
-sudo systemctl status smb nmb avahi-daemon ufw
+sudo systemctl status smb nmb avahi-daemon
 
 echo -e "${RED} If the status is not enabled and active, reboot and test it again.${NC}"
 echo -e "${GREEN} Setup completed! ${NC} You can now access the shared folder at ${CYAN}\\\\$currentHostname\\Public${NC}"
+
+echo -e "${YELLOW} Installation log saved to: $logFile${NC}"
