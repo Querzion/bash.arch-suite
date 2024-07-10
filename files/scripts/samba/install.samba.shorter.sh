@@ -23,6 +23,33 @@ sharedDir="/home/$currentUser/Shares/Shared"
 publicDir="/srv/samba/Public"
 nfsExportDir="/data/nfs_share"
 
+# Setting Computer Hostname
+# Check current hostname
+currentHostname=$(hostname)
+echo -e "Current hostname: ${GREEN}$currentHostname${NC}"
+
+# Prompt user if they want to change the hostname
+read -p "$(echo -e "${GREEN}Do you want to change the hostname? (y/n):${NC} ")" changeHostname
+
+if [[ $changeHostname =~ ^[Yy]$ ]]; then
+    # Prompt user for new hostname input
+    read -p "$(echo -e "${GREEN}Enter the new hostname:${NC} ")" myRig
+
+    # Update the hostname file
+    echo "$myRig" | sudo tee /etc/hostname > /dev/null
+
+    # Update /etc/hosts
+    sudo sed -i "s/127.0.0.1.*/127.0.0.1 localhost $myRig/" /etc/hosts
+
+    # Apply the hostname change
+    sudo hostnamectl set-hostname "$myRig"
+
+    # Notify user of completion
+    echo -e "${GREEN}Hostname set to $myRig.${NC} Please restart your system to apply the changes."
+else
+    echo "Hostname remains as $currentHostname. No changes made."
+fi
+
 # Function to install a package if not already installed and log to file
 install_package() {
     local package="$1"
