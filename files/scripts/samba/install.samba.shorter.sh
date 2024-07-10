@@ -20,16 +20,23 @@ CUT="$HOME/bash.dwm-arch.startup/files"
 logFile="$HOME/install.samba.shorter.sh_log.txt"
 packageFile="$CUT/samba.packages.txt"  # File containing package names
 
-# Samba Group Name
-sambaShare="qShare" # Replace 'qShare' with your desired group name
-
 # Define directories
 currentUser=$(whoami)
-sCUT="/home/$currentUser/Network"
 
-sharedDir="$sCUT/qSHARED"
-publicDir="$sCUT/qPUBLIC"
-nfsExportDir="$sCUT/qNFS_SHARE"
+# NAME SAMBA GROUP HERE
+sambaShare="qShare" # Replace 'qShare' with your desired group name
+# NAME SHARE FOLDERS HERE
+FOLDER_SHARED="qSHARED" #
+FOLDER_PUBLIC="qPUBLIC"
+FOLDER_NFS_S="qNFS_SHARE"
+
+# SHORTER ADDRESSES
+sCUT="/home/$currentUser/Network"
+sharedDir="$sCUT/$FOLDER_SHARED"
+publicDir="$sCUT/$FOLDER_PUBLIC"
+nfsExportDir="$sCUT/$FOLDER_NFS_S"
+
+sudo mkdir
 
 # Setting Computer Hostname
 # Check current hostname
