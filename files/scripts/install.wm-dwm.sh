@@ -40,10 +40,6 @@ echo -e "${GREEN} dwm installed successfully. ${NC}"
 #echo -e "${GREEN} PRESS ENTER TO CONTINUE. ${NC}"
 #read
 
-# Pause the script
-echo -e "${GREEN} PRESS ENTER TO CONTINUE. ${NC}"
-read
-
 echo -e "${BLUE} Configuring config.def.h file. ${NC}"
 
 # Copy to replace config.def.h
@@ -58,8 +54,8 @@ sudo make clean install
 echo -e "${GREEN} dwm is now reconfigured. ${NC}"
 
 # Pause the script
-echo -e "${GREEN} PRESS ENTER TO CONTINUE. ${NC}"
-read
+#echo -e "${GREEN} PRESS ENTER TO CONTINUE. ${NC}"
+#read
 
 echo -e "${BLUE} Patching dwm. ${NC}"
 
@@ -71,7 +67,6 @@ echo -e "${GREEN} dwm is now patched. ${NC}"
 # Pause the script
 echo -e "${GREEN} PRESS ENTER TO CONTINUE. ${NC}"
 read
-
 
 ################################################################### ST
 ############ ST
