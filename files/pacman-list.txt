@@ -93,6 +93,7 @@ variety
 unzip
 xbindkeys
 rofi
+duf
 
 # MEDIA
 ffmpeg
