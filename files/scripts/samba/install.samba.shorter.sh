@@ -9,7 +9,7 @@ NC='\033[0m' # No Color
 
 # Installation path
 #CUT="$HOME"
-CUT="$HOME/bash.dwm-arch.startup/files/scripts/samba"
+CUT="$HOME/bash.dwm-arch.startup/files/"
 
 
 # Log file for package installations
