@@ -131,7 +131,7 @@ sudo tee "$SMB" > /dev/null <<EOL
 [global]
    workgroup = WORKGROUP
    server string = Samba Server
-   netbios name = $(hostname)
+   netbios name = $currentHostname
    security = user
    map to guest = Bad User
    dns proxy = no
