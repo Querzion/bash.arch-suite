@@ -32,7 +32,7 @@ if ! command_exists yay; then
     cd yay
     makepkg -si --noconfirm
 else
-    echo -e "${GREEN} YAY is already installed. ${NC}"
+    echo -e "${YELLOW} YAY is already installed. ${NC}"
 fi
 
 # Clean up temporary files
