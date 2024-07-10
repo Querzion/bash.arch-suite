@@ -215,13 +215,12 @@ sh $SCRIPT_FILES/install.yay.sh
 #echo -e "${GREEN} PRESS ENTER TO CONTINUE. ${NC}"
 #read
 
-################################################################### CHMOD /TMP/YAY & /TMP/PARU
-############ CHMOD /TMP/YAY & /TMP/PARU
 
-# Chmod Yay Temp Folder
-sudo chmod -R u+rwx /tmp/yay
-# Chmod Paru Temp Folder
-#sudo chmod -R u+rwx /tmp/paru
+################################################################### CHMOD /TMP FOLDER
+############ CHMOD /TMP FOLDER
+
+# Chmod Temp Folder
+sudo chmod -R u+rwx /tmp/
 
 
 ################################################################### INSTALL AUR-LIST.TXT (BROKEN ATM)
