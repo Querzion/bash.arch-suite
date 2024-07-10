@@ -31,7 +31,7 @@ SCRIPT_FILES="$CUT/scripts"
 # GPU Driver Installation path.
 DRIVERS="$CUT/scripts/install.video-drivers.sh"
 # Samba installation path.
-SAMBA="$CUT/samba/"
+SAMBA="$CUT/samba"
 
 ################################################################### MAKE SCRIPTS EXECUTABLE
 ############ MAKE SCRIPTS EXECUTABLE
