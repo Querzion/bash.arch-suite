@@ -66,8 +66,8 @@ sh $PATCH_DWM
 echo -e "${GREEN} dwm is now patched. ${NC}"
 
 # Pause the script
-echo -e "${GREEN} PRESS ENTER TO CONTINUE. ${NC}"
-read
+#echo -e "${GREEN} PRESS ENTER TO CONTINUE. ${NC}"
+#read
 
 ################################################################### ST
 ############ ST
@@ -103,8 +103,8 @@ sh $PATCH_ST
 echo -e "${GREEN} st is now patched. ${NC}"
 
 # Pause the script
-echo -e "${GREEN} PRESS ENTER TO CONTINUE. ${NC}"
-read
+#echo -e "${GREEN} PRESS ENTER TO CONTINUE. ${NC}"
+#read
 
 
 ################################################################### DMENU
@@ -141,8 +141,8 @@ sh $PATCH_DMENU
 echo -e "${GREEN} dmenu is now patched. ${NC}"
 
 # Pause the script
-echo -e "${GREEN} PRESS ENTER TO CONTINUE. ${NC}"
-read
+#echo -e "${GREEN} PRESS ENTER TO CONTINUE. ${NC}"
+#read
 
 
 ################################################################### SLSTATUS
@@ -179,8 +179,8 @@ sh $PATCH_SLSTATUS
 echo -e "${GREEN} slstatus is now patched. ${NC}"
 
 # Pause the script
-echo -e "${GREEN} PRESS ENTER TO CONTINUE. ${NC}"
-read
+#echo -e "${GREEN} PRESS ENTER TO CONTINUE. ${NC}"
+#read
 
 
 ################################################################### NNN
