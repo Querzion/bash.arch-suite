@@ -21,6 +21,7 @@ sambaShare="qShare" # Replace 'qShare' with your desired group name
 currentUser=$(whoami)
 sharedDir="/home/$currentUser/Shares/Shared"
 publicDir="/srv/samba/Public"
+nfsExportDir="/data/nfs_share"
 
 # Function to install a package if not already installed and log to file
 install_package() {
@@ -115,9 +116,12 @@ echo -e "${YELLOW} Installing and configuring NFS... ${NC}"
 install_package "nfs-utils"
 
 # Configure NFS exports
-sudo tee -a /etc/exports > /dev/null <<< "/srv/nfs 192.168.1.0/24(rw,sync,no_subtree_check)"
-sudo exportfs -ra
-sudo systemctl enable --now nfs-server
+sudo tee -a /etc/exports > /dev/null <<EOL
+$nfsExportDir 192.168.0.0/24(rw,sync,no_subtree_check)
+EOL
+
+sudo exportfs -ra  # Reload NFS exports
+sudo systemctl enable --now nfs-server  # Restart NFS server
 
 echo -e "${GREEN} NFS export configuration added and NFS server started.${NC}"
 
