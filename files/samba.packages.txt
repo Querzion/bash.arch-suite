@@ -10,3 +10,4 @@ ufw
 avahi
 nss-mdns
 cifs-utils
+inetutils
