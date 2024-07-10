@@ -70,7 +70,7 @@ sudo cat <<EOL > $SMB_CONF_PATH
    public = yes
 
 [SAMBASHARE]
-    path = /home/$currentUser/Shared
+    path = /home/$currentUser/Shares/Shared
     browseable = yes
     guest ok = yes
     public = yes
