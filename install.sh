@@ -341,11 +341,11 @@ ask_install() {
 }
 
 # Chatterino installation
-echo -e "${GREEN}CHATTERINO MANUAL INSTALL SINCE AUTO CHOOSES TO ABORT THIS ONE!${NC}"
+echo -e "${PURPLE}CHATTERINO MANUAL INSTALL SINCE AUTO CHOOSES TO ABORT THIS ONE!${NC}"
 ask_install "Do you want to install Chatterino?" "flatpak install flathub com.chatterino.chatterino"
 
 # Spotify-adblock installation
-echo -e "${GREEN}SPOTIFY-ADBLOCK MANUAL INSTALL SINCE IT DIDN'T WORK!${NC}"
+echo -e "${PURPLE}SPOTIFY-ADBLOCK MANUAL INSTALL SINCE IT DIDN'T WORK!${NC}"
 ask_install "Do you want to install Spotify-adblock?" "yay -S spotify-adblock"
 
 echo "Installation script completed."
