@@ -223,10 +223,10 @@ sudo chmod -R u+rwx /tmp/paru
 ################################################################### INSTALL AUR-LIST.TXT (BROKEN ATM)
 ############ INSTALL AUR-LIST.TXT
 
-## Check if the applications file exists
-if [[ ! -f $AUR_APPS ]]; then
+# Check if the applications file exists
+if [[ ! -f "$AUR_APPS" ]]; then
     echo -e "${RED} The applications file does not exist at $AUR_APPS ${NC}"
-   exit 1
+    exit 1
 fi
 
 # Read the applications list and install each application
@@ -235,17 +235,19 @@ while IFS= read -r app; do
     if [[ -z "$app" || "$app" == \#* ]]; then
         continue
     fi
-        # Check if the application is already installed or not, and acts accordingly.
-        if ! yay -Qi $app &> /dev/null; then
-            echo -e "${GREEN} Installing $app from aur-list.txt. ${NC}"
-            yay -S --noconfirm $app
-            #sudo rm -R /tmp/yay/$app
-        else
-            echo -e "${YELLOW} $app is already installed. ${NC}"
-        fi
+    # Check if the application is already installed or not, and act accordingly.
+    if ! yay -Qi "$app" &> /dev/null; then
+        echo -e "${GREEN} Installing $app from aur-list.txt. ${NC}"
+        yay -S --noconfirm "$app"
+        # Uncomment the following line if you need to remove each app's directory after installation
+        sudo rm -R /tmp/yay/"$app"
+    else
+        echo -e "${YELLOW} $app is already installed. ${NC}"
+    fi
 done < "$AUR_APPS"
 
-
+# Remove the files in /tmp/yay/*
+sudo rm -rf /tmp/yay/*
 
 # Pause the script
 echo -e "${GREEN} PRESS ENTER TO CONTINUE. ${NC}"
