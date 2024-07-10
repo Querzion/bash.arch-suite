@@ -3,6 +3,7 @@
 
 # STREAMING
 #chatterino2-git
+github-desktop-bin
 
 # FILE EXPLORER
 thunar
