@@ -176,7 +176,7 @@ while IFS= read -r app; do
         # Check if the application is already installed or not, and acts accordingly.
         if ! yay -Qi $app &> /dev/null; then
             echo -e "${GREEN} Installing $app from aur-list.txt. ${NC}"
-            sudo yay -S --noconfirm $app
+            yay -S --noconfirm $app
         else
             echo -e "${YELLOW} $app is already installed. ${NC}"
         fi
