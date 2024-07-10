@@ -21,8 +21,8 @@ create_folders() {
     local home_folder="$1"
 
     for share in "${shares[@]}"; do
-        if [[ "$share" == "Shared" || "$share" == "THE ARCHIVEs" || "$share" == "USERs" || "$share" == "BACKUPs" || "$share" == "ISOs" || "$share" == "VMs" || "$share" == "DOWNLOADs" ]]; then
-            local folder_path="$home_folder/Shares/$share"
+        if [[ "$share" == "qSHARED" || "$share" == "qPUBLIC" || "$share" == "qNFS_SHARE" || "$share" == "THE ARCHIVEs" || "$share" == "USERs" || "$share" == "BACKUPs" || "$share" == "ISOs" || "$share" == "VMs" || "$share" == "DOWNLOADs" ]]; then
+            local folder_path="$home_folder/Network/$share"
         else
             local folder_path="$home_folder/$share"
         fi
@@ -46,8 +46,8 @@ mount_shares() {
 
     for share in "${shares[@]}"; do
         local share_path="//${server_ip}/${share}"
-        if [[ "$share" == "Shared" || "$share" == "Archive" || "$share" == "Users" || "$share" == "Backups" || "$share" == "ISOs" || "$share" == "VMs" ]]; then
-            local mount_point="${home_folder}/Shares/${share}"
+        if [[ "$share" == "THE ARCHIVEs" || "$share" == "USERs" || "$share" == "BACKUPs" || "$share" == "ISOs" || "$share" == "VMs" || "$share" == "DOWNLOADs" ]]; then
+            local mount_point="${home_folder}/Network/${share}"
         else
             local mount_point="${home_folder}/${share}"
         fi
