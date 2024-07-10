@@ -50,7 +50,7 @@ mount_shares() {
 
         # Mount the share
         sudo mount.cifs "$share_path" "$mount_point" -o username="$username",password="$password"
-        echo -e "${GREEN}Mounted${NC} $share_path to $mount_point"
+        echo -e "${PURPLE}Mounted${NC} ${YELLOW}$share_path${NC} to ${GREEN}$mount_point${NC}"
     done
 }
 
