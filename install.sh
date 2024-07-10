@@ -31,7 +31,7 @@ SCRIPT_FILES="$CUT/scripts"
 # GPU Driver Installation path.
 DRIVERS="$CUT/scripts/install.video-drivers.sh"
 # Samba installation path.
-SAMBA="$CUT/scripts/samba"
+SAMBA="$CUT/scripts/samba/install.samba.shorter.sh"
 
 ################################################################### MAKE SCRIPTS EXECUTABLE
 ############ MAKE SCRIPTS EXECUTABLE
@@ -273,7 +273,7 @@ sh $SCRIPT_FILES/install.wm-dwm.sh
 ################################################################### INSTALL SAMBA
 ############ SAMBA
 
-sh $SAMBA/install.samba.sh
+sh $SAMBA
 echo -e "${GREEN} Samba installed and set up successfully. ${NC}"
 
 # Pause the script
