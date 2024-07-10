@@ -14,7 +14,7 @@ NC='\033[0m' # No Color
 ###############################
 
 # Define the shares array in the correct order
-shares=("Documents" "Music" "Pictures" "Videos" "Shared" "THE ARCHIVEs" "USERs" "BACKUPs" "ISOs" "DOWNLOADs" "VMs" "Downloads")
+shares=("qSHARED" "qPUBLIC" "qNFS_SHARE" "THE ARCHIVEs" "USERs" "BACKUPs" "ISOs" "DOWNLOADs" "VMs")
 
 # Function to create folders if they do not exist
 create_folders() {
