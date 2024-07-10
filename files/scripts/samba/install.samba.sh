@@ -6,8 +6,14 @@ YELLOW='\033[93m'
 GREEN='\033[0;32m'
 NC='\033[0m' # No Color
 
+# Define Settings
 currentUser=$(whoami)
 currentHostname=$(hostname)
+sambaShare="qShare" # Replace 'qShare' with your desired group name
+
+# Define directories
+sharedDir="/home/$currentUser/Shares/Shared"
+publicDir="/srv/samba/Public"
 
 SMB="/etc/samba/smb.conf"
 SMB_FILES="bash.dwm-arch.startup/files/scripts/samba/conf/"
@@ -74,19 +80,45 @@ EOL
 
 echo -e "${GREEN} smb.conf file created at $SMB_CONF_PATH ${NC}"
 
-# Create the shared directory and set permissions
-echo -e "${YELLOW} Creating shared directory and setting permissions... ${NC}"
-sudo mkdir -p /srv/samba/public
-sudo chown -R user:group /srv/samba/public
-sudo chmod -R 0775 /srv/samba/public
-sudo chown -R user:group /srv/samba/public
+sudo groupadd $sambaShare  
+sudo usermod -aG $sambaShare $currentUser
+
+# Function to create a directory if it doesn't exist
+create_dir_if_not_exists() {
+    local dir=$1
+
+    if [ -d "$dir" ]; then
+        echo "Directory '$dir' already exists."
+    else
+        sudo mkdir -p "$dir"
+        if [ $? -eq 0 ]; then
+            echo "Directory '$dir' created successfully."
+        else
+            echo "Error creating directory '$dir'."
+            exit 1
+        fi
+    fi
+}
 
 # Create the shared directory and set permissions
 echo -e "${YELLOW} Creating shared directory and setting permissions... ${NC}"
-sudo mkdir -p /home/$currentUser/Shared
-sudo chown -R user:group /home/$currentUser/Shared
+
+# Create the /srv/samba/Public directory
+create_dir_if_not_exists "$publicDir"
+
+sudo chown -R $currentUser:$sambaShare /srv/samba/Public
+sudo chmod -R 0775 /srv/samba/public
+sudo chown -R $currentUser:$sambaShare /srv/samba/Public
+
+# Create the shared directory and set permissions
+echo -e "${YELLOW} Creating shared directory and setting permissions... ${NC}"
+
+# Create the /home/$currentUser/Shares/Shared directory
+create_dir_if_not_exists "$sharedDir"
+
+sudo chown -R $currentUser:$sambaShare /home/$currentUser/Shares/Shared
 sudo chmod -R 0775 /home/$currentUser/Shared
-sudo chown -R user:group /home/$currentUser/Shared
+sudo chown -R $currentUser:$sambaShare /home/$currentUser/Shares/Shared
 
 # Enable & start the Samba services
 echo -e "${YELLOW} Enabling and starting Samba services. ${NC}"
