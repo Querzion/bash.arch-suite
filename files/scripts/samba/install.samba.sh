@@ -6,15 +6,18 @@ YELLOW='\033[93m'
 GREEN='\033[0;32m'
 NC='\033[0m' # No Color
 
+# Samba Group Name
+sambaShare="qShare" # Replace 'qShare' with your desired group name
+
 # Define Settings
 currentUser=$(whoami)
 currentHostname=$(cat /etc/hostname)
-sambaShare="qShare" # Replace 'qShare' with your desired group name
 
 # Define directories
 sharedDir="/home/$currentUser/Shares/Shared"
 publicDir="/srv/samba/Public"
 
+# smb.conf Locations
 SMB="/etc/samba/smb.conf"
 SMB_FILES="bash.dwm-arch.startup/files/scripts/samba/conf/"
 
@@ -31,16 +34,13 @@ install_package() {
 # Backup the original smb.conf file
 if [ ! -f /etc/samba/smb.conf.bak ]; then
     echo "Backing up the original smb.conf file..."
-    sudo cp /etc/samba/smb.conf /etc/samba/smb.conf.bak
+    sudo cp $SMB $SMB.bak
 fi
-
-# Define the path to the smb.conf file
-SMB_CONF_PATH="/etc/samba/smb.conf"
 
 echo -e "${GREEN} Creating smb.conf file. ${NC}"
 
 # Write the content to the smb.conf file
-sudo cat <<EOL > $SMB_CONF_PATH
+sudo cat <<EOL > $SMB
 [global]
    workgroup = WORKGROUP
    server string = Samba Server
@@ -62,7 +62,7 @@ sudo cat <<EOL > $SMB_CONF_PATH
    max log size = 50
 
 [Public]
-   path = /srv/samba/public
+   path = $publicDir
    browsable = yes
    writable = yes
    guest ok = yes
@@ -70,7 +70,7 @@ sudo cat <<EOL > $SMB_CONF_PATH
    public = yes
 
 [SAMBASHARE]
-    path = /home/$currentUser/Shares/Shared
+    path = $sharedDir
     browseable = yes
     guest ok = yes
     public = yes
@@ -108,9 +108,9 @@ echo -e "${YELLOW} Creating shared directory and setting permissions... ${NC}"
 # Create the /srv/samba/Public directory
 create_dir_if_not_exists "$publicDir"
 
-sudo chown -R $currentUser:$sambaShare /srv/samba/Public
+sudo chown -R $currentUser:$sambaShare $publicDir
 sudo chmod -R 0775 /srv/samba/public
-sudo chown -R $currentUser:$sambaShare /srv/samba/Public
+sudo chown -R $currentUser:$sambaShare $publicDir
 
 # Create the shared directory and set permissions
 echo -e "${YELLOW} Creating shared directory and setting permissions... ${NC}"
@@ -118,9 +118,9 @@ echo -e "${YELLOW} Creating shared directory and setting permissions... ${NC}"
 # Create the /home/$currentUser/Shares/Shared directory
 create_dir_if_not_exists "$sharedDir"
 
-sudo chown -R $currentUser:$sambaShare /home/$currentUser/Shares/Shared
+sudo chown -R $currentUser:$sambaShare $sharedDir
 sudo chmod -R 0775 /home/$currentUser/Shared
-sudo chown -R $currentUser:$sambaShare /home/$currentUser/Shares/Shared
+sudo chown -R $currentUser:$sambaShare $sharedDir
 
 # Enable & start the Samba services
 echo -e "${YELLOW} Enabling and starting Samba services. ${NC}"
@@ -237,4 +237,3 @@ sudo systemctl status ufw.service
 
 echo -e "${RED} If the status is not enabled and active, reboot, and test it again. ${NC}"
 echo -e "${GREEN} Setup completed! ${NC} You can now access the shared folder at ${YELLOW} \ \ archlinux.local\Public ${NC}"
-echo
