@@ -8,12 +8,10 @@ CYAN='\033[0;36m'
 NC='\033[0m' # No Color
 
 # Installation path
-#CUT="$HOME"
-CUT="$HOME/bash.dwm-arch.startup/files/"
-
+CUT="$HOME/bash.dwm-arch.startup/files"
 
 # Log file for package installations
-logFile="install_log.txt"
+logFile="$CUT/install_log.txt"
 packageFile="$CUT/samba.packages.txt"  # File containing package names
 
 # Samba Group Name
@@ -50,6 +48,7 @@ create_dir_if_not_exists() {
 
 # Backup the original smb.conf file
 sudo cp -n /etc/samba/smb.conf{,.bak} || true
+SMB="/etc/samba/smb.conf"
 
 echo -e "${GREEN} Creating smb.conf file.${NC}"
 
@@ -111,6 +110,17 @@ while IFS= read -r package; do
     install_package "$package"
 done < "$packageFile"
 
+# Install and configure NFS
+echo -e "${YELLOW} Installing and configuring NFS... ${NC}"
+install_package "nfs-utils"
+
+# Configure NFS exports
+sudo tee -a /etc/exports > /dev/null <<< "/srv/nfs 192.168.1.0/24(rw,sync,no_subtree_check)"
+sudo exportfs -ra
+sudo systemctl enable --now nfs-server
+
+echo -e "${GREEN} NFS export configuration added and NFS server started.${NC}"
+
 # Configure firewall (UFW)
 echo -e "${YELLOW} Configuring UFW (Uncomplicated Firewall)... ${NC}"
 
@@ -119,20 +129,20 @@ sudo ufw allow proto tcp from any to any port 139,445   # SMB/CIFS - File Sharin
 sudo ufw allow proto udp from any to any port 137,138,5353   # SMB/CIFS - NetBIOS over TCP/UDP and Bonjour Service Discovery
 
 # NFS ports
-sudo ufw allow proto tcp from any to any port 2049
-sudo ufw allow proto udp from any to any port 2049
-sudo ufw allow proto tcp from any to any port 111
-sudo ufw allow proto udp from any to any port 111
+sudo ufw allow proto tcp from any to any port 2049   # NFS - TCP
+sudo ufw allow proto udp from any to any port 2049   # NFS - UDP
+sudo ufw allow proto tcp from any to any port 111    # NFS - TCP
+sudo ufw allow proto udp from any to any port 111    # NFS - UDP
 
 sudo ufw --force enable
 
 # Restarting services
 echo -e "${YELLOW} Restarting services... ${NC}"
-sudo systemctl restart smb nmb avahi-daemon
+sudo systemctl restart smb nmb avahi-daemon nfs-server
 
 # Print status of services
-echo -e "${YELLOW} Checking status of Samba, Avahi & UFW.${NC}"
-sudo systemctl status smb nmb avahi-daemon
+echo -e "${YELLOW} Checking status of Samba, Avahi, NFS & UFW.${NC}"
+sudo systemctl status smb nmb avahi-daemon nfs-server
 
 echo -e "${RED} If the status is not enabled and active, reboot and test it again.${NC}"
 echo -e "${GREEN} Setup completed! ${NC} You can now access the shared folder at ${CYAN}\\\\$currentHostname\\Public${NC}"
