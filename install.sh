@@ -240,14 +240,19 @@ while IFS= read -r app; do
         echo -e "${GREEN} Installing $app from aur-list.txt. ${NC}"
         yay -S --noconfirm "$app"
         # Uncomment the following line if you need to remove each app's directory after installation
-        sudo rm -R /tmp/yay/"$app"
+        # Remove the files in /tmp/yay/application
+        #sudo bash -c 'rm -rf /tmp/yay/$app'
+
     else
         echo -e "${YELLOW} $app is already installed. ${NC}"
     fi
 done < "$AUR_APPS"
 
 # Remove the files in /tmp/yay/*
-sudo rm -rf /tmp/yay/*
+#sudo rm -rf /tmp/yay/*
+# Remove the files in /tmp/yay/*
+#sudo bash -c 'rm -rf /tmp/yay/*'
+
 
 # Pause the script
 echo -e "${GREEN} PRESS ENTER TO CONTINUE. ${NC}"
