@@ -43,54 +43,54 @@ chmod +x -R $SCRIPT_FILES
 ############ ADD ARCO LINUX REPO's
 
 # Function to add repositories to /etc/pacman.conf
-add_repositories() {
-    sudo tee -a /etc/pacman.conf > /dev/null <<EOL
+#add_repositories() {
+#    sudo tee -a /etc/pacman.conf > /dev/null <<EOL
 ################################## ARCO REPOs
 
 #[arcolinux_repo_testing]
 #SigLevel = PackageRequired DatabaseNever
 #Include = /etc/pacman.d/arcolinux-mirrorlist
 
-[arcolinux_repo]
-SigLevel = PackageRequired DatabaseNever
-Include = /etc/pacman.d/arcolinux-mirrorlist
+#[arcolinux_repo]
+#SigLevel = PackageRequired DatabaseNever
+#Include = /etc/pacman.d/arcolinux-mirrorlist
 
-[arcolinux_repo_3party]
-SigLevel = PackageRequired DatabaseNever
-Include = /etc/pacman.d/arcolinux-mirrorlist
+#[arcolinux_repo_3party]
+#SigLevel = PackageRequired DatabaseNever
+#Include = /etc/pacman.d/arcolinux-mirrorlist
 
-[arcolinux_repo_xlarge]
-SigLevel = PackageRequired DatabaseNever
-Include = /etc/pacman.d/arcolinux-mirrorlist
+#[arcolinux_repo_xlarge]
+#SigLevel = PackageRequired DatabaseNever
+#Include = /etc/pacman.d/arcolinux-mirrorlist
 
-[nemesis_repo]
-SigLevel = PackageRequired DatabaseNever
-Server = https://erikdubois.github.io/$repo/$arch
-EOL
-}
+#[nemesis_repo]
+#SigLevel = PackageRequired DatabaseNever
+#Server = https://erikdubois.github.io/$repo/$arch
+#EOL
+#}
 
 # Function to update pacman package lists
-update_pacman() {
-    sudo pacman -Sy
-}
+#update_pacman() {
+#    sudo pacman -Sy
+#}
 
 # Main script execution starts here
-echo "Adding Arcolinux repositories to Pacman configuration..."
+#echo "Adding Arcolinux repositories to Pacman configuration..."
 
 # Check if script is run with sudo
-if [[ $EUID -ne 0 ]]; then
-    echo "This script must be run as root (sudo)." 
-    exit 1
-fi
+#if [[ $EUID -ne 0 ]]; then
+#    echo "This script must be run as root (sudo)." 
+#    exit 1
+#fi
 
 # Add repositories
 #add_repositories
 
 
 # Update Pacman
-update_pacman
+#update_pacman
 
-echo "Arcolinux repositories added successfully."
+#echo "Arcolinux repositories added successfully."
 
 
 ################################################################### UPDATE MIRROR LIST
