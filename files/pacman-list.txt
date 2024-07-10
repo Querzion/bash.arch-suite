@@ -68,7 +68,6 @@ ninja
 yasm
 nasm
 sqlite
-github-desktop
 meld
 docker
 
@@ -87,8 +86,6 @@ qt5-base
 webkit2gtk
 variety
 unzip
-libswscale
-libcurl
 xbindkeys
 rofi
 cifs-utils
@@ -96,8 +93,6 @@ cifs-utils
 # MEDIA
 ffmpeg
 gimp
-libavcodec
-libavformat
 mpv
 vlc
 simplescreenrecorder
