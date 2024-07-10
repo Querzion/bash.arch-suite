@@ -7,6 +7,7 @@ xorg-server
 xorg-xinit
 xorg-xkb-layouts
 xev
+timeshift
 
 # TERMINAL STUFF
 vim
@@ -48,12 +49,7 @@ openvpn
 wpasupplicant
 samba
 smbclient
-samba-common-tools
-samba-winbind
-samba-vfs_glusterfs
-samba-test
 nfs-utils
-nfs-utils-libs
 ufw
 avahi
 nss-mdns
