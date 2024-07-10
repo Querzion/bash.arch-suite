@@ -8,7 +8,7 @@ PURPLE='\033[0;35m'
 NC='\033[0m' # No Color
 
 # Define the shares array in the correct order
-shares=("Documents" "Downloads" "Music" "Pictures" "Videos" "Shared" "THE ARCHIVEs" "USERs" "BACKUPs" "ISOs" "DOWNLOADs" "VMs")
+shares=("Documents" "Music" "Pictures" "Videos" "Shared" "THE ARCHIVEs" "USERs" "BACKUPs" "ISOs" "DOWNLOADs" "VMs" "Downloads")
 
 # Function to create folders if they do not exist
 create_folders() {
