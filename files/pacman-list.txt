@@ -43,14 +43,23 @@ volumeicon
 # NETWORK
 network-manager
 dhcpcd5
-samba
-avahi
-nfs-utils
 openvpn
 nss-mdns
-ufw
 openvpn
 wpasupplicant
+samba
+smbclient
+samba-common-tools
+samba-winbind
+samba-vfs_glusterfs
+samba-test
+nfs-utils
+nfs-utils-libs
+ufw
+avahi
+nss-mdns
+cifs-utils
+inetutils
 
 # DEVELOPMENT
 postgresql-libs
