@@ -34,7 +34,7 @@ nfsExportDir="$sCUT/qNFS_SHARE"
 # Setting Computer Hostname
 # Check current hostname
 currentHostname=$(hostname)
-echo -e "Current hostname: ${GREEN}$currentHostname${NC}"
+echo -e "Current hostname: ${PURPLE}$currentHostname${NC}"
 
 # Prompt user if they want to change the hostname
 read -p "$(echo -e "${GREEN}Do you want to change the hostname? (y/n):${NC} ")" changeHostname
