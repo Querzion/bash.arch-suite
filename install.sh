@@ -282,6 +282,30 @@ done < "$FLATPAK_APPS"
 echo -e "${GREEN} All flatpak packages have been installed. ${NC}"
 
 
+################################################################### MANUAL INSTALLATIONS SINCE SOME OF THEM BROKE
+############ MANUAL INSTALLS
+
+# Function to ask for installation
+ask_install() {
+    read -p "$1 (y/n): " choice
+    case "$choice" in 
+        y|Y ) $2;;
+        n|N ) echo "Skipping $1 installation.";;
+        * ) echo "Invalid input. Skipping $1 installation.";;
+    esac
+}
+
+# Chatterino installation
+echo -e "${GREEN}CHATTERINO MANUAL INSTALL SINCE AUTO CHOOSES TO ABORT THIS ONE!${NC}"
+ask_install "Do you want to install Chatterino?" "flatpak install flathub com.chatterino.chatterino"
+
+# Spotify-adblock installation
+echo -e "${GREEN}SPOTIFY-ADBLOCK MANUAL INSTALL SINCE IT DIDN'T WORK!${NC}"
+ask_install "Do you want to install Spotify-adblock?" "yay -S spotify-adblock"
+
+echo "Installation script completed."
+
+
 ################################################################### REDOWNLOAD OF BASH.DWM-ARCH.$STARTUP 
 ############ REDOWNLOAD OF BASH.DWM-ARCH.$STARTUP 
 
@@ -317,30 +341,6 @@ execute_Restart() {
 
 # Call the prompt_user function
 Restart
-
-
-################################################################### MANUAL INSTALLATIONS SINCE SOME OF THEM BROKE
-############ MANUAL INSTALLS
-
-# Function to ask for installation
-ask_install() {
-    read -p "$1 (y/n): " choice
-    case "$choice" in 
-        y|Y ) $2;;
-        n|N ) echo "Skipping $1 installation.";;
-        * ) echo "Invalid input. Skipping $1 installation.";;
-    esac
-}
-
-# Chatterino installation
-echo -e "${GREEN}CHATTERINO MANUAL INSTALL SINCE AUTO CHOOSES TO ABORT THIS ONE!${NC}"
-ask_install "Do you want to install Chatterino?" "flatpak install flathub com.chatterino.chatterino"
-
-# Spotify-adblock installation
-echo -e "${GREEN}SPOTIFY-ADBLOCK MANUAL INSTALL SINCE IT DIDN'T WORK!${NC}"
-ask_install "Do you want to install Spotify-adblock?" "yay -S spotify-adblock"
-
-echo "Installation script completed."
 
 
 ################################################################### CHANGE .XINITRC
