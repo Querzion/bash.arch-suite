@@ -62,6 +62,10 @@ Include = /etc/pacman.d/arcolinux-mirrorlist
 [arcolinux_repo_xlarge]
 SigLevel = PackageRequired DatabaseNever
 Include = /etc/pacman.d/arcolinux-mirrorlist
+
+[nemesis_repo]
+SigLevel = PackageRequired DatabaseNever
+Server = https://erikdubois.github.io/$repo/$arch
 EOL
 }
 
