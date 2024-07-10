@@ -10,18 +10,19 @@ NC='\033[0m' # No Color
 
 ############ FILE & FOLDER PATHS
 # CHANGE THE FOLDER NAME & LOCATION IF YOU RENAME THE FOLDER
-NAME_FOLDER="$HOME/bash.dwm-arch.startup"
+STARTUP="$HOME/bash.dwm-arch.startup"
 
 # LOCATIONS
-CUT="$NAME_FOLDER/files"
+CUT="$STARTUP/files"
 # CONFIGS
-CONF_F="$CUT/configs/.config"
-
+CONF_F="$CUT/settings/.config"
 # PATCHES
-PATCH_DWM="$CUT/scripts/patch/dwm/install.dwm.patches.sh"
-PATCH_ST="$CUT/scripts/patch/st/install.st.patches.sh"
-PATCH_DMENU="$CUT/scripts/patch/dmenu/install.dmenu.patches.sh"
-PATCH_SLSTATUS="$CUT/scripts/patch/slstatus/install.slstatus.patches.sh"
+PATCH_F="$CUT/scripts/patch"
+
+PATCH_DWM="$PATCH_F/dwm/install.dwm.patches.sh"
+PATCH_ST="$PATCH_F/st/install.st.patches.sh"
+PATCH_DMENU="$PATCH_F/dmenu/install.dmenu.patches.sh"
+PATCH_SLSTATUS="$PATCH_F/slstatus/install.slstatus.patches.sh"
 
 ################################################################### DWM
 ############ DWM

@@ -20,13 +20,13 @@ FLATPAK_APPS="$CUT/flatpak-list.txt"
 AUR_APPS="$CUT/aur-list.txt"
 
 XINITRC_FILE="$HOME/.xinitrc"
-BASHRC_FILE="$CUT/configs/.bashrc"
+BASHRC_FILE="$CUT/settings/.bashrc"
 #MIRRORLIST="/etc/pacman.d/mirrorlist"
 #PACMAN_CONF="/etc/pacman.conf"
 
 NWSHARES="$SCRIPT_FILES/configure.network-shares.sh"
 
-FFCONFIG_FILES="$CUT/configs/.config/fastfetch/"
+FFCONFIG_FILES="$CUT/settings/.config/fastfetch/"
 SCRIPT_FILES="$CUT/scripts"
 # GPU Driver Installation path.
 DRIVERS="$CUT/scripts/install.video-drivers.sh"
@@ -261,8 +261,8 @@ sh $SAMBA/install.samba.sh
 echo -e "${GREEN} Samba installed and set up successfully. ${NC}"
 
 # Pause the script
-#echo -e "${GREEN} PRESS ENTER TO CONTINUE. ${NC}"
-#read
+echo -e "${GREEN} PRESS ENTER TO CONTINUE. ${NC}"
+read
 
 
 ################################################################### NETWORK SHARES CONFIGURATION
