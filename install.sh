@@ -85,12 +85,20 @@ echo -e "${GREEN} STARTING GPU DRIVER INSTALL. ${NC}"
 # Install GPU Drivers
 sh $DRIVERS
 
+# Pause the script
+#echo -e "${GREEN} PRESS ENTER TO CONTINUE. ${NC}"
+#read
+
 
 ################################################################### INSTALL & CONFIGURE ROFI
 ############ INSTALL & CONFIGURE ROFI
 
 echo -e "${GREEN} Starting Rofi Configuration. ${NC}"
 sh $SCRIPT_FILES/install.rofi.sh
+
+# Pause the script
+echo -e "${GREEN} PRESS ENTER TO CONTINUE. ${NC}"
+read
 
 
 ################################################################### CONFIGURE DOCKER
@@ -101,6 +109,10 @@ echo -e "${GREEN} Enabling & Starting Docker service. ${NC}"
 sudo systemctl start docker.service
 sudo systemctl enable docker.service
 
+# Pause the script
+#echo -e "${GREEN} PRESS ENTER TO CONTINUE. ${NC}"
+#read
+
 
 ################################################################### ACTIVATE BLUETOOTH
 ############ ACTIVATE BLUETOOTH
@@ -109,6 +121,10 @@ echo -e "${GREEN} Enabling & Starting bluetooth service. ${NC}"
 # Enable and start Bluetooth service
 sudo systemctl enable bluetooth
 sudo systemctl start bluetooth
+
+# Pause the script
+#echo -e "${GREEN} PRESS ENTER TO CONTINUE. ${NC}"
+#read
 
 
 ################################################################### ACTIVATE NETWORK MANAGER ???
@@ -119,6 +135,10 @@ sudo systemctl start bluetooth
 #sudo systemctl enable NetworkManager
 #sudo systemctl start NetworkManager
 
+# Pause the script
+#echo -e "${GREEN} PRESS ENTER TO CONTINUE. ${NC}"
+#read
+
 
 ################################################################### INSTALL PARU AND OR YAY | AUR ACCESS
 ############ INSTALL PARU AND OR YAY | AUR ACCESS
@@ -126,8 +146,16 @@ sudo systemctl start bluetooth
 # Install paru.
 #sh $SCRIPT_FILES/install.paru.sh
 
+# Pause the script
+#echo -e "${GREEN} PRESS ENTER TO CONTINUE. ${NC}"
+#read
+
 # Install yay.
 sh $SCRIPT_FILES/install.yay.sh
+
+# Pause the script
+#echo -e "${GREEN} PRESS ENTER TO CONTINUE. ${NC}"
+#read
 
 
 ################################################################### INSTALL AUR-LIST.TXT (BROKEN ATM)
@@ -160,12 +188,20 @@ done < "$AUR_APPS"
 
 sh $SCRIPT_FILES/install.wm-dwm.sh
 
+# Pause the script
+#echo -e "${GREEN} PRESS ENTER TO CONTINUE. ${NC}"
+#read
+
 
 ################################################################### INSTALL SAMBA
 ############ SAMBA
 
 sh $SAMBA/install.samba.sh
 echo -e "${GREEN} Samba installed and set up successfully. ${NC}"
+
+# Pause the script
+#echo -e "${GREEN} PRESS ENTER TO CONTINUE. ${NC}"
+#read
 
 
 ################################################################### NETWORK SHARES CONFIGURATION
@@ -215,6 +251,10 @@ network_shares
 # Network Shares (Configure this before executing though!)
 # Network Shares (Configure this before executing though!)
 # Network Shares (Configure this before executing though!)
+
+# Pause the script
+echo -e "${GREEN} PRESS ENTER TO CONTINUE. ${NC}"
+read
 
 
 ################################################################### INSTALL THUNAR
