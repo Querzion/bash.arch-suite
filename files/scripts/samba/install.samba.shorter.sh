@@ -122,6 +122,10 @@ testparm
 
 echo -e "${GREEN} smb.conf file created at $SMB ${NC}"
 
+# Pause the script
+echo -e "${GREEN} PRESS ENTER TO CONTINUE. ${NC}"
+read
+
 # Create shared directories and set permissions
 echo -e "${YELLOW} Creating shared directories and setting permissions... ${NC}"
 create_dir_if_not_exists "$publicDir"
