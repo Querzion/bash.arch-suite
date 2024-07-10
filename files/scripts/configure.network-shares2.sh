@@ -8,14 +8,14 @@ PURPLE='\033[0;35m'
 NC='\033[0m' # No Color
 
 # Define the shares array in the correct order
-shares=("Documents" "Downloads" "Music" "Pictures" "Videos" "Shared" "Archive" "Users" "Backups" "ISOs" "VMs")
+shares=("Documents" "Downloads" "Music" "Pictures" "Videos" "Shared" "THE ARCHIVEs" "USERs" "BACKUPs" "ISOs" "DOWNLOADs" "VMs")
 
 # Function to create folders if they do not exist
 create_folders() {
     local home_folder="$1"
 
     for share in "${shares[@]}"; do
-        if [[ "$share" == "Shared" || "$share" == "Archive" || "$share" == "Users" || "$share" == "Backups" || "$share" == "ISOs" || "$share" == "VMs" ]]; then
+        if [[ "$share" == "Shared" || "$share" == "THE ARCHIVEs" || "$share" == "USERs" || "$share" == "BACKUPs" || "$share" == "ISOs" || "$share" == "VMs" || "$share" == "DOWNLOADs" ]]; then
             local folder_path="$home_folder/Shares/$share"
         else
             local folder_path="$home_folder/$share"
