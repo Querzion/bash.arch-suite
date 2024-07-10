@@ -11,7 +11,7 @@ NC='\033[0m' # No Color
 CUT="$HOME/bash.dwm-arch.startup/files"
 
 # Log file for package installations
-logFile="$CUT/install_log.txt"
+logFile="$HOME/install.samba.shorter.sh_log.txt"
 packageFile="$CUT/samba.packages.txt"  # File containing package names
 
 # Samba Group Name
