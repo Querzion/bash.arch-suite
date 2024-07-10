@@ -225,8 +225,8 @@ echo -e "${GREEN} Samba installed and set up successfully. ${NC}"
 # Function to prompt the user
 network_shares() {
     while true; do
-        echo -e "${GREEN} CONFIGURE NETWORK SHARES? ${NC}"
-        read -p " (y/n): " yn
+        read -p "$(echo -e ${GREEN}CONFIGURE NETWORK SHARES?${NC}) (y/n): " yn
+        #echo -e "${GREEN} CONFIGURE NETWORK SHARES? ${NC}" read -p " (y/n): " yn
         case $yn in
             [Yy]* ) execute_command; break;;
             [Nn]* ) echo "Operation cancelled."; break;;
@@ -239,7 +239,7 @@ network_shares() {
 execute_command() {
     echo -e "${YELLOW} EXECUTING CODE ${NC}"
     
-    sh $SCRIPT_FILES/configure.network-shares.sh
+    sh $SCRIPT_FILES/configure.network-shares2.sh
 
     echo -e "${GREEN} DONE. ${NC}"
 }
