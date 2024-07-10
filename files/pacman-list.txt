@@ -89,7 +89,6 @@ unzip
 xbindkeys
 rofi
 cifs-utils
-hostname
 
 # MEDIA
 ffmpeg
