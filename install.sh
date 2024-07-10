@@ -168,6 +168,56 @@ sh $SAMBA/install.samba.sh
 echo -e "${GREEN} Samba installed and set up successfully. ${NC}"
 
 
+################################################################### NETWORK SHARES CONFIGURATION
+############ NETWORK SHARES CONFIGURATION
+
+# Network Shares (Configure this before executing though!)
+# Network Shares (Configure this before executing though!)
+# Network Shares (Configure this before executing though!)
+# Network Shares (Configure this before executing though!)
+# Network Shares (Configure this before executing though!)
+# Network Shares (Configure this before executing though!)
+# Network Shares (Configure this before executing though!)
+# Network Shares (Configure this before executing though!)
+# Network Shares (Configure this before executing though!)
+
+# Function to prompt the user
+network_shares() {
+    while true; do
+        echo -e "${GREEN} CONFIGURE NETWORK SHARES? ${NC}"
+        read -p " (y/n): " yn
+        case $yn in
+            [Yy]* ) execute_command; break;;
+            [Nn]* ) echo "Operation cancelled."; break;;
+            * ) echo "Please answer yes or no.";;
+        esac
+    done
+}
+
+# Function to execute the command
+execute_command() {
+    echo -e "${YELLOW} EXECUTING CODE ${NC}"
+    
+    chmod +x $SCRIPT_FILES/configure.network-shares.sh 
+    sh $SCRIPT_FILES/configure.network-shares.sh
+
+    echo -e "${GREEN} DONE. ${NC}"
+}
+
+# Call the prompt_user function
+network_shares
+
+# Network Shares (Configure this before executing though!)
+# Network Shares (Configure this before executing though!)
+# Network Shares (Configure this before executing though!)
+# Network Shares (Configure this before executing though!)
+# Network Shares (Configure this before executing though!)
+# Network Shares (Configure this before executing though!)
+# Network Shares (Configure this before executing though!)
+# Network Shares (Configure this before executing though!)
+# Network Shares (Configure this before executing though!)
+
+
 ################################################################### INSTALL THUNAR
 ############ THUNAR
 
@@ -273,11 +323,25 @@ Restart
 ################################################################### MANUAL INSTALLATIONS SINCE SOME OF THEM BROKE
 ############ MANUAL INSTALLS
 
-echo -e "${GREEN} CHATTERINO MANUAL INSTALL SINCE AUTO CHOOSES TO ABORT THIS ONE! ${NC}"
-flatpak install flathub com.chatterino.chatterino
+# Function to ask for installation
+ask_install() {
+    read -p "$1 (y/n): " choice
+    case "$choice" in 
+        y|Y ) $2;;
+        n|N ) echo "Skipping $1 installation.";;
+        * ) echo "Invalid input. Skipping $1 installation.";;
+    esac
+}
 
-echo -e "${GREEN} SPOTIFY-ADBLOCK MANUAL INSTALL SINCE IT DIDN'T WORK! ${NC}"
-yay -S spotify-adblock
+# Chatterino installation
+echo -e "${GREEN}CHATTERINO MANUAL INSTALL SINCE AUTO CHOOSES TO ABORT THIS ONE!${NC}"
+ask_install "Do you want to install Chatterino?" "flatpak install flathub com.chatterino.chatterino"
+
+# Spotify-adblock installation
+echo -e "${GREEN}SPOTIFY-ADBLOCK MANUAL INSTALL SINCE IT DIDN'T WORK!${NC}"
+ask_install "Do you want to install Spotify-adblock?" "yay -S spotify-adblock"
+
+echo "Installation script completed."
 
 
 ################################################################### CHANGE .XINITRC
@@ -323,55 +387,6 @@ echo -e "${GREEN} Start ./update.sh from home folder. ${NC}"
 
 sh ~/.update.sh
 
-
-################################################################### NETWORK SHARES CONFIGURATION
-############ NETWORK SHARES CONFIGURATION
-
-# Network Shares (Configure this before executing though!)
-# Network Shares (Configure this before executing though!)
-# Network Shares (Configure this before executing though!)
-# Network Shares (Configure this before executing though!)
-# Network Shares (Configure this before executing though!)
-# Network Shares (Configure this before executing though!)
-# Network Shares (Configure this before executing though!)
-# Network Shares (Configure this before executing though!)
-# Network Shares (Configure this before executing though!)
-
-# Function to prompt the user
-network_shares() {
-    while true; do
-        echo -e "${GREEN} CONFIGURE NETWORK SHARES? ${NC}"
-        read -p " (y/n): " yn
-        case $yn in
-            [Yy]* ) execute_command; break;;
-            [Nn]* ) echo "Operation cancelled."; break;;
-            * ) echo "Please answer yes or no.";;
-        esac
-    done
-}
-
-# Function to execute the command
-execute_command() {
-    echo -e "${YELLOW} EXECUTING CODE ${NC}"
-    
-    chmod +x $SCRIPT_FILES/configuring.network-shares.sh 
-    sh $SCRIPT_FILES/configuring.network-shares.sh
-
-    echo -e "${GREEN} DONE. ${NC}"
-}
-
-# Call the prompt_user function
-network_shares
-
-# Network Shares (Configure this before executing though!)
-# Network Shares (Configure this before executing though!)
-# Network Shares (Configure this before executing though!)
-# Network Shares (Configure this before executing though!)
-# Network Shares (Configure this before executing though!)
-# Network Shares (Configure this before executing though!)
-# Network Shares (Configure this before executing though!)
-# Network Shares (Configure this before executing though!)
-# Network Shares (Configure this before executing though!)
 
 ################################################################### CHANGE KEYBOARD LAYOUT TO SWEDISH DVORAK
 ############ SWEDISH DVORAK SETUP
