@@ -41,6 +41,8 @@ TO_THERE="$HOME/.config/wm/$USER/$APP"
 ################################################################### BACKUP SETTINGS
 ############ BACKUP SETTINGS
 
+backup_APP() {
+
 # Source folder
 SOURCE_FOLDER="$HOME/.config/wm/$USER/$APP"
 
@@ -52,15 +54,6 @@ TIMESTAMP=$(date +"%Y%m%d_%H%M%S")
 
 # Zip file name with timestamp
 ZIP_FILENAME="$DEST_FOLDER/$USER/$APP-$USER.$TIMESTAMP.zip"
-
-
-################################################################### DWM INSTALL
-############ DWM INSTALL
-
-echo -e "${YELLOW} Creating folder for $APP $DESCRIPTON installation... ${NC}"
-# Create folder structure
-mkdir -p $HOME/.config/wm
-mkdir -p $HOME/.config/wm/$USER
 
 echo -e "${PURPLE} Creating a backup of the prior $APP $DESCRIPTON installation... ${NC}"
 
@@ -78,6 +71,23 @@ else
     echo -e "${RED}Error: Failed to zip the folder.${NC}"
     exit 1
 fi
+}
+
+
+################################################################### DWM INSTALL
+############ DWM INSTALL
+
+install_APP() {
+echo -e "${YELLOW} Creating folder for $APP $DESCRIPTON installation... ${NC}"
+# Create folder structure
+mkdir -p $HOME/.config/wm
+mkdir -p $HOME/.config/wm/$USER
+
+# Prompt about backup
+read -p "Do you want to backup prior $APP-$USER install? (y/n): " CHOICE1
+if [ "$CHOICE1" = "y" ] || [ "$CHOICE1" = "Y" ]; then
+    backup_APP
+fi
 
 echo -e "${YELLOW} Getting new $APP $DESCRIPTON source files... ${NC}"
 
@@ -92,40 +102,66 @@ echo -e "${GREEN} $APP installed successfully. ${NC}"
 # Pause the script
 #echo -e "${GREEN} PRESS ENTER TO CONTINUE. ${NC}"
 #read
+}
 
 
 ################################################################### DWM CONFIGURATION
 ############ DWM CONFIGURATION
 
-echo -e "${PURPLE} Configuring config.def.h file. ${NC}"
-echo "Making a backup."
-# Copy to replace config.def.h
-sudo mv $TO_THERE/config.def.h $TO_THERE/config.def.h.bak
-echo "Copying a new."
-sudo cp $CONFIG $TO_THERE
+configure_APP() {
+    echo -e "${PURPLE} Configuring config.def.h file. ${NC}"
+    echo "Making a backup."
+    # Copy to replace config.def.h
+    sudo mv $TO_THERE/config.def.h $TO_THERE/config.def.h.bak
+    echo "Copying a new to the directory."
+    sudo cp $CONFIG $TO_THERE
 
-cd $DIR/$USER/dwm
+    cd $TO_THERE
 
-sudo rm config.h
-sudo make clean install
+    sudo rm config.h
+    sudo make clean install
 
-echo -e "${GREEN} $APP is now reconfigured. ${NC}"
+    echo -e "${GREEN} $APP is now reconfigured. ${NC}"
 
-# Pause the script
-#echo -e "${GREEN} PRESS ENTER TO CONTINUE. ${NC}"
-#read
+    # Pause the script
+    #echo -e "${GREEN} PRESS ENTER TO CONTINUE. ${NC}"
+    #read
+}
 
 ################################################################### DWM PATCHING
 ############ DWM PATCHING
 
+patch_APP() {
+    echo -e "${PURPLE} Patching $APP. ${NC}"
 
-echo -e "${PURPLE} Patching $APP. ${NC}"
+    # Start Patch Install Script
+    sh $PATCH
 
-# Start Patch Install Script
-sh $P
+    echo -e "${GREEN} $APP is now patched. ${NC}"
 
-echo -e "${GREEN} $APP is now patched. ${NC}"
+    # Pause the script
+    #echo -e "${GREEN} PRESS ENTER TO CONTINUE. ${NC}"
+    #read
+}
 
-# Pause the script
-#echo -e "${GREEN} PRESS ENTER TO CONTINUE. ${NC}"
-#read
+
+################################################################### DWM MAIN
+############ DWM MAIN
+
+# Lets start the installation
+install_APP
+
+# Prompt user to configure application
+read -p "Do you want to configure $APP? (y/n): " CHOICE2
+if [ "$CHOICE2" = "y" ] || [ "$CHOICE2" = "Y" ]; then
+    configure_APP
+fi
+
+# Prompt user to patch application
+read -p "Do you want to patch $APP? (y/n): " CHOICE3
+if [ "$CHOICE3" = "y" ] || [ "$CHOICE3" = "Y" ]; then
+    patch_APP
+fi
+
+# End of script
+echo -e "${GREEN} All tasks completed.${NC}"
