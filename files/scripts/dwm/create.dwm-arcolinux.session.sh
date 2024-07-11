@@ -11,7 +11,7 @@ NC='\033[0m' # No Color
 USER_HOME="$HOME"
 DWM_CONFIG_DIR="$USER_HOME/.config/dwm/arco"
 DWM_START_SCRIPT="$DWM_CONFIG_DIR/dwm-start.sh"
-DWM_DESKTOP_FILE="/usr/share/xsessions/dwm.desktop"
+DWM_DESKTOP_FILE="/usr/share/xsessions/dwm-arco.desktop"
 
 # Function to print messages
 print_message() {
