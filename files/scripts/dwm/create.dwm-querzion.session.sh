@@ -11,7 +11,7 @@ NC='\033[0m' # No Color
 USER_HOME="$HOME"
 DWM_CONFIG_DIR="$USER_HOME/.config/dwm/querzion"
 DWM_START_SCRIPT="$DWM_CONFIG_DIR/dwm-start.sh"
-DWM_DESKTOP_FILE="/usr/share/xsessions/dwm.desktop"
+DWM_DESKTOP_FILE="/usr/share/xsessions/dwm-q.desktop"
 
 # Function to print messages
 print_message() {
