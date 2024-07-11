@@ -57,7 +57,7 @@ print_message $GREEN "Created DWM desktop entry file at $DWM_DESKTOP_FILE"
 print_message $CYAN "DWM session setup is complete. Please log out and select the DWM session to start."
 
 # Verify DWM installation
-if [ -f "$DWM_CONFIG_DIR/dwm/arco" ]; then
+if [ -f "$DWM_CONFIG_DIR" ]; then
     print_message $GREEN "DWM binary found in $DWM_CONFIG_DIR"
 else
     print_message $YELLOW "Warning: DWM binary not found in $DWM_CONFIG_DIR. Please ensure DWM is installed correctly."
