@@ -1,9 +1,11 @@
+### IMPORT ###
+import USER='whoami'
+
 ### EXPORT ###
 export EDITOR='nano'
 export VISUAL='nano'
 export HISTCONTROL=ignoreboth:erasedups
 export PAGER='most'
-export USER='whoami'
 
 # Flatpak related
 export XDG_DATA_HOME=/home/$USER/.local/share/flatpak/exports/share
