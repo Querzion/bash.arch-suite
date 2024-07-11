@@ -9,7 +9,7 @@ NC='\033[0m' # No Color
 
 # Define variables
 USER_HOME="$HOME"
-DWM_CONFIG_DIR="$USER_HOME/.config/dwm"
+DWM_CONFIG_DIR="$USER_HOME/.config/dwm/querzion"
 DWM_START_SCRIPT="$DWM_CONFIG_DIR/dwm-start.sh"
 DWM_DESKTOP_FILE="/usr/share/xsessions/dwm.desktop"
 
@@ -31,7 +31,7 @@ cat << 'EOF' > "$DWM_START_SCRIPT"
 #!/bin/bash
 
 # Start dwm
-exec /home/yourusername/.config/dwm/dwm
+exec /home/yourusername/.config/dwm/querzion
 EOF
 print_message $GREEN "Created DWM start script at $DWM_START_SCRIPT"
 
@@ -46,7 +46,7 @@ print_message $GREEN "Made DWM start script executable"
 # Create the DWM desktop entry file
 sudo bash -c "cat << 'EOF' > $DWM_DESKTOP_FILE
 [Desktop Entry]
-Name=DWM
+Name=DWM Querzion
 Comment=Dynamic Window Manager
 Exec=$DWM_START_SCRIPT
 Icon=dwm
@@ -57,7 +57,7 @@ print_message $GREEN "Created DWM desktop entry file at $DWM_DESKTOP_FILE"
 print_message $CYAN "DWM session setup is complete. Please log out and select the DWM session to start."
 
 # Verify DWM installation
-if [ -f "$DWM_CONFIG_DIR/dwm" ]; then
+if [ -f "$DWM_CONFIG_DIR/dwm/querzion" ]; then
     print_message $GREEN "DWM binary found in $DWM_CONFIG_DIR"
 else
     print_message $YELLOW "Warning: DWM binary not found in $DWM_CONFIG_DIR. Please ensure DWM is installed correctly."
