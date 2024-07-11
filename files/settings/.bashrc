@@ -13,6 +13,15 @@ export XDG_DATA_DIRS=/var/lib/flatpak/exports/share:/usr/local/share:/usr/share
 #export XMODIFIERS=@im=dbus
 #export QT_IM_MODULE=ibus
 
+# Kitty terminal files // https://github.com/DrunkenAlcoholic/Dotfiles/tree/master/htop
+#source /usr/share/defaults/etc/profile
+
+# Terminal Promt title = current directory
+PROMPT_COMMAND='echo -ne "\033]0;${PWD}\007"'
+
+# Add Kitty terminal command completions
+#source <(kitty + complete setup bash)
+
 PS1='[\u@\h \W]\$ '
 
 # If not running interactively, don't do anything
@@ -30,6 +39,31 @@ fi
 #ignore upper and lowercase when TAB completion
 bind "set completion-ignore-case on"
 
+# extract file
+extract () {
+   if [ -f $1 ] ; then
+       case $1 in
+           *.tar.bz2)   tar xvjf $1         ;;
+           *.tar.gz)    tar xvzf $1         ;;
+           *.bz2)       bunzip2 $1          ;;
+           *.rar)       unrar x $1          ;;
+           *.gz)        gunzip $1           ;;
+           *.tar)       tar xvf $1          ;;
+           *.tbz2)      tar xvjf $1         ;;
+           *.tgz)       tar xvzf $1         ;;
+           *.zip)       unzip $1            ;;
+           *.Z)         uncompress $1       ;;
+           *.7z)        7z x $1             ;;
+           *.zst)       tar -I zstd -xvf $1 ;;
+           *)           echo "don't know how to extract '$1'..." ;;
+       esac
+   else
+       echo "'$1' is not a valid file!"
+   fi
+ }
+
+
+
 ### ALIASES ###
 
 #list
@@ -39,6 +73,16 @@ alias ll='ls -alFh'
 alias l='ls'
 alias l.="ls -A | egrep '^\.'"
 alias listdir="ls -d */ > list"
+
+alias rmd='rm -r'
+alias srm='sudo rm'
+alias srmd='sudo rm -r'
+alias cpd='cp -R'
+alias scp='sudo cp'
+alias scpd='sudo cp -R'
+
+alias slin='sudo ln -s'
+alias lin='ln -s'
 
 #pacman
 alias sps='sudo pacman -S'
@@ -74,6 +118,9 @@ alias fgrep='fgrep --color=auto'
 #readable output
 alias df='df -h'
 
+#ip address
+alias ipe='curl ipinfo.io/ip'
+
 #keyboard
 alias give-me-azerty-be="sudo localectl set-x11-keymap be"
 alias give-me-qwerty-us="sudo localectl set-x11-keymap us"
@@ -82,8 +129,8 @@ alias set-sv-dvorak="setxkbmap -layout se -variant dvorak"
 alias set-sv-qwerty="setxkbmap -layout se"
 
 #setlocale
-alias setlocale="sudo localectl set-locale LANG=en_US.UTF-8"
-alias setlocales="sudo localectl set-x11-keymap be && sudo localectl set-locale LANG=en_US.UTF-8"
+alias setlocale="sudo localectl set-locale LANG=en_GB.UTF-8"
+alias setlocales="sudo localectl set-x11-keymap dvorak-sv-a1 && sudo localectl set-locale LANG=en_GB.UTF-8"
 
 #pacman unlock
 alias unlock="sudo rm /var/lib/pacman/db.lck"
@@ -221,6 +268,20 @@ alias yta-best="yt-dlp --extract-audio --audio-format best "
 alias yta-flac="yt-dlp --extract-audio --audio-format flac "
 alias yta-mp3="yt-dlp --extract-audio --audio-format mp3 "
 alias ytv-best="yt-dlp -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/bestvideo+bestaudio' --merge-output-format mp4 "
+
+#youtube-dl
+alias yt='youtube-dl --recode-video mp4'
+#alias yta-aac="youtube-dl --extract-audio --audio-format aac "
+#alias yta-best="youtube-dl --extract-audio --audio-format best "
+#alias yta-flac="youtube-dl --extract-audio --audio-format flac "
+alias yta-m4a="youtube-dl --extract-audio --audio-format m4a "
+#alias yta-mp3="youtube-dl --extract-audio --audio-format mp3 "
+alias yta-opus="youtube-dl --extract-audio --audio-format opus "
+alias yta-vorbis="youtube-dl --extract-audio --audio-format vorbis "
+alias yta-wav="youtube-dl --extract-audio --audio-format wav "
+#alias ytv-best="youtube-dl -f bestvideo+bestaudio "
+
+
 
 #Recent Installed Packages
 alias rip="expac --timefmt='%Y-%m-%d %T' '%l\t%n %v' | sort | tail -200 | nl"
