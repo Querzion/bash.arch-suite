@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# This script downloads a new empty suckless dwm session 
+
 ############ COLOURED BASH TEXT
 
 # ANSI color codes
