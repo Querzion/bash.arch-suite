@@ -266,7 +266,45 @@ read
 ################################################################### INSTALL WINDOW MANAGER & CONFIGS
 ############ DWM, SLSTATUS, DMENU, NNN, ST 
 
-sh $SCRIPT_FILES/install.wm-dwm.sh
+# Function to display the menu
+display_menu() {
+    echo -e "${PURPLE}Please choose which DWM installation script to run:${NC}"
+    echo -e "${CYAN}1) Querzion ${NC}"
+    echo -e "${CYAN}2) Chris Titus ${NC}"
+    echo -e "${CYAN}3) Arco Linux ${NC}"
+    echo -e "${GREEN}4) Exit${NC}"
+}
+
+# Function to handle the user choice
+handle_choice() {
+    case $1 in
+        1)
+            sh "$SCRIPT_FILES/install.dwm-querzion.sh"
+            ;;
+        2)
+            sh "$SCRIPT_FILES/install.dwm-christitus.sh"
+            ;;
+        3)
+            sh "$SCRIPT_FILES/install.dwm-arcolinux.sh"
+            ;;
+        4)
+            echo "Exiting..."
+            exit 0
+            ;;
+        *)
+            echo -e "${ORANGE}Invalid choice. Please try again.${NC}"
+            ;;
+    esac
+}
+
+# Main loop
+while true; do
+    display_menu
+    echo -en "${PURPLE}"
+    read -p "Enter your choice [1-4]: " choice
+    echo -en "${NC}"
+    handle_choice $choice
+done
 
 # Pause the script
 #echo -e "${GREEN} PRESS ENTER TO CONTINUE. ${NC}"
