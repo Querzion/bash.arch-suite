@@ -30,7 +30,7 @@ FOLDER="bash.dwm-arch.startup"  # If 'bash.dwm-arch.startup' is renamed in any w
 LOCATION="$HOME/$FOLDER/files"
 
 # Patch Script Location
-PATCH="$LOCATION/scripts/patch/dwm-querzion/install.$APP.patches.sh"
+PATCH="$LOCATION/scripts/dwm/dwm-querzion/patch/install.$APP.patches.sh"
 
 # Configuration Files (Edited config.def.h)
 CONFIG="$LOCATION/settings/.config/$APP/config.def.h"

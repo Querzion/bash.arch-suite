@@ -21,6 +21,7 @@ NC='\033[0m' # No Color
 # Script Locations
 FOLDER="bash.dwm-arch.startup"  # If 'bash.dwm-arch.startup' is renamed in any way.
 LOCATION="$HOME/$FOLDER/files/scripts/dwm/dwm-querzion/parts"
+SESSION="$HOME/$FOLDER/files/scripts/dwm/session"
 
 
 
@@ -28,6 +29,12 @@ LOCATION="$HOME/$FOLDER/files/scripts/dwm/dwm-querzion/parts"
 ############ DWM
 
 sh $LOCATION/dwm.sh
+
+
+################################################################### DWM-USER SESSION
+############ DWM-USER SESSION
+
+sh $SESSION/create.dwm-querzion.session.sh
 
 
 ################################################################### ST

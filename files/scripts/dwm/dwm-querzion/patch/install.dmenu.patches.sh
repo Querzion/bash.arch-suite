@@ -17,7 +17,7 @@ print_message() {
 # Define variables
 USER="$(whoami)"
 APP="dmenu"
-APP_DIR="$HOME/.config/dwm/$USER/$APP
+APP_DIR="$HOME/.config/wm/$USER/$APP
 PATCHES_DIR=$APP_DIR/patches
 
 # Create the patches directory
