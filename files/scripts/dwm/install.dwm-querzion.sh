@@ -31,6 +31,9 @@ PATCH_ST="$PATCH_F/st/install.st.patches.sh"
 PATCH_DMENU="$PATCH_F/dmenu/install.dmenu.patches.sh"
 PATCH_SLSTATUS="$PATCH_F/slstatus/install.slstatus.patches.sh"
 
+DIR="$HOME/.config/dwm"
+USER="$(whoami)"
+
 ################################################################### DWM
 ############ DWM
 
@@ -38,8 +41,8 @@ echo -e "${PURPLE} Installing dwm. ${NC}"
 
 # Install dwm (Dynamic Window Manager)
 echo "Installing dwm (Dynamic Window Manager)..."
-git clone https://git.suckless.org/dwm ~/.config/dwm
-cd ~/.config/dwm
+git clone https://git.suckless.org/dwm $DIR/$USER/dwm
+cd $DIR/$USER/dwm
 sudo make clean install
 
 echo -e "${GREEN} dwm installed successfully. ${NC}"
@@ -54,7 +57,7 @@ echo -e "${PURPLE} Configuring config.def.h file. ${NC}"
 #sudo mv ~/.config/dwm/config.def.h ~/.config/dwm/config.def.h.bak
 sudo cp $CONF_F/dwm/config.def.h ~/.config/dwm/config.def.h.new
 
-cd ~/.config/dwm
+cd $DIR/$USER/dwm
 
 sudo rm config.h
 sudo make clean install
@@ -83,8 +86,8 @@ echo -e "${PURPLE} Installing st. ${NC}"
 
 # Install st (suckless terminal)
 echo "Installing st (suckless terminal)..."
-git clone https://git.suckless.org/st ~/.config/st
-cd ~/st
+git clone https://git.suckless.org/st $DIR/$USER/st
+cd $DIR/$USER/st
 sudo make clean install
 
 echo -e "${GREEN} st installed successfully. ${NC}"
@@ -95,7 +98,7 @@ echo -e "${PURPLE} Configuring config.def.h file. ${NC}"
 #sudo mv ~/.config/st/config.def.h ~/.config/st/config.def.h.bak
 sudo cp $CONF_F/st/config.def.h ~/.config/st/config.def.h.new
 
-cd ~/.config/st
+cd $DIR/$USER/st
 
 sudo rm config.h
 sudo make clean install
@@ -121,8 +124,8 @@ echo -e "${GREEN} Installing dmenu. ${NC}"
 
 # Install dmenu (dynamic menu)
 echo "Installing dmenu (dynamic menu)..."
-git clone https://git.suckless.org/dmenu ~/.config/dmenu
-cd ~/.config/dmenu
+git clone https://git.suckless.org/dmenu $DIR/$USER/dmenu
+cd $DIR/$USER/dmenu
 sudo make clean install
 
 echo -e "${GREEN} dmenu installed successfully. ${NC}"
@@ -133,7 +136,7 @@ echo -e "${PURPLE} Configuring config.def.h file. ${NC}"
 #sudo mv ~/.config/dmenu/config.def.h ~/.config/dmenu/config.def.h.bak
 sudo cp $CONF_F/dmenu/config.def.h ~/.config/dmenu/config.def.h.new
 
-cd ~/.config/dmenu
+cd $DIR/$USER/dmenu
 sudo rm config.h
 
 sudo make clean install
@@ -159,8 +162,8 @@ echo -e "${GREEN} Installing slstatus. ${NC}"
 
 # Install slstatus (taskbar status)
 echo "Installing slstatus (Taskbar Status)..."
-git clone https://git.suckless.org/slstatus ~/.config/slstatus
-cd ~/.config/slstatus
+git clone https://git.suckless.org/slstatus $DIR/$USER/slstatus
+cd $DIR/$USER/slstatus
 sudo make clean install
 
 echo -e "${GREEN} slstatus installed successfully. ${NC}"
@@ -171,7 +174,7 @@ echo -e "${PURPLE} Configuring config.def.h file. ${NC}"
 #sudo mv ~/.config/slstatus/config.def.h ~/.config/slstatus/config.def.h.bak
 sudo cp $CONF_F/slstatus/config.def.h ~/.config/slstatus/config.def.h.new
 
-cd ~/.config/slstatus
+cd $DIR/$USER/slstatus
 sudo rm config.h
 
 sudo make clean install
@@ -197,8 +200,8 @@ echo -e "${PURPLE} Installing nnn. ${NC}"
 
 # Install nnn (file manager)
 echo "Installing nnn (file manager)..."
-git clone https://github.com/jarun/nnn ~/.config/nnn
-cd ~/.config/nnn
+git clone https://github.com/jarun/nnn $DIR/$USER/nnn
+cd $DIR/$USER/nnn
 sudo make
 sudo make install
 
