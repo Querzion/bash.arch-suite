@@ -46,7 +46,7 @@ print_message $GREEN "Made DWM start script executable"
 # Create the DWM desktop entry file
 sudo bash -c "cat << 'EOF' > $DWM_DESKTOP_FILE
 [Desktop Entry]
-Name=DWM CTT
+Name=DWM - CTT
 Comment=Dynamic Window Manager
 Exec=$DWM_START_SCRIPT
 Icon=dwm
