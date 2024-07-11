@@ -279,13 +279,13 @@ display_menu() {
 handle_choice() {
     case $1 in
         1)
-            sh "$SCRIPT_FILES/install.dwm-querzion.sh"
+            sh "$SCRIPT_FILES/dwm/install.dwm-querzion.sh"
             ;;
         2)
-            sh "$SCRIPT_FILES/install.dwm-christitus.sh"
+            sh "$SCRIPT_FILES/dwm/install.dwm-christitus.sh"
             ;;
         3)
-            sh "$SCRIPT_FILES/install.dwm-arcolinux.sh"
+            sh "$SCRIPT_FILES/dwm/install.dwm-arcolinux.sh"
             ;;
         4)
             echo "Exiting..."
