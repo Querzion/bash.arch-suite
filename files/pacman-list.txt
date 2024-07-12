@@ -94,6 +94,8 @@ unzip
 xbindkeys
 rofi
 duf
+wget
+fontconfig
 
 # MEDIA
 ffmpeg
