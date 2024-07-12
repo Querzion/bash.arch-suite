@@ -490,3 +490,6 @@ fastfetch # | lolcat # Install lolcat in order to have this working!
 #cpufetch
 #colorscript random
 #hyfetch
+
+# Starship specific (https://starship.rs/)
+eval "$(starship init bash)"
