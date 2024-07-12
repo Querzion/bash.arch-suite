@@ -600,6 +600,14 @@ for FONT in "${FONTS[@]}"; do
     rm "/tmp/$FONT"
 done
 
+# Download 0xProto fonts
+echo "Downloading and installing 0xProto fonts..."
+PROTO_URL="https://github.com/0xType/0xProto/archive/refs/heads/main.zip"
+wget -q "$PROTO_URL" -O "/tmp/0xProto.zip"
+unzip -o "/tmp/0xProto.zip" -d "/tmp"
+mv "/tmp/0xProto-main/fonts/"* "$FONT_DIR"
+rm -rf "/tmp/0xProto.zip" "/tmp/0xProto-main"
+
 # Refresh the font cache
 fc-cache -fv
 
