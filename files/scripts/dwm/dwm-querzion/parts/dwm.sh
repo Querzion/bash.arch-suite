@@ -36,7 +36,14 @@ PATCH="$LOCATION/scripts/dwm/dwm-querzion/patch/install.$APP.patches.sh"
 CONFIG="$LOCATION/settings/.config/$APP/config.def.h"
 
 # Installation Path
-TO_THERE="$HOME/.config/wm/$USER/$APP"
+INSTALL_LOCATION="$HOME/.config/wm"
+#INSTALL_LOCATION="$HOME/.config/wm/$USER"
+
+# Installation Location
+TO_INSTALL_LOCATION="$INSTALL_LOCATION/$APP"
+
+# Backup Directory Path
+BACKUP_DIR="$INSTALL_LOCATION/backups"
 
 ################################################################### BACKUP SETTINGS
 ############ BACKUP SETTINGS
@@ -44,16 +51,16 @@ TO_THERE="$HOME/.config/wm/$USER/$APP"
 backup_APP() {
 
 # Source folder
-SOURCE_FOLDER="$HOME/.config/wm/$USER/$APP"
+SOURCE_FOLDER="$TO_INSTALL_LOCATION"
 
 # Destination folder
-DEST_FOLDER="$HOME/.config/vm"
+DEST_FOLDER="$BACKUP_DIR"
 
 # Create a timestamp
 TIMESTAMP=$(date +"%Y%m%d_%H%M%S")
 
 # Zip file name with timestamp
-ZIP_FILENAME="$DEST_FOLDER/$USER/$APP-$USER.$TIMESTAMP.zip"
+ZIP_FILENAME="$DEST_FOLDER/$APP-$USER.$TIMESTAMP.zip"
 
 echo -e "${PURPLE} Creating a backup of the prior $APP $DESCRIPTON installation... ${NC}"
 
@@ -80,8 +87,7 @@ fi
 install_APP() {
 echo -e "${YELLOW} Creating folder for $APP $DESCRIPTON installation... ${NC}"
 # Create folder structure
-mkdir -p $HOME/.config/wm
-mkdir -p $HOME/.config/wm/$USER
+mkdir -p $INSTALL_LOCATION
 
 # Prompt about backup
 read -p "Do you want to backup prior $APP-$USER install? (y/n): " CHOICE1
@@ -92,7 +98,7 @@ fi
 echo -e "${YELLOW} Getting new $APP $DESCRIPTON source files... ${NC}"
 
 # Install application
-git clone $FROM_HERE $TO_THERE && cd $TO_THERE
+git clone $FROM_HERE $TO_INSTALL_LOCATION && cd $TO_INSTALL_LOCATION
 
 echo -e "${YELLOW} Compiling $APP $DESCRIPTON... ${NC}"
 sudo make clean install
@@ -112,11 +118,11 @@ configure_APP() {
     echo -e "${PURPLE} Configuring config.def.h file. ${NC}"
     echo "Making a backup."
     # Copy to replace config.def.h
-    sudo mv $TO_THERE/config.def.h $TO_THERE/config.def.h.bak
+    sudo mv $TO_INSTALL_LOCATION/config.def.h $TO_INSTALL_LOCATION/config.def.h.bak
     echo "Copying a new to the directory."
-    sudo cp $CONFIG $TO_THERE
+    sudo cp $CONFIG $TO_INSTALL_LOCATION
 
-    cd $TO_THERE
+    cd $TO_INSTALL_LOCATION
 
     sudo rm config.h
     sudo make clean install
