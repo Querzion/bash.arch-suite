@@ -269,9 +269,9 @@ read
 # Function to display the menu
 display_menu() {
     echo -e "${PURPLE}Please choose which DWM installation script to run:${NC}"
-    echo -e "${CYAN}1) Querzion ${NC}"
-    echo -e "${CYAN}2) Chris Titus ${NC}"
-    echo -e "${CYAN}3) Arco Linux ${NC}"
+    echo -e "${CYAN}1) Querzion DWM ${NC}"
+    echo -e "${CYAN}2) Chris Titus DWM ${NC}"
+    echo -e "${CYAN}3) Siduck ChaDWM ${NC}"
     echo -e "${GREEN}4) Exit${NC}"
 }
 
@@ -285,7 +285,7 @@ handle_choice() {
             sh "$SCRIPT_FILES/dwm/install.dwm-christitus.sh"
             ;;
         3)
-            sh "$SCRIPT_FILES/dwm/install.dwm-arcolinux.sh"
+            sh "$SCRIPT_FILES/dwm/install.chadwm.sh"
             ;;
         4)
             echo "Exiting..."
