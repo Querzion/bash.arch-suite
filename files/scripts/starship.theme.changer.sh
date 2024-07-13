@@ -586,6 +586,8 @@ format = '[ ♥ $time ]($style)'
 EOL
 }
 
+
+######################## QND DREAMS IS BASED ON PASTEL POWERLINE
 qnd-dreams(){
     cat <<EOL > $STARSHIP_FILE
     format = """
