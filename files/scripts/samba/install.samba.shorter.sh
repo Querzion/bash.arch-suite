@@ -13,8 +13,8 @@ NC='\033[0m' # No Color
 
 ###############################
 
-# Installation path
-CUT="$HOME/bash.dwm-arch.startup/files"
+# Install Files Location
+CUT="$HOME/bash.arch-startup/files"
 
 # Log file for package installations
 logFile="$HOME/install.samba.shorter.sh_log.txt"
