@@ -12,6 +12,9 @@ BLUE='\033[0;34m'
 NC='\033[0m' # No Color
 
 ###############################
+USER="$HOME"
+INSTALL_DIR="$HOME/.config"
+
 
 #install rofi in arch
 #To install Rofi on Arch Linux, you have a few options. You can use the Snap Store and install the rofi-snap package, or you can use the Arch User Repository (AUR) and install the rofi package.
@@ -48,10 +51,10 @@ NC='\033[0m' # No Color
 #sudo pacman -Syu --noconfirm rofi
 
 # Create the rofi configuration directory
-mkdir -p ~/.config/rofi
+mkdir -p $INSTALL_DIR/rofi
 
 # Create a basic rofi config file
-cat <<EOL > ~/.config/rofi/config.rasi
+cat <<EOL > $INSTALL_DIR/rofi/config.rasi
 configuration {
     modi: "drun,run";
     font: "mono 12";
@@ -77,8 +80,8 @@ configuration {
 EOL
 
 # Optional: Create a simple theme for rofi (if required)
-mkdir -p ~/.config/rofi/themes
-cat <<EOL > ~/.config/rofi/themes/gruvbox-dark.rasi
+mkdir -p $INSTALL_DIR/rofi/themes
+cat <<EOL > $INSTALL_DIR/rofi/themes/gruvbox-dark.rasi
 * {
     background-color:    #282828;
     text-color:          #ebdbb2;
