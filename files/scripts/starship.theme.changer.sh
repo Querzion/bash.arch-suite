@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash ### Where to find more themes! >> https://starship.rs/presets/
 
 # Define color variables
 CYAN='\033[0;36m'
