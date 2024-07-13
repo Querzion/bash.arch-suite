@@ -111,6 +111,13 @@ chmod +x -R $SCRIPT_FILES
 # UPDATE
 #pacman -Syyu
 
+
+################################################################### FASTTRACK MIRRORS
+############ FASTTRACK MIRRORS
+
+sudo pacman-mirrors --fasttrack
+
+
 ################################################################### INSTALL PACMAN-LIST.TXT
 ############ INSTALL PACMAN-LIST.TXT
 
