@@ -624,6 +624,11 @@ echo -e "${GREEN} All Nerd Fonts installed successfully! ${NC}"
 echo -e "${PURPLE} NOW LETS SPRUCE THE BASH UP! STARSHIP! HERE I COME ${NC}"
 curl -sS https://starship.rs/install.sh | sh
 
+# Copy the StarShip Theme Changer Script to the home folder.
+cp SCRIPT_FILES/starship.theme.changer.sh ~/
+# Run StarShip Theme Changer
+sh SCRIPT_FILES/starship.theme.changer.sh
+echo -e "${YELLOW} BTW! The StarShip Theme Changer script is in your home folder. ;D ${NC}"
 echo -e "${PURPLE} NOW ACTIVATE! . . . WELL! A REBOOT IS IN NEED HERE, LETS FIX THE REST FIRST! ${NC}"
 
 
