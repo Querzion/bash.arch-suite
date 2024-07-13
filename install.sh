@@ -15,7 +15,7 @@ NC='\033[0m' # No Color
 
 ############ FILE & FOLDER PATHS
 # CHANGE THE FOLDER NAME & LOCATION IF YOU RENAME THE FOLDER
-STARTUP="$HOME/bash.dwm-arch.startup"
+STARTUP="$HOME/bash.arch-startup"
 
 # LOCATIONS
 CUT="$STARTUP/files"
@@ -494,7 +494,7 @@ execute_Restart() {
     
     sudo rm -R $STARTUP
     cd ~/
-    git clone https://github.com/querzion/bash.dwm-arch.startup.git
+    git clone https://github.com/querzion/bash.arch-startup.git
     chmod +x -R $STARTUP
     sh $STARTUP/install.sh
     
@@ -676,10 +676,10 @@ EOF
 echo -e "${GREEN} Created $CONF_FILE with Swedish Dvorak keyboard configuration. ${NC}"
 
 
-################################################################### REMOVE BASH.DWM-ARCH.STARTUP / STARTUP FOLDER
+################################################################### REMOVE BASH.ARCH-STARTUP / STARTUP FOLDER
 ############ REMOVE $STARTUP FOLDER
 
-# Delete bash.dwm-arch.startup folder. (If there's updates to be made, then it's not good having an old version.)
+# Delete bash.arch-startup folder. (If there's updates to be made, then it's not good having an old version.)
 sudo rm -R $STARTUP
 
 
