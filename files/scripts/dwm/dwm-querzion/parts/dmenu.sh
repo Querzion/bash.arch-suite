@@ -29,8 +29,6 @@ FROM_HERE="https://git.suckless.org/$APP"
 FOLDER="bash.dwm-arch.startup"  # If 'bash.dwm-arch.startup' is renamed in any way.
 LOCATION="$HOME/$FOLDER/files"
 
-
-
 # Patch Script Location
 PATCH="$LOCATION/scripts/dwm/dwm-querzion/patch/install.$APP.patches.sh"
 
