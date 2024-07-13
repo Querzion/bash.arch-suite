@@ -76,6 +76,7 @@ nasm
 sqlite
 meld
 docker
+nim
 
 # SYSTEM
 libx11
