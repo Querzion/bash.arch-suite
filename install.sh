@@ -22,6 +22,7 @@ CUT="$STARTUP/files"
 PACMAN_APPS="$CUT/pacman-list.txt"
 FLATPAK_APPS="$CUT/flatpak-list.txt"
 AUR_APPS="$CUT/aur-list.txt"
+FONT_FILE="$CUT/fonts.txt"
 
 XINITRC_FILE="$HOME/.xinitrc"
 BASHRC_FILE="$CUT/settings/.bashrc"
@@ -642,7 +643,8 @@ install_fonts_detailed() {
   fc-cache -f -v
 }
 
-
+    install_fonts
+    #install_fonts_detailed
 ################################################################### CHANGE .XINITRC
 ############ .XINITRC
 
