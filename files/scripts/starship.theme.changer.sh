@@ -9,12 +9,13 @@ YELLOW='\033[0;33m'
 NC='\033[0m' # No Color
 
 # Prompt the user to choose a theme
-echo -e "${CYAN}Please choose a theme:${NC}"
+echo -e "${GREEN}Please choose a theme: Enter = 'Nerd Font Symbols'${NC}"
 echo -e "${PURPLE}1) Gruvbox Rainbow ${NC}"
 echo -e "${RED}2) Tokyo Night ${NC}"
-echo -e "${GREEN}3) Pastel Powerline ${NC}"
-echo -e "${CYAN}4) QnD Dreams ${NC}"
+echo -e "${CYAN}3) Pastel Powerline ${NC}"
+echo -e "${YELLOW}4) QnD Dreams ${NC}"
 read -p "$(echo -e ${YELLOW}Enter your choice \(1, 2, 3, or 4\): ${NC})" choice
+
 
 # Set the THEME_NAME variable based on the user's choice
 if [ "$choice" -eq 1 ]; then
