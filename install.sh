@@ -512,6 +512,120 @@ execute_Restart() {
 Restart
 
 
+######################################################################################################### FONT INSTALLATION (NOT DETAILED)
+################################ FONT INSTALLATION (NOT DETAILED)
+
+# Function to handle all operations
+install_fonts() {
+  read -p "${CYAN}Do you want to download fonts? (y/n) ${NC}" download_fonts
+  if [[ $download_fonts =~ ^[nN]$ ]]; then
+    echo -e "${PURPLE}Installing critical font: $CRITICAL_FONT_NAME${NC}"
+    wget -q "$CRITICAL_FONT_URL" -O /tmp/font.zip
+    mkdir -p "$FONT_DIR"
+    unzip -qo /tmp/font.zip -d "$FONT_DIR"
+    fc-cache -f -v
+    exit 0
+  fi
+
+  read -p "${CYAN}Do you want to download all fonts? (y/n) ${NC}" download_all
+  while IFS= read -r line; do
+    [[ $line =~ ^#.*$ ]] && continue
+    # This part handles the spaces between the name and the link. 
+    # This is restricted to only one space between name and link sections in the fonts.txt file.
+    #name=$(echo $line | cut -d '"' -f2)
+    #url=$(echo $line | cut -d '"' -f4)
+    # This is not restricted to how big the space is between the section name and link is in the fonts.txt.
+    name=$(echo $line | awk '{for(i=1;i<NF;i++) printf $i " "; print $NF}')
+    url=$(echo $line | awk '{print $NF}')
+
+    if [[ $download_all =~ ^[yY]$ ]] || { read -p "${PURPLE}Install $name? (y/n) ${NC}" answer && [[ $answer =~ ^[yY]$ ]]; }; then
+      echo -e "${GREEN}Installing $name...${NC}"
+      wget -q "$url" -O /tmp/font.zip
+      mkdir -p "$FONT_DIR"
+      unzip -qo /tmp/font.zip -d "$FONT_DIR"
+      fc-cache -f -v
+      echo -e "${GREEN}$name installed.${NC}"
+    else
+      echo -e "${RED}Skipping $name.${NC}"
+    fi
+  done < "$FONT_FILE"
+
+  # Ensure the critical font is installed
+  echo -e "${PURPLE}Ensuring the critical font is installed: $CRITICAL_FONT_NAME${NC}"
+  wget -q "$CRITICAL_FONT_URL" -O /tmp/font.zip
+  unzip -qo /tmp/font.zip -d "$FONT_DIR"
+  fc-cache -f -v
+}
+
+
+######################################################################################################### FONT INSTALLATION (DETAILED)
+################################ FONT INSTALLATION (DETAILED)
+
+# Count the number of font packages
+font_count=$(grep -v '^#' "$FONT_FILE" | wc -l)
+
+# Function to handle all operations
+install_fonts_detailed() {
+  read -p "${CYAN}Do you want to install fonts to your system? (y/n) ${NC}" install_fonts
+  if [[ $install_fonts =~ ^[nN]$ ]]; then
+    echo -e "${PURPLE}Installing critical font: $CRITICAL_FONT_NAME${NC}"
+    wget -q "$CRITICAL_FONT_URL" -O /tmp/font.zip
+    mkdir -p "$FONT_DIR"
+    unzip -qo /tmp/font.zip -d "$FONT_DIR"
+    echo -e "Extracted files:"
+    unzip -l /tmp/font.zip | awk '{print $2}' | tail -n +4 | head -n -2
+    fc-cache -f -v
+    exit 0
+  fi
+
+  read -p "${CYAN}Do you want to install all $font_count font packages? (y/n) ${NC}" download_all
+  if [[ $download_all =~ ^[yY]$ ]]; then
+    while IFS= read -r line; do
+      [[ $line =~ ^#.*$ ]] && continue
+      name=$(echo $line | awk '{for(i=1;i<NF;i++) printf $i " "; print $NF}')
+      url=$(echo $line | awk '{print $NF}')
+
+      echo -e "${CYAN}Installing $name...${NC}"
+      wget -q "$url" -O /tmp/font.zip
+      mkdir -p "$FONT_DIR"
+      unzip -qo /tmp/font.zip -d "$FONT_DIR"
+      echo -e "Extracted files:"
+      unzip -l /tmp/font.zip | awk '{print $2}' | tail -n +4 | head -n -2
+      fc-cache -f -v
+      echo -e "${GREEN}$name installed.${NC}"
+    done < "$FONT_FILE"
+  else
+    while IFS= read -r line; do
+      [[ $line =~ ^#.*$ ]] && continue
+      name=$(echo $line | awk '{for(i=1;i<NF;i++) printf $i " "; print $NF}')
+      url=$(echo $line | awk '{print $NF}')
+
+      read -p "${PURPLE}Do you want to install the $name font? (y/n) ${NC}" answer
+      if [[ $answer =~ ^[yY]$ ]]; then
+        echo -e "${CYAN}Installing $name...${NC}"
+        wget -q "$url" -O /tmp/font.zip
+        mkdir -p "$FONT_DIR"
+        unzip -qo /tmp/font.zip -d "$FONT_DIR"
+        echo -e "Extracted files:"
+        unzip -l /tmp/font.zip | awk '{print $2}' | tail -n +4 | head -n -2
+        fc-cache -f -v
+        echo -e "${GREEN}$name installed.${NC}"
+      else
+        echo -e "${RED}Skipping $name.${NC}"
+      fi
+    done < "$FONT_FILE"
+  fi
+
+  # Ensure the critical font is installed
+  echo -e "${PURPLE}Ensuring the critical font is installed: $CRITICAL_FONT_NAME${NC}"
+  wget -q "$CRITICAL_FONT_URL" -O /tmp/font.zip
+  unzip -qo /tmp/font.zip -d "$FONT_DIR"
+  echo -e "Extracted files:"
+  unzip -l /tmp/font.zip | awk '{print $2}' | tail -n +4 | head -n -2
+  fc-cache -f -v
+}
+
+
 ################################################################### CHANGE .XINITRC
 ############ .XINITRC
 
@@ -536,87 +650,7 @@ echo -e "${GREEN} .xinitrc file created successfully. ${NC}"
 echo -e "${PURPLE} LETS BE FIXING THE BASH! ${NC}"
 echo "First lets get the NerdFonts! All of them? ALL OF THEM!"
 
-# Define the font directory
-FONT_DIR="$HOME/.local/share/fonts/NerdFonts"
-
-# Create the font directory if it doesn't exist
-mkdir -p "$FONT_DIR"
-
-# Define the Nerd Fonts download URL
-BASE_URL="https://github.com/ryanoasis/nerd-fonts/releases/latest/download"
-
-# Array of all Nerd Fonts
-FONTS=(
-    "3270.zip"
-    "Agave.zip"
-    "AnonymousPro.zip"
-    "Arimo.zip"
-    "AurulentSansMono.zip"
-    "BigBlueTerminal.zip"
-    "BitstreamVeraSansMono.zip"
-    "CascadiaCode.zip"
-    "CodeNewRoman.zip"
-    "Cousine.zip"
-    "DaddyTimeMono.zip"
-    "DejaVuSansMono.zip"
-    "DroidSansMono.zip"
-    "FantasqueSansMono.zip"
-    "FiraCode.zip"
-    "FiraMono.zip"
-    "Go-Mono.zip"
-    "Gohu.zip"
-    "Hack.zip"
-    "Hasklig.zip"
-    "HeavyData.zip"
-    "Hermit.zip"
-    "iA-Writer.zip"
-    "IBMPlexMono.zip"
-    "Inconsolata.zip"
-    "InconsolataGo.zip"
-    "InconsolataLGC.zip"
-    "Iosevka.zip"
-    "JetBrainsMono.zip"
-    "Lekton.zip"
-    "LiberationMono.zip"
-    "Meslo.zip"
-    "Monofur.zip"
-    "Monoid.zip"
-    "Mononoki.zip"
-    "MPlus.zip"
-    "Noto.zip"
-    "OpenDyslexic.zip"
-    "Overpass.zip"
-    "ProFont.zip"
-    "ProggyClean.zip"
-    "RobotoMono.zip"
-    "ShareTechMono.zip"
-    "SourceCodePro.zip"
-    "SpaceMono.zip"
-    "Terminus.zip"
-    "Tinos.zip"
-    "Ubuntu.zip"
-    "UbuntuMono.zip"
-    "VictorMono.zip"
-)
-
-# Download, unzip, and install each font
-for FONT in "${FONTS[@]}"; do
-    echo "Downloading and installing $FONT..."
-    wget -q "$BASE_URL/$FONT" -O "/tmp/$FONT"
-    unzip -o "/tmp/$FONT" -d "$FONT_DIR"
-    rm "/tmp/$FONT"
-done
-
-# Download 0xProto fonts
-echo "Downloading and installing 0xProto fonts..."
-PROTO_URL="https://github.com/0xType/0xProto/archive/refs/heads/main.zip"
-wget -q "$PROTO_URL" -O "/tmp/0xProto.zip"
-unzip -o "/tmp/0xProto.zip" -d "/tmp"
-mv "/tmp/0xProto-main/fonts/"* "$FONT_DIR"
-rm -rf "/tmp/0xProto.zip" "/tmp/0xProto-main"
-
-# Refresh the font cache
-fc-cache -fv
+install_fonts_detailed
 
 echo -e "${GREEN} All Nerd Fonts installed successfully! ${NC}"
 
