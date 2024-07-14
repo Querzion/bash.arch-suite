@@ -37,6 +37,23 @@ DRIVERS="$CUT/scripts/install.video-drivers.sh"
 # Samba installation path.
 SAMBA="$CUT/scripts/samba/install.samba.shorter.sh"
 
+################################################################### FILE & FOLDER PATHS
+
+# Script Folder
+FOLDER="$STARTUP"
+# Script Folder Path
+LOCATION="$FOLDER/files"
+# Installation Path
+INSTALL_LOCATION="$HOME/.config/wm"
+# Directory to save backups 
+BACKUP_DIR="$INSTALL_LOCATION/backups"
+# Critical font
+CRITICAL_FONT_NAME="Nerd Fonts Symbols Only"
+CRITICAL_FONT_URL="https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/NerdFontsSymbolsOnly.zip"
+# Directory to install fonts
+FONT_DIR="$HOME/.local/share/fonts"
+
+
 ################################################################### MAKE SCRIPTS EXECUTABLE
 ############ MAKE SCRIPTS EXECUTABLE
 
