@@ -6,13 +6,12 @@ This repository contains scripts and instructions for setting up an Arch Linux s
 
 ## Installation
 
-Get an Arch ISO - start it and enter the command: ```archinstall```
-![alt text](image.png)
+1. ***Get an Arch ISO***
+   - Start it and enter the command:
+<details><summary>archinstall</summary>
+[alt text](image.png)
+</details>
 
-1. **Install Git (if not already):**
-   ```bash
-   sudo pacman -S git
-   ```
 2. **Clone the Repository:**
    ```bash
    git clone https://github.com/querzion/bash.dwm-arch.startup.git
