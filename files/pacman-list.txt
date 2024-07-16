@@ -102,6 +102,7 @@ ttf-ms-win8-1
 ttf-ms-win8-2
 ttf-ms-win10-1
 ttf-ms-win10-2
+zed
 
 
 # MEDIA
