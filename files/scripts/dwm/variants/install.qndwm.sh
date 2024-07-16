@@ -19,7 +19,7 @@ NC='\033[0m' # No Color
 
 ################################################################### LOCATION
 
-LOCATION="/var/tmp"
+LOCATION="$HOME"
 
 
 ################################################################### INSTALL DWM-QUERZION
@@ -32,5 +32,5 @@ git clone https://github.com/querzion/bash.qndwm $LOCATION
 chmod +x $LOCATION/bash.qndwm/*
 
 #  Go to directory
-cd $LOCATION/bash.qndwm
+sh $LOCATION/bash.qndwm/qndwm.sh
 
