@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Function to install GNOME, Plasma, or COSMIC
+# Function to install GNOME, Plasma, COSMIC, or DTOS
 install_suite() {
   case $1 in
     "gnome")
@@ -12,6 +12,9 @@ install_suite() {
     "cosmic")
       bash ~/bash.arch-startup/files/scripts/install.cosmic-suite.sh
       ;;
+    "dtos")
+      bash ~/bash.arch-startup/files/scripts/qtile/install.dtos.sh
+      ;;
     *)
       echo "Invalid option. Please choose a valid option."
       ;;
@@ -22,27 +25,35 @@ install_suite() {
 dwm_menu() {
   echo "Choose DWM variant:"
   echo "1. QnDWM"
-  echo "2. ChaDWM"
-  echo "3. ArcoDWM"
-  echo "4. DWM Titus"
-  echo "5. DWM-Flexi"
-  read -p "Enter your choice [1-5]: " dwm_choice
+  echo "2. Afnarel-DWM  (Not Fixed Yet)"
+  echo "3. ArcoDWM (Not Fixed Yet)"
+  echo "4. ChaDWM (Not Fixed Yet)"
+  echo "5. DWM-FlexiPatch (Not Fixed Yet)"
+  echo "6. DWM-Titus (Not Fixed Yet)"
+  echo "7. DTOS-DWM (Not Fixed Yet)"
+  read -p "Enter your choice [1-7]: " dwm_choice
 
   case $dwm_choice in
     1)
-      bash ~/bash.arch-startup/files/scripts/dwm/variants/install.QnDWM.sh
+      bash ~/bash.arch-startup/files/scripts/dwm/variants/install.qndwm.sh
       ;;
     2)
-      bash ~/bash.arch-startup/files/scripts/dwm/variants/install.ChaDWM.sh
+      bash ~/bash.arch-startup/files/scripts/dwm/variants/install.afnarel-dwm.sh
       ;;
     3)
-      bash ~/bash.arch-startup/files/scripts/dwm/variants/install.ArcoDWM.sh
+      bash ~/bash.arch-startup/files/scripts/dwm/variants/install.arcodwm.sh
       ;;
     4)
-      bash ~/bash.arch-startup/files/scripts/dwm/variants/install.DWM-Titus.sh
+      bash ~/bash.arch-startup/files/scripts/dwm/variants/install.chadwm.sh
       ;;
     5)
-      bash ~/bash.arch-startup/files/scripts/dwm/variants/install.DWM-Flexi.sh
+      bash ~/bash.arch-startup/files/scripts/dwm/variants/install.dwm-flexipatch.sh
+      ;;
+    6)
+      bash ~/bash.arch-startup/files/scripts/dwm/variants/install.dwm-titus.sh
+      ;;
+    7)
+      bash ~/bash.arch-startup/files/scripts/dwm/variants/install.dtos-dwm.sh
       ;;
     *)
       echo "Invalid option. Please choose a valid option."
@@ -53,9 +64,9 @@ dwm_menu() {
 # Function for Hyprland variants menu
 hyprland_menu() {
   echo "Choose Hyprland variant:"
-  echo "1. End 4 Dots"
-  echo "2. Hyprdots"
-  echo "3. Hyprlaqnd"
+  echo "1. Hyprlaqnd"
+  echo "2. End 4 Dots"
+  echo "3. Hyprdots"
   echo "4. Jakoolit Dots"
   echo "5. Linux Mobile"
   echo "6. Taylor Dots"
@@ -63,22 +74,22 @@ hyprland_menu() {
 
   case $hyprland_choice in
     1)
-      bash ~/bash.arch-startup/files/scripts/hyprland/variants/install.End4Dots.sh
+      bash ~/bash.arch-startup/files/scripts/hyprland/variants/install.hyprlaqnd.sh
       ;;
     2)
-      bash ~/bash.arch-startup/files/scripts/hyprland/variants/install.Hyprdots.sh
+      bash ~/bash.arch-startup/files/scripts/hyprland/variants/install.end4dots.sh
       ;;
     3)
-      bash ~/bash.arch-startup/files/scripts/hyprland/variants/install.Hyprlaqnd.sh
+      bash ~/bash.arch-startup/files/scripts/hyprland/variants/install.hyprdots.sh
       ;;
     4)
-      bash ~/bash.arch-startup/files/scripts/hyprland/variants/install.JakoolitDots.sh
+      bash ~/bash.arch-startup/files/scripts/hyprland/variants/install.jakoolitdots.sh
       ;;
     5)
-      bash ~/bash.arch-startup/files/scripts/hyprland/variants/install.LinuxMobile.sh
+      bash ~/bash.arch-startup/files/scripts/hyprland/variants/install.linuxmobile.sh
       ;;
     6)
-      bash ~/bash.arch-startup/files/scripts/hyprland/variants/install.TaylorDots.sh
+      bash ~/bash.arch-startup/files/scripts/hyprland/variants/install.taylordots.sh
       ;;
     *)
       echo "Invalid option. Please choose a valid option."
@@ -88,12 +99,13 @@ hyprland_menu() {
 
 # Main menu
 echo "Choose the environment you want to install:"
-echo "1. GNOME"
-echo "2. Plasma"
-echo "3. COSMIC"
-echo "4. DWM"
-echo "5. Hyprland"
-read -p "Enter your choice [1-5]: " main_choice
+echo "1. GNOME (Not Fixed Yet)"
+echo "2. Plasma (Not Fixed Yet)"
+echo "3. COSMIC (Not Fixed Yet)"
+echo "4. DTOS"
+echo "5. DWM"
+echo "6. Hyprland (Not Fixed Yet)"
+read -p "Enter your choice [1-6]: " main_choice
 
 case $main_choice in
   1)
@@ -106,9 +118,12 @@ case $main_choice in
     install_suite "cosmic"
     ;;
   4)
-    dwm_menu
+    install_suite "dtos"
     ;;
   5)
+    dwm_menu
+    ;;
+  6)
     hyprland_menu
     ;;
   *)
