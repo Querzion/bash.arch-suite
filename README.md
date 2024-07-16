@@ -8,7 +8,7 @@ This repository contains scripts and instructions for setting up an Arch Linux s
 
 1. ***Get an Arch ISO***
    - Start it and enter the command: ```archinstall```
-     <details><summary>The Arch Install Script</summary></details>
+     <details><summary>The Arch Install Script</summary>![pic](files/archinstall.script.png)</details>
 
 
 2. **Clone the Repository:**
