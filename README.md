@@ -4,7 +4,7 @@ This repository contains scripts and instructions for setting up an Arch Linux s
 
 ## Installation
 
-Get a Arch ISO - do an ```archinstall```:
+Get an Arch ISO - start it and enter the command: ```archinstall```
 ![alt text](image.png)
 
 1. **Install Git (if not already):**
