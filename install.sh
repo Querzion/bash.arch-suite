@@ -291,45 +291,7 @@ read
 ################################################################### INSTALL WINDOW MANAGER & CONFIGS
 ############ DWM, SLSTATUS, DMENU, NNN, ST 
 
-# Function to display the menu
-display_menu() {
-    echo -e "${PURPLE}Please choose which DWM installation script to run:${NC}"
-    echo -e "${CYAN}1) Querzion DWM ${NC}"
-    echo -e "${CYAN}2) Chris Titus DWM ${NC}"
-    echo -e "${CYAN}3) Siduck ChaDWM ${NC}"
-    echo -e "${GREEN}4) Exit${NC}"
-}
-
-# Function to handle the user choice
-handle_choice() {
-    case $1 in
-        1)
-            sh "$SCRIPT_FILES/dwm/install.dwm-querzion.sh"
-            ;;
-        2)
-            sh "$SCRIPT_FILES/dwm/install.dwm-christitus.sh"
-            ;;
-        3)
-            sh "$SCRIPT_FILES/dwm/install.chadwm.sh"
-            ;;
-        4)
-            echo "Exiting..."
-            exit 0
-            ;;
-        *)
-            echo -e "${ORANGE}Invalid choice. Please try again.${NC}"
-            ;;
-    esac
-}
-
-# Main loop
-while true; do
-    display_menu
-    echo -en "${PURPLE}"
-    read -p "Enter your choice [1-4]: " choice
-    echo -en "${NC}"
-    handle_choice $choice
-done
+sh $SCRIPT_FILES/menus.sh
 
 # Pause the script
 #echo -e "${GREEN} PRESS ENTER TO CONTINUE. ${NC}"
