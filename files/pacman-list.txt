@@ -91,6 +91,8 @@ qt5-base
 webkit2gtk
 variety
 unzip
+zip
+patch
 xbindkeys
 rofi
 duf

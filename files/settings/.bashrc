@@ -48,10 +48,10 @@ bind "set completion-ignore-case on"
 ### ALIASES ###
 
 #list
-#alias ls='ls --color=auto'
-alias ls='exa -al --color=always --group-directories-first' # Dependency exa
+alias ls='ls --color=auto'
 alias la='ls -a'
-alias ll='ls -alFh'
+alias ll='exa -al --color=always --group-directories-first' # Dependency exa
+#alias ll='ls -alFh'
 alias l='ls'
 alias l.="ls -A | egrep '^\.'"
 alias listdir="ls -d */ > list"
