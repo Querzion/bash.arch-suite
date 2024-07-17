@@ -64,13 +64,14 @@ dwm_menu() {
 # Function for Hyprland variants menu
 hyprland_menu() {
   echo "Choose Hyprland variant:"
-  echo "1. Hyprlaqnd"
-  echo "2. End 4 Dots"
-  echo "3. Hyprdots"
-  echo "4. Jakoolit Dots"
-  echo "5. Linux Mobile"
-  echo "6. Taylor Dots"
-  read -p "Enter your choice [1-6]: " hyprland_choice
+  echo "1. Hyprlaqnd (Not Fixed Yet)"
+  echo "2. End 4 Dots (Not Fixed Yet)"
+  echo "3. Hyprdots (Not Fixed Yet)"
+  echo "4. Jakoolit Dots (Not Fixed Yet)"
+  echo "5. Linux Mobile (Not Fixed Yet)"
+  echo "6. Taylor Dots (Not Fixed Yet)"
+  echo "7. Hyprland Starter"
+  read -p "Enter your choice [1-7]: " hyprland_choice
 
   case $hyprland_choice in
     1)
@@ -83,13 +84,16 @@ hyprland_menu() {
       bash ~/bash.arch-startup/files/scripts/hyprland/variants/install.hyprdots.sh
       ;;
     4)
-      bash ~/bash.arch-startup/files/scripts/hyprland/variants/install.jakoolitdots.sh
+      bash ~/bash.arch-startup/files/scripts/hyprland/variants/install.jakoolit-dots.sh
       ;;
     5)
       bash ~/bash.arch-startup/files/scripts/hyprland/variants/install.linuxmobile.sh
       ;;
     6)
       bash ~/bash.arch-startup/files/scripts/hyprland/variants/install.taylordots.sh
+      ;;
+    7)
+      bash ~/bash.arch-startup/files/scripts/hyprland/hyprland.starter.sh
       ;;
     *)
       echo "Invalid option. Please choose a valid option."
@@ -104,7 +108,7 @@ echo "2. Plasma (Not Fixed Yet)"
 echo "3. COSMIC (Not Fixed Yet)"
 echo "4. DTOS"
 echo "5. DWM"
-echo "6. Hyprland (Not Fixed Yet)"
+echo "6. Hyprland"
 read -p "Enter your choice [1-6]: " main_choice
 
 case $main_choice in

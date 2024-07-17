@@ -105,6 +105,7 @@ ttf-ms-win10-2
 zed
 
 
+
 # MEDIA
 ffmpeg
 gimp
