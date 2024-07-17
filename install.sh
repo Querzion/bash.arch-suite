@@ -497,9 +497,9 @@ Restart
 
 # Function to handle all operations
 install_fonts() {
-  read -p "${CYAN}Do you want to download fonts? (y/n) ${NC}" download_fonts
+  read -p "${CYAN} Do you want to download fonts? (y/n) ${NC}" download_fonts
   if [[ $download_fonts =~ ^[nN]$ ]]; then
-    echo -e "${PURPLE}Installing critical font: $CRITICAL_FONT_NAME${NC}"
+    echo -e "${PURPLE} Installing critical font: $CRITICAL_FONT_NAME${NC}"
     wget -q "$CRITICAL_FONT_URL" -O /tmp/font.zip
     mkdir -p "$FONT_DIR"
     unzip -qo /tmp/font.zip -d "$FONT_DIR"
@@ -507,7 +507,7 @@ install_fonts() {
     exit 0
   fi
 
-  read -p "${CYAN}Do you want to download all fonts? (y/n) ${NC}" download_all
+  read -p "${CYAN} Do you want to download all fonts? (y/n) ${NC}" download_all
   while IFS= read -r line; do
     [[ $line =~ ^#.*$ ]] && continue
     # This part handles the spaces between the name and the link. 
@@ -518,20 +518,20 @@ install_fonts() {
     name=$(echo $line | awk '{for(i=1;i<NF;i++) printf $i " "; print $NF}')
     url=$(echo $line | awk '{print $NF}')
 
-    if [[ $download_all =~ ^[yY]$ ]] || { read -p "${PURPLE}Install $name? (y/n) ${NC}" answer && [[ $answer =~ ^[yY]$ ]]; }; then
-      echo -e "${GREEN}Installing $name...${NC}"
+    if [[ $download_all =~ ^[yY]$ ]] || { read -p "${PURPLE} Install $name? (y/n) ${NC}" answer && [[ $answer =~ ^[yY]$ ]]; }; then
+      echo -e "${GREEN} Installing $name...${NC}"
       wget -q "$url" -O /tmp/font.zip
       mkdir -p "$FONT_DIR"
       unzip -qo /tmp/font.zip -d "$FONT_DIR"
       fc-cache -f -v
-      echo -e "${GREEN}$name installed.${NC}"
+      echo -e "${GREEN} $name installed.${NC}"
     else
-      echo -e "${RED}Skipping $name.${NC}"
+      echo -e "${RED} Skipping $name.${NC}"
     fi
   done < "$FONT_FILE"
 
   # Ensure the critical font is installed
-  echo -e "${PURPLE}Ensuring the critical font is installed: $CRITICAL_FONT_NAME${NC}"
+  echo -e "${PURPLE} Ensuring the critical font is installed: $CRITICAL_FONT_NAME${NC}"
   wget -q "$CRITICAL_FONT_URL" -O /tmp/font.zip
   unzip -qo /tmp/font.zip -d "$FONT_DIR"
   fc-cache -f -v
@@ -546,9 +546,9 @@ font_count=$(grep -v '^#' "$FONT_FILE" | wc -l)
 
 # Function to handle all operations
 install_fonts_detailed() {
-  read -p "${CYAN}Do you want to install fonts to your system? (y/n) ${NC}" install_fonts
+  read -p "${CYAN} Do you want to install fonts to your system? (y/n) ${NC}" install_fonts
   if [[ $install_fonts =~ ^[nN]$ ]]; then
-    echo -e "${PURPLE}Installing critical font: $CRITICAL_FONT_NAME${NC}"
+    echo -e "${PURPLE} Installing critical font: $CRITICAL_FONT_NAME${NC}"
     wget -q "$CRITICAL_FONT_URL" -O /tmp/font.zip
     mkdir -p "$FONT_DIR"
     unzip -qo /tmp/font.zip -d "$FONT_DIR"
@@ -558,21 +558,21 @@ install_fonts_detailed() {
     exit 0
   fi
 
-  read -p "${CYAN}Do you want to install all $font_count font packages? (y/n) ${NC}" download_all
+  read -p "${CYAN} Do you want to install all $font_count font packages? (y/n) ${NC}" download_all
   if [[ $download_all =~ ^[yY]$ ]]; then
     while IFS= read -r line; do
       [[ $line =~ ^#.*$ ]] && continue
       name=$(echo $line | awk '{for(i=1;i<NF;i++) printf $i " "; print $NF}')
       url=$(echo $line | awk '{print $NF}')
 
-      echo -e "${CYAN}Installing $name...${NC}"
+      echo -e "${CYAN} Installing $name...${NC}"
       wget -q "$url" -O /tmp/font.zip
       mkdir -p "$FONT_DIR"
       unzip -qo /tmp/font.zip -d "$FONT_DIR"
       echo -e "Extracted files:"
       unzip -l /tmp/font.zip | awk '{print $2}' | tail -n +4 | head -n -2
       fc-cache -f -v
-      echo -e "${GREEN}$name installed.${NC}"
+      echo -e "${GREEN} $name installed.${NC}"
     done < "$FONT_FILE"
   else
     while IFS= read -r line; do
@@ -580,7 +580,7 @@ install_fonts_detailed() {
       name=$(echo $line | awk '{for(i=1;i<NF;i++) printf $i " "; print $NF}')
       url=$(echo $line | awk '{print $NF}')
 
-      read -p "${PURPLE}Do you want to install the $name font? (y/n) ${NC}" answer
+      read -p "${PURPLE} Do you want to install the $name font? (y/n) ${NC}" answer
       if [[ $answer =~ ^[yY]$ ]]; then
         echo -e "${CYAN}Installing $name...${NC}"
         wget -q "$url" -O /tmp/font.zip
@@ -589,15 +589,15 @@ install_fonts_detailed() {
         echo -e "Extracted files:"
         unzip -l /tmp/font.zip | awk '{print $2}' | tail -n +4 | head -n -2
         fc-cache -f -v
-        echo -e "${GREEN}$name installed.${NC}"
+        echo -e "${GREEN} $name installed.${NC}"
       else
-        echo -e "${RED}Skipping $name.${NC}"
+        echo -e "${RED} Skipping $name.${NC}"
       fi
     done < "$FONT_FILE"
   fi
 
   # Ensure the critical font is installed
-  echo -e "${PURPLE}Ensuring the critical font is installed: $CRITICAL_FONT_NAME${NC}"
+  echo -e "${PURPLE} Ensuring the critical font is installed: $CRITICAL_FONT_NAME${NC}"
   wget -q "$CRITICAL_FONT_URL" -O /tmp/font.zip
   unzip -qo /tmp/font.zip -d "$FONT_DIR"
   echo -e "Extracted files:"
