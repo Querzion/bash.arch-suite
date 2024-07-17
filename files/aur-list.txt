@@ -15,4 +15,8 @@ thunar-media-tags-plugin
 thunar-archive-plugin
 
 # FONTS
-ttf-ms-fonts
+#ttf-ms-fonts
+
+# AUDIO
+pulseaudio-equalizer
+pulseaudio-module-bluetooth

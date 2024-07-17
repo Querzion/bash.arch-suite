@@ -34,9 +34,7 @@ pipewire
 pipewire-pulse
 pavucontrol
 pulseaudio
-pulseaudio-module-bluetooth
 pamixer
-pulseaudio-equalizer
 #alsa-utils
 volumeicon
 
