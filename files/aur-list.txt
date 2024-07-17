@@ -13,3 +13,6 @@ imdb-thumbnailer
 thunar-shares-plugin
 thunar-media-tags-plugin
 thunar-archive-plugin
+
+# FONTS
+ttf-ms-fonts
