@@ -19,14 +19,14 @@ NC='\033[0m' # No Color
 
 ################################################################### LOCATION
 
-FOLDER="$HOME/bash.qndwm"
+FOLDER="~/bash.qndwm"
 
 
 ################################################################### INSTALL DWM-QUERZION
 ############ INSTALL DWM-QUERZION
 
 #  Download qndwm
-git clone https://github.com/querzion/bash.qndwm $FOLDER
+git clone https://github.com/querzion/bash.qndwm.git $FOLDER
 
 #  Make files executable
 chmod +x -R $FOLDER
@@ -34,4 +34,4 @@ chmod +x -R $FOLDER
 #  Go to directory
 sh $FOLDER/qndwm.sh
 
-rm -R $FOLDER
+#rm -R $FOLDER
