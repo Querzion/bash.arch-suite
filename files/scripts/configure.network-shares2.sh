@@ -14,14 +14,14 @@ NC='\033[0m' # No Color
 ###############################
 
 # Define the shares array in the correct order
-shares=("THE ARCHIVEs" "USERs" "BACKUPs" "ISOs" "DOWNLOADs" "VMs")
+shares=("archives" "backups" "downloads" "flash" "isos" "users" "vms")
 
 # Function to create folders if they do not exist
 create_folders() {
     local home_folder="$1"
 
     for share in "${shares[@]}"; do
-        if [[ "$share" == "THE ARCHIVEs" || "$share" == "USERs" || "$share" == "BACKUPs" || "$share" == "ISOs" || "$share" == "VMs" || "$share" == "DOWNLOADs" ]]; then
+        if [[ "$share" == "archives" || "$share" == "backups" || "$share" == "downloads" || "$share" == "flash" || "$share" == "isos" || "$share" == "users" || "$share" == "vms" ]]; then
             local folder_path="$home_folder/Network/$share"
         else
             local folder_path="$home_folder/$share"
@@ -47,7 +47,7 @@ mount_shares() {
 
     for share in "${shares[@]}"; do
         local share_path="//${server_ip}/${share}"
-        if [[ "$share" == "THE ARCHIVEs" || "$share" == "USERs" || "$share" == "BACKUPs" || "$share" == "ISOs" || "$share" == "VMs" || "$share" == "DOWNLOADs" ]]; then
+        if [[ "$share" == "archives" || "$share" == "backups" || "$share" == "downloads" || "$share" == "flash" || "$share" == "isos" || "$share" == "users" || "$share" == "vms" ]]; then
             local mount_point="${home_folder}/Network/${share}"
         else
             local mount_point="${home_folder}/${share}"
