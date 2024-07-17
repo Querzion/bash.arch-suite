@@ -1,11 +1,6 @@
 samba
 smbclient
-samba-common-tools
-samba-winbind
-samba-vfs_glusterfs
-samba-test
 nfs-utils
-nfs-utils-libs
 ufw
 avahi
 nss-mdns
