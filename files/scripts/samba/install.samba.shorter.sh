@@ -12,9 +12,11 @@ BLUE='\033[0;34m'
 NC='\033[0m' # No Color
 
 ###############################
+# Name of the Git Clone folder
+folderName="bash.arch-startup"
 
 # Install Files Location
-CUT="$HOME/bash.arch-startup/files"
+CUT="$HOME/$folderName/files"
 
 # Log file for package installations
 logFile="$HOME/install.samba.shorter.sh_log.txt"
