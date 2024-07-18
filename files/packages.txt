@@ -124,4 +124,4 @@
 "flatpak" "flathub/com.brave.Browser" # Brave web browser
 "flatpak" "flathub/org.keepassxc.KeePassXC" # KeePassXC password manager
 "flatpak" "flathub/com.obsproject.Studio" # OBS Studio for video recording and live streaming
-"flatpak" "flathub/com.chatterino.chatterino" # Chatterino chat client for Twitch
+#"flatpak" "flathub/com.chatterino.chatterino" # Chatterino chat client for Twitch
