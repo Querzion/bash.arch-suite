@@ -11,32 +11,36 @@ PURPLE='\033[0;35m'
 BLUE='\033[0;34m'
 NC='\033[0m' # No Color
 
-###############################
+################################################################################################## FILE & FOLDER PATHS
+# Location
+APPLICATION="arch-suite"
+BASE="$HOME/bash.$APPLICATION"
+FILES="$BASE/files"
+APP_LIST="$FILES/packages.txt"
+BASH="$HOME/order_66"
 
-############ FILE & FOLDER PATHS
-# CHANGE THE FOLDER NAME & LOCATION IF YOU RENAME THE FOLDER
-STARTUP="$HOME/bash.arch-suite"
+mkdir -p $BASH
+cp $APP_LIST $BASH
 
-# LOCATIONS
-CUT="$STARTUP/files"
-PACMAN_APPS="$CUT/pacman-list.txt"
-FLATPAK_APPS="$CUT/flatpak-list.txt"
-AUR_APPS="$CUT/aur-list.txt"
-FONT_FILE="$CUT/fonts.txt"
+# Package List
+PACMAN_APPS="$FILES/pacman-list.txt"
+FLATPAK_APPS="$FILES/flatpak-list.txt"
+AUR_APPS="$FILES/aur-list.txt"
+FONT_FILE="$FILES/fonts.txt"
 
 XINITRC_FILE="$HOME/.xinitrc"
-BASHRC_FILE="$CUT/settings/.bashrc"
+BASHRC_FILE="$FILES/settings/.bashrc"
 #MIRRORLIST="/etc/pacman.d/mirrorlist"
 #PACMAN_CONF="/etc/pacman.conf"
 
 NWSHARES="$SCRIPT_FILES/configure.network-shares.sh"
 
-FFCONFIG_FILES="$CUT/settings/.config/fastfetch/"
-SCRIPT_FILES="$CUT/scripts"
+FFCONFIG_FILES="$FILES/settings/.config/fastfetch/"
+SCRIPT_FILES="$FILES/scripts"
 # GPU Driver Installation path.
-DRIVERS="$CUT/scripts/install.video-drivers.sh"
+DRIVERS="$FILES/scripts/install.video-drivers.sh"
 # Samba installation path.
-SAMBA="$CUT/scripts/samba/install.samba.shorter.sh"
+SAMBA="$FILES/scripts/samba/install.samba.shorter.sh"
 
 ################################################################### FILE & FOLDER PATHS
 
