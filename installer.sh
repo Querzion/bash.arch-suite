@@ -17,10 +17,15 @@ APPLICATION="arch-suite"
 BASE="$HOME/bash.$APPLICATION"
 FILES="$BASE/files"
 APP_LIST="$FILES/packages.txt"
-BASH="$HOME/order_66"
 
+# Pre-Configuration
+BASH="$HOME/order_66"
 mkdir -p $BASH
 cp $APP_LIST $BASH
+
+# Critical font
+CRITICAL_FONT_NAME="Jet Brains Mono"
+CRITICAL_FONT_URL="https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/JetBrainsMono.zip"
 
 # Package List
 PACMAN_APPS="$FILES/pacman-list.txt"
@@ -52,9 +57,7 @@ LOCATION="$FOLDER/files"
 INSTALL_LOCATION="$HOME/.config/wm"
 # Directory to save backups 
 BACKUP_DIR="$INSTALL_LOCATION/backups"
-# Critical font
-CRITICAL_FONT_NAME="Jet Brains Mono"
-CRITICAL_FONT_URL="https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/JetBrainsMono.zip"
+
 # Directory to install fonts
 FONT_DIR="$HOME/.local/share/fonts"
 
