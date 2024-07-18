@@ -1,1 +1,127 @@
+# XORG
+"pacman" "xorg" # X Window System
+#"pacman" "xorg-utils" # X.org utilities
+"pacman" "xorg-server" # X.org server
+"pacman" "xorg-xinit" # X.org initialization
+#"pacman" "xorg-xkb-layouts" # X.org XKB layouts
+#"pacman" "xev" # X.org event viewer
+"pacman" "timeshift" # System snapshot utility
 
+# TERMINAL UTILITIES
+"pacman" "vim" # Vim text editor
+"pacman" "nano" # Nano text editor
+"pacman" "feh" # Image viewer
+"pacman" "kitty" # Terminal emulator
+"pacman" "alacritty" # GPU-accelerated terminal emulator
+"pacman" "btop" # Resource monitor
+"pacman" "fastfetch" # System information tool
+"pacman" "exa" # Modern replacement for 'ls'
+
+# BLUETOOTH
+"pacman" "bluez" # Bluetooth support
+"pacman" "bluez-utils" # Bluetooth utilities
+"pacman" "blueman" # Bluetooth manager
+"pacman" "blueberry" # Bluetooth configuration tool
+"pacman" "blueberry-systray" # Bluetooth systray applet
+
+# AUDIO
+"pacman" "pipewire" # Audio server
+"pacman" "pipewire-pulse" # PulseAudio compatibility for PipeWire
+"pacman" "pavucontrol" # PulseAudio volume control
+"pacman" "pulseaudio" # Sound server
+"pacman" "pamixer" # PulseAudio command-line mixer
+#"pacman" "alsa-utils" # Audio Server
+"pacman" "volumeicon" # Volume control in system tray
+
+# NETWORKING
+#"pacman" "network-manager" # Network management
+#"pacman" "nm-applet" # NetworkManager applet for desktop
+"pacman" "dhcpcd5" # DHCP client daemon
+"pacman" "openvpn" # OpenVPN support
+"pacman" "nss-mdns" # Multicast DNS resolution
+#"pacman" "wpasupplicant" # WPA supplicant for WiFi networks
+"pacman" "samba" # SMB/CIFS implementation
+"pacman" "smbclient" # SMB client utilities
+"pacman" "nfs-utils" # Network File System utilities
+"pacman" "ufw" # Uncomplicated Firewall
+"pacman" "avahi" # Zeroconf networking
+"pacman" "cifs-utils" # Tools for mounting and managing CIFS shares
+"pacman" "inetutils" # Networking utilities
+
+# DEVELOPMENT
+"pacman" "postgresql-libs" # PostgreSQL client libraries
+"pacman" "mariadb-libs" # MariaDB client libraries
+"pacman" "python" # Python programming language
+"pacman" "ruby" # Ruby programming language
+"pacman" "perl" # Perl programming language
+"pacman" "lua" # Lua programming language
+"pacman" "vscode" # Visual Studio Code IDE
+"pacman" "dotnet-sdk" # .NET SDK
+"pacman" "nodejs" # Node.js runtime environment
+"pacman" "npm" # Node.js package manager
+"pacman" "cmake" # Cross-platform build system
+"pacman" "meson" # Build system
+"pacman" "ninja" # Build system
+"pacman" "yasm" # Assembler
+"pacman" "nasm" # Assembler
+"pacman" "sqlite" # SQL database engine
+"pacman" "meld" # Visual diff and merge tool
+"pacman" "docker" # Containerization platform
+"pacman" "nim" # Nim programming language
+
+# SYSTEM
+"pacman" "libx11" # X11 client-side library
+"pacman" "libxft" # X FreeType interface library
+"pacman" "libxinerama" # X11 Xinerama extension library
+"pacman" "libxrandr" # X11 RandR extension library
+"pacman" "libxext" # X11 miscellaneous extensions library
+"pacman" "libxt" # X Toolkit Intrinsics library
+"pacman" "libgl" # OpenGL library
+"pacman" "libxi" # X11 Input extension library
+"pacman" "libxmu" # X11 miscellaneous utilities library
+"pacman" "gtk3" # GTK+ 3 toolkit
+"pacman" "qt5-base" # Qt 5 base libraries
+"pacman" "webkit2gtk" # GTK+ WebKit browser engine
+"pacman" "variety" # Wallpaper changer
+"pacman" "unzip" # ZIP archive extractor
+"pacman" "zip" # ZIP archive compressor
+"pacman" "patch" # Patch utility
+"pacman" "xbindkeys" # Keyboard shortcut tool
+"pacman" "duf" # Disk usage/Free utility
+"pacman" "wget" # Network downloader
+"pacman" "fontconfig" # Font configuration and customization
+"pacman" "zed" # Lightweight text editor
+
+# MEDIA
+"pacman" "ffmpeg" # Multimedia framework
+"pacman" "gimp" # GNU Image Manipulation Program
+"pacman" "mpv" # Media player
+"pacman" "vlc" # VLC media player
+
+# YAY (AUR PACKAGES)
+"yay" "spotify-adblock" # Spotify ad blocker
+"yay" "simplescreenrecorder" # Screen recording software
+"yay" "chatterino2-git" # Chat client for Twitch chat
+"yay" "github-desktop-bin" # GitHub Desktop client
+
+# THUNAR FILE MANAGER AND PLUGINS
+"yay" "thunar" # Thunar file manager
+"yay" "thunar-volman" # Thunar volume manager plugin
+"yay" "imdb-thumbnailer" # Thunar IMDb thumbnailer plugin
+"yay" "thunar-shares-plugin" # Thunar file sharing plugin
+"yay" "thunar-media-tags-plugin" # Thunar media tags plugin
+"yay" "thunar-archive-plugin" # Thunar archive plugin
+
+# FONTS
+"yay" "ttf-ms-fonts" # Microsoft TrueType core fonts
+
+# PULSEAUDIO ADD-ONS
+"yay" "pulseaudio-equalizer" # PulseAudio equalizer
+"yay" "pulseaudio-module-bluetooth" # PulseAudio Bluetooth module
+
+# FLATPAK APPLICATIONS
+"flatpak" "flathub/com.discordapp.Discord" # Discord messaging application
+"flatpak" "flathub/com.brave.Browser" # Brave web browser
+"flatpak" "flathub/org.keepassxc.KeePassXC" # KeePassXC password manager
+"flatpak" "flathub/com.obsproject.Studio" # OBS Studio for video recording and live streaming
+"flatpak" "flathub/com.chatterino.chatterino" # Chatterino chat client for Twitch
