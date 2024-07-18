@@ -15,7 +15,7 @@ NC='\033[0m' # No Color
 
 ############ FILE & FOLDER PATHS
 # CHANGE THE FOLDER NAME & LOCATION IF YOU RENAME THE FOLDER
-STARTUP="$HOME/bash.arch-startup"
+STARTUP="$HOME/bash.arch-suite"
 
 # LOCATIONS
 CUT="$STARTUP/files"
