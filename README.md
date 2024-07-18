@@ -1,4 +1,4 @@
-# Arch Linux Setup with dwm Installation Script
+# Arch Linux Post Installation Script
 #### New Info
 This might have started off being a DWM install script. . . It became more, and I had to start separating it. Which means under it's course of running, it will download the rest of the things from other repo's. 
 #### Old Info
